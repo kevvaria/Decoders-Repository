@@ -1,6 +1,7 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
+#include <QApplication>
 #include <QtSql>
 #include <QtDebug>
 #include <QFileInfo>
@@ -12,6 +13,13 @@ class dbManager
 {
 public:
     dbManager();
+
+
+    void nametest();
+
+
+private:
+    QSqlDatabase db; //the database
 };
 
 #endif // DBMANAGER_H

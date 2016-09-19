@@ -12,3 +12,13 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_dial_rangeChanged(int min, int max)
+{
+
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    db.nametest();
+}
