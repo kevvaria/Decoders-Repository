@@ -5,7 +5,7 @@
 dbManager::dbManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Decoders.sqlite");
+    db.setDatabaseName("../Database/Decoders.sqlite");
 
     if(!db.open())
         qDebug() << "Not connected to DB.";
