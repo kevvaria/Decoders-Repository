@@ -13,13 +13,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_dial_rangeChanged(int min, int max)
-{
 
-}
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QVector<QString> restNames = db.getRestNames();
+//    qDebug() << "here";
+//    QVector<QString> restNames = db.getRestNames();
+//    for(int i = 0; i < restNames.length(); i++)
+//    {
+//        qDebug() << restNames.at(i);
+//    }
+
+
+   // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
+    qDebug() << db.Exists("Wendy’s", "Chicken wrap");
 
 }

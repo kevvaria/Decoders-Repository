@@ -1,6 +1,11 @@
 #include "dbmanager.h"
 #include<qdebug.h>
-
+/*!
+   * \file dbmanager.cpp
+   * \brief  Source file for dbmanager database wrapper class methods
+   *
+   * This file contains all of the definitions of the dbmanager database wrapper class
+   */
 
 
 dbManager::dbManager()
@@ -20,7 +25,6 @@ QVector<QString> dbManager:: getRestNames()
     QVector<QString> names;
 
     query.prepare("SELECT name FROM Restaurant");
-    int idName = query.record().indexOf("name");
     if(query.exec())
     {
         while(query.next()) //these seem to be coming out in alphabetical order by default
@@ -34,5 +38,161 @@ QVector<QString> dbManager:: getRestNames()
     {
         qDebug() << query.lastError();
     }
+    return names;
 
+}
+
+QString dbManager::getSadDist(QString restName)
+{
+    QSqlQuery query(db);
+    //QString dist;
+    query.prepare("SELECT Dis2Sad FROM Restaurant WHERE name = (:restName)");
+    query.bindValue(":restName", restName);
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            QString dist = query.value(0).toString();
+            qDebug() << dist;
+            return dist;
+        }
+        else
+        {
+            return "Error";
+        }
+    }
+    else
+    {
+        qDebug() << query.lastError();
+        return "NO restaurant found";
+    }
+}
+QString dbManager::getRev(QString restName)
+{
+    QSqlQuery query(db);
+
+    query.prepare("SELECT totRev FROM Restaurant WHERE name = (:restName)");
+    query.bindValue(":restName", restName);
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            QString rev = query.value(0).toString();
+            qDebug() << rev;
+            return rev;
+        }
+        else
+        {
+            return "Error";
+        }
+
+    }
+    else
+    {
+        qDebug() << query.lastError();
+        return "NO restaurant found";
+    }
+}
+
+
+QString dbManager::getNumItems(QString restName)
+{
+    QSqlQuery query(db);
+
+    query.prepare("SELECT numItems FROM Restaurant WHERE name = (:restName)");
+    query.bindValue(":restName", restName);
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            QString rev = query.value(0).toString();
+            qDebug() << rev;
+            return rev;
+        }
+        else
+        {
+            return "Error";
+        }
+
+    }
+    else
+    {
+        qDebug() << query.lastError();
+        return "NO restaurant found";
+    }
+}
+
+QVector<QString> dbManager:: getMenuItems(QString restName)
+{
+
+    QSqlQuery query(db);
+    QVector<QString> names;
+
+    query.prepare("SELECT Name FROM MenuItems WHERE Owner = (:restName)");
+    query.bindValue(":restName", restName );
+
+    if(query.exec())
+    {
+
+        while(query.next()) //these seem to be coming out in alphabetical order by default
+        {
+
+            QString name =query.value(0).toString();
+            qDebug() << name;
+            names.push_back(name);
+        }
+    }
+    else
+    {
+        qDebug() << query.lastError();
+    }
+    return names;
+
+}
+QString dbManager::getItemPrice(QString restName, QString itemName)
+{
+     QSqlQuery query(db);
+
+     query.prepare("SELECT Price FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
+     query.bindValue(":restName", restName);
+     query.bindValue(":itemName", itemName);
+
+     if(query.exec())
+     {
+         if(query.next())
+         {
+           QString price =  query.value(0).toString();
+            qDebug() << price;
+            return price;
+         }
+     }
+     else
+     {
+         qDebug() << query.lastError();
+     }
+     return "price" ;
+}
+bool dbManager::Exists(QString restName, QString itemName)
+{
+    QSqlQuery query(db);
+
+    query.prepare("SELECT Price FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
+    query.bindValue(":restName", restName);
+    query.bindValue(":itemName", itemName);
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        qDebug() << "Error";
+        return false;
+    }
 }

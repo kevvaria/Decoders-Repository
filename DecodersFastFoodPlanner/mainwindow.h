@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_dial_rangeChanged(int min, int max);
+
 
     void on_pushButton_2_clicked();
 
