@@ -20,5 +20,6 @@ void MainWindow::on_dial_rangeChanged(int min, int max)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    db.nametest();
+    QVector<QString> restNames = db.getRestNames();
+
 }

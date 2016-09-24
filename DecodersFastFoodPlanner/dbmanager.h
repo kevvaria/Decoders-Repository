@@ -6,16 +6,26 @@
 #include <QtDebug>
 #include <QFileInfo>
 #include <qarraydata.h>
-//#include "user.h"
+
 #include <QVector>
+#include<qvector.h>
 
 class dbManager
 {
 public:
     dbManager();
 
+    /*!
+     * \brief getRestNames
+     * \return
+     */
+    QVector<QString> getRestNames();
 
-    void nametest();
+
+
+
+    QVector<QString> getMenuItems(QString restName);
+
 
 
 private:
