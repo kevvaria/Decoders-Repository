@@ -79,11 +79,30 @@ public:
      * \return
      */
     bool Exists(QString restName, QString itemName);
+    /*!
+     * \brief removeItem
+     * \param restName
+     * \param itemName
+     * \return
+     */
+    bool removeItem(QString restName, QString itemName);
+    bool updateItem(QString restName, QString itemName, double price);
+
+
+    //test function, not complete
+    bool addRest();
+
+    /*!
+     * \brief getRestCount
+     * \return Number of restuarants the db
+     */
+    int getRestCount();
 
 
 
 private:
     QSqlDatabase db; //the database
+
 };
 
 #endif // DBMANAGER_H

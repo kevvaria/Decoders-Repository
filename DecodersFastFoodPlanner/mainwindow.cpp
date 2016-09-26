@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_2_clicked()
 {
 //    qDebug() << "here";
-//    QVector<QString> restNames = db.getRestNames();
+   // QVector<QString> restNames = db.getRestNames();
 //    for(int i = 0; i < restNames.length(); i++)
 //    {
 //        qDebug() << restNames.at(i);
@@ -26,6 +26,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 
    // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    qDebug() << db.Exists("Wendy’s", "Chicken wrap");
+    qDebug() << db.getRestCount();
+
 
 }

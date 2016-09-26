@@ -196,3 +196,42 @@ bool dbManager::Exists(QString restName, QString itemName)
         return false;
     }
 }
+bool dbManager::removeItem(QString restName, QString itemName)
+{
+     QSqlQuery query(db);
+     query.prepare("DELETE FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
+     query.bindValue(":restName", restName);
+     query.bindValue(":itemName", itemName);
+     if(query.exec())
+     {
+        qDebug() << "should be gone!";
+        return true;
+     }
+     else
+     {
+        qDebug() << query.lastError();
+        return false;
+     }
+}
+bool dbManager::addRest()
+{
+    //for(int i = 1; i < db.)
+}
+int dbManager::getRestCount()
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT COUNT(*) FROM Restaurant");
+    if(query.exec())
+    {
+
+        if(query.next())
+            return query.value(0).toInt();
+        else
+            return -1;
+    }
+    else
+    {
+        qDebug() << query.lastError();
+        return -1;
+    }
+}
