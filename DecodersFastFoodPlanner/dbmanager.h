@@ -105,7 +105,7 @@ public:
 
 
     //test function, not complete
-    bool addRest();
+    bool addRest(QString restName, double sadDist, QVector<double> distances);
 
     /*!
      * \brief getRestCount

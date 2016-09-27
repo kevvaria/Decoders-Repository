@@ -151,26 +151,26 @@ QVector<QString> dbManager:: getMenuItems(QString restName)
 }
 QString dbManager::getItemPrice(QString restName, QString itemName)
 {
-     QSqlQuery query(db);
+    QSqlQuery query(db);
 
-     query.prepare("SELECT Price FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
-     query.bindValue(":restName", restName);
-     query.bindValue(":itemName", itemName);
+    query.prepare("SELECT Price FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
+    query.bindValue(":restName", restName);
+    query.bindValue(":itemName", itemName);
 
-     if(query.exec())
-     {
-         if(query.next())
-         {
-           QString price =  query.value(0).toString();
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            QString price =  query.value(0).toString();
             qDebug() << price;
             return price;
-         }
-     }
-     else
-     {
-         qDebug() << query.lastError();
-     }
-     return "price" ;
+        }
+    }
+    else
+    {
+        qDebug() << query.lastError();
+    }
+    return "price" ;
 }
 bool dbManager::Exists(QString restName, QString itemName)
 {
@@ -198,43 +198,75 @@ bool dbManager::Exists(QString restName, QString itemName)
 }
 bool dbManager::removeItem(QString restName, QString itemName)
 {
-     QSqlQuery query(db);
-     query.prepare("DELETE FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
-     query.bindValue(":restName", restName);
-     query.bindValue(":itemName", itemName);
-     if(query.exec())
-     {
-        qDebug() << "should be gone!";
-        return true;
-     }
-     else
-     {
-        qDebug() << query.lastError();
-        return false;
-     }
-}
-bool dbManager::addRest()
-{
-    //for(int i = 1; i < db.)
-}
-int dbManager::getRestCount()
-{
     QSqlQuery query(db);
-    query.prepare("SELECT COUNT(*) FROM Restaurant");
+    query.prepare("DELETE FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
+    query.bindValue(":restName", restName);
+    query.bindValue(":itemName", itemName);
     if(query.exec())
     {
+        QSqlQuery query2(db);
+        query2.prepare("SELECT numItems FROM Restaurant WHERE name = (:restName) ");
+        query2.bindValue(":restName", restName);
+        if(query2.exec())
+        {
+            if(query2.next())
+            {
+                int count= query2.value(0).toInt(); //update the item count for the restaurant
+                QSqlQuery query3(db);
+                query3.prepare("UPDATE Restaurant SET numItems = (:count) WHERE name = (:restName)");
+                query3.bindValue(":restName", restName);
+                query3.bindValue(":count", (count-1));
+                if(query3.exec())
+                {
+                    qDebug() << "should be gone!";
 
-        if(query.next())
-            return query.value(0).toInt();
+                    return true;
+                }
+                else
+                {
+                    qDebug() << query3.lastError();
+                }
+            }
+            else
+            {
+                qDebug() << "grabbing didn't work, query okay";
+            }
+        }
         else
-            return -1;
+        {
+            qDebug() << query2.lastError();
+        }
+
+
     }
     else
     {
         qDebug() << query.lastError();
-        return -1;
+        return false;
     }
 }
+//bool dbManager::addRest()
+//{
+//    //for(int i = 1; i < db.)
+//}
+//int dbManager::getRestCount()
+//{
+//    QSqlQuery query(db);
+//    query.prepare("SELECT COUNT(*) FROM Restaurant");
+//    if(query.exec())
+//    {
+
+//        if(query.next())
+//            return query.value(0).toInt();
+//        else
+//            return -1;
+//    }
+//    else
+//    {
+//        qDebug() << query.lastError();
+//        return -1;
+//    }
+//}
 
 bool dbManager::updateItem(QString restName, QString itemName, double price)
 {
@@ -250,13 +282,14 @@ bool dbManager::updateItem(QString restName, QString itemName, double price)
             qDebug() << "Updated";
             return true;
         }
-        else
-        {
-            qDebug() << query.lastError();
+            else
+            {
+                qDebug() << query.lastError();
+            }
+            return false;
         }
     }
-    return false;
-}
+
 
 
 
@@ -274,7 +307,38 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
         {
 
             qDebug() << "We good";
-            return true;
+
+            QSqlQuery query2(db);
+            query2.prepare("SELECT numItems FROM Restaurant WHERE name = (:restName) ");
+            query2.bindValue(":restName", restName);
+            if(query2.exec())
+            {
+                if(query2.next())
+                {
+                    int count= query2.value(0).toInt(); //update the item count for the restaurant
+                    QSqlQuery query3(db);
+                    query3.prepare("UPDATE Restaurant SET numItems = (:count) WHERE name = (:restName)");
+                    query3.bindValue(":restName", restName);
+                    query3.bindValue(":count", (count+1));
+                    if(query3.exec())
+                    {
+                        qDebug() << "Should be updated";
+                        return true;
+                    }
+                    else
+                    {
+                        qDebug() << query3.lastError();
+                    }
+                }
+                else
+                {
+                    qDebug() << "grabbing didn't work, query okay";
+                }
+            }
+            else
+            {
+                qDebug() << query2.lastError();
+            }
         }
         else
         {
