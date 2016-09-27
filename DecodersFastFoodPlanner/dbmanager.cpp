@@ -176,7 +176,7 @@ bool dbManager::Exists(QString restName, QString itemName)
 {
     QSqlQuery query(db);
 
-    query.prepare("SELECT Price FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
+    query.prepare("SELECT * FROM MenuItems WHERE Owner = (:restName) AND Name = (:itemName)");
     query.bindValue(":restName", restName);
     query.bindValue(":itemName", itemName);
     if(query.exec())
@@ -192,7 +192,7 @@ bool dbManager::Exists(QString restName, QString itemName)
     }
     else
     {
-        qDebug() << "Error";
+        qDebug() << query.lastError();
         return false;
     }
 }
@@ -235,3 +235,59 @@ int dbManager::getRestCount()
         return -1;
     }
 }
+
+bool dbManager::updateItem(QString restName, QString itemName, double price)
+{
+    QSqlQuery query(db);
+    if(Exists(restName, itemName))
+    {
+        query.prepare("UPDATE MenuItems SET Price = (:price) WHERE Owner = (:restName) AND Name = (:itemName)");
+        query.bindValue(":restName", restName);
+        query.bindValue(":itemName", itemName);
+        query.bindValue(":price", price);
+        if(query.exec())
+        {
+            qDebug() << "Updated";
+            return true;
+        }
+        else
+        {
+            qDebug() << query.lastError();
+        }
+    }
+    return false;
+}
+
+
+
+bool dbManager::addItem(QString restName, QString itemName, double price)
+{
+
+    QSqlQuery query(db);
+    if(!Exists(restName, itemName))
+    {
+        query.prepare("INSERT INTO MenuItems (Owner, Name, Price) VALUES (:restName, :itemName, :price)");
+        query.bindValue(":restName", restName);
+        query.bindValue(":itemName", itemName);
+        query.bindValue(":price", price);
+        if(query.exec())
+        {
+
+            qDebug() << "We good";
+            return true;
+        }
+        else
+        {
+            qDebug() << query.lastError();
+        }
+    }
+    else
+    {
+        //do something if the item exists
+
+    }
+
+    return false;
+}
+
+

@@ -86,7 +86,22 @@ public:
      * \return
      */
     bool removeItem(QString restName, QString itemName);
+    /*!
+     * \brief updateItem
+     * \param restName
+     * \param itemName
+     * \param price
+     * \return
+     */
     bool updateItem(QString restName, QString itemName, double price);
+
+    /*!
+     * \brief addItem
+     * \param restName
+     * \param itemName
+     * \return
+     */
+    bool addItem(QString restName, QString itemName, double price);
 
 
     //test function, not complete

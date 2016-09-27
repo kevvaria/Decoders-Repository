@@ -26,7 +26,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 
    // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    qDebug() << db.getRestCount();
+    qDebug() << db.updateItem("In-N-Out Burger", "Hamburger", 0.23);
 
 
 }
