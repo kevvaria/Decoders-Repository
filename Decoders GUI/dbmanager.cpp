@@ -30,7 +30,7 @@ QVector<QString> dbManager:: getRestNames()
         while(query.next()) //these seem to be coming out in alphabetical order by default
         {
             QString name =query.value(0).toString();
-            qDebug() << name;
+            //qDebug() << name;
             names.push_back(name);
         }
     }
@@ -52,9 +52,9 @@ QString dbManager::getSadDist(QString restName)
     {
         if(query.next())
         {
-            QString dist = query.value(0).toString();
-            qDebug() << dist;
-            return dist;
+            double dist = query.value(0).toDouble();
+           // qDebug() << dist;
+            return QString::number(dist);
         }
         else
         {
@@ -77,9 +77,9 @@ QString dbManager::getRev(QString restName)
     {
         if(query.next())
         {
-            QString rev = query.value(0).toString();
-            qDebug() << rev;
-            return rev;
+            double rev = query.value(0).toDouble();
+           // qDebug() << rev;
+            return QString::number(rev);
         }
         else
         {
@@ -106,7 +106,7 @@ QString dbManager::getNumItems(QString restName)
         if(query.next())
         {
             QString rev = query.value(0).toString();
-            qDebug() << rev;
+           // qDebug() << rev;
             return rev;
         }
         else
@@ -138,7 +138,6 @@ QVector<QString> dbManager:: getMenuItems(QString restName)
         {
 
             QString name =query.value(0).toString();
-            qDebug() << name;
             names.push_back(name);
         }
     }
@@ -161,9 +160,9 @@ QString dbManager::getItemPrice(QString restName, QString itemName)
     {
         if(query.next())
         {
-            QString price =  query.value(0).toString();
-            qDebug() << price;
-            return price;
+            double price =  query.value(0).toDouble();
+           // qDebug() << price;
+            return QString::number(price);
         }
     }
     else
@@ -218,7 +217,7 @@ bool dbManager::removeItem(QString restName, QString itemName)
                 query3.bindValue(":count", (count-1));
                 if(query3.exec())
                 {
-                    qDebug() << "should be gone!";
+                  //  qDebug() << "should be gone!";
 
                     return true;
                 }
@@ -325,6 +324,7 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
     else
     {
         //do something if the item exists
+        return false;
 
     }
 
@@ -334,17 +334,13 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
 bool dbManager::addRest(QString restName, double sadDist, QVector<double> distances)
 {
     QSqlQuery query(db);
-    QString distancesStr = distancesToString(restName); //convert the distances vector to a format the db can use
-
-    query.prepare("INSERT INTO Restaurant (name, dis2Sad, distances) VALUES (:restName, :sadDist, :disStr)");
+    QString distancesStr;
+    query.prepare("INSERT INTO Restaurant (name, dis2Sad) VALUES (:restName, :sadDist)");
     query.bindValue(":restName", restName);
     query.bindValue(":sadDist", sadDist);
-    query.bindValue(":disStr", distancesStr);
     if(query.exec())
     {
         qDebug() << "should be added";
-
-
         return true;
     }
     else
@@ -362,9 +358,9 @@ QString dbManager::distancesToString(QVector<double> distances)
         distancesStr += QString::number(distances.at(i) )+ " ";
     }
 
-    return distancesStr.trimmed() + "0.0"; //cut of the ending white space
+    return distancesStr.trimmed(); //cut of the ending white space
 }
-//need
+
 bool dbManager::updateDistances(QVector<double> distances)
 {
     QSqlQuery query(db);
@@ -376,23 +372,10 @@ bool dbManager::updateDistances(QVector<double> distances)
          {
              if(query.next())
              {
-                 QString disStr = query.value(0).toString();
-                 qDebug() << disStr;
-                 QSqlQuery query2(db);
-                 query2.prepare("UPDATE Restaurant SET distances = (:dist) WHERE restId = (:iId)");\
-                 query2.bindValue(":iId", i);
-                 query2.bindValue(":dist", disStr + distances);
-                 if(query2.exec())
-                 {
-                    //
-                 }
-
+                 QString test = query.value(0).toString();
              }
          }
-         else
-         {
-             qDebug() << query.lastError();
-         }
+         else{}
      }
 
 

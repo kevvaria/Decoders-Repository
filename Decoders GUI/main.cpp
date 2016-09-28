@@ -9,3 +9,17 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+/**
+\mainpage The Decoders Fast Food Trip Planner
+
+
+
+The Decoders:
+- Keval Varia
+- Dustin Vuong
+- Adam Weesner
+- Nick Sidaris
+
+
+© 2016 The Decoders. All Rights Reserved.
+*/
