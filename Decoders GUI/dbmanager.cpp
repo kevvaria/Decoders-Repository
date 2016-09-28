@@ -282,7 +282,7 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
         if(query.exec())
         {
 
-            qDebug() << "We good";
+           // qDebug() << "We good";
 
             QSqlQuery query2(db);
             query2.prepare("SELECT numItems FROM Restaurant WHERE name = (:restName) ");
@@ -298,7 +298,7 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
                     query3.bindValue(":count", (count+1));
                     if(query3.exec())
                     {
-                        qDebug() << "Should be updated";
+                       // qDebug() << "Should be updated";
                         return true;
                     }
                     else
@@ -334,13 +334,15 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
 bool dbManager::addRest(QString restName, double sadDist, QVector<double> distances)
 {
     QSqlQuery query(db);
-    QString distancesStr;
-    query.prepare("INSERT INTO Restaurant (name, dis2Sad) VALUES (:restName, :sadDist)");
+    QString distancesStr = distancesToString(distances);
+    query.prepare("INSERT INTO Restaurant (name, dis2Sad, distances) VALUES (:restName, :sadDist, :distStr)");
     query.bindValue(":restName", restName);
     query.bindValue(":sadDist", sadDist);
+    query.bindValue(":distStr", distancesStr +" " + "0.0");
     if(query.exec())
     {
-        qDebug() << "should be added";
+        //qDebug() << "should be added";
+        //updateDistances(distances);
         return true;
     }
     else
@@ -370,13 +372,52 @@ bool dbManager::updateDistances(QVector<double> distances)
          query.bindValue(":iId", i);
          if(query.exec())
          {
-             if(query.next())
+             while(query.next())
              {
-                 QString test = query.value(0).toString();
+                QString dist = query.value(0).toString(); //get the current restaurant string
+                QSqlQuery query2(db);
+              //  qDebug() << dist;
+               // qDebug() <<
+                query2.prepare("UPDATE Restaurant SET distances = (:distStr) WHERE restId = (:iId)");
+                query2.bindValue(":iId", i);
+                query2.bindValue(":distStr", (dist + " " + QString::number(distances.at(i))));
+                while(query2.exec())
+                {
+
+
+                }
+//                else
+//                {
+//                    qDebug() << query2.lastError();
+//                    return false;
+//                }
+
              }
+             return true;
          }
-         else{}
+
+         else{
+             query.lastError();
+             return false;
+         }
      }
 
+    return false;
+}
 
+QString dbManager::getRestName(int id)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT name FROM Restaurant WHERE restId = (:id)");
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            QString name = query.value(0).toString();
+            return name;
+        }
+
+
+    }
+    return "error";
 }

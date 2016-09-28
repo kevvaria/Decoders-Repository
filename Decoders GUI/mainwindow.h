@@ -31,7 +31,6 @@ private slots:
     void ClearItemTable();
     void ClearRestTable();
 
-    void updateRestTable();
 
     void on_adminCP_clicked();
 
@@ -40,9 +39,26 @@ private slots:
 
     void on_addToMenu_clicked();
 
-private:
 
-    void updateItemTable();
+
+
+
+    void on_AddRestaurant_clicked();
+
+
+
+    void on_pushButton_4_clicked();
+
+    void on_DistAdd_clicked();
+
+private:
+    int numRests;
+    int index;
+    QVector<double> distIn;
+    void updateItemTable(); //updates item table
+    void updateRestTable();
+
+    bool add2Rests(); //adds the two additional given restaurants to the db
     Ui::MainWindow *ui;
     dbManager db;
 };

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -119,12 +119,17 @@ public:
     QLabel *overfl0w;
     QWidget *tab_7;
     QLabel *label_24;
-    QLineEdit *lineEdit_11;
-    QLineEdit *lineEdit_12;
+    QLineEdit *newRestname;
     QLabel *label_25;
     QLabel *label_26;
     QTableWidget *AdminRestView;
-    QPushButton *pushButton_12;
+    QPushButton *AddRestaurant;
+    QDoubleSpinBox *dis2Saddle;
+    QPushButton *pushButton_4;
+    QDoubleSpinBox *DistEdit;
+    QLabel *restIndicator;
+    QPushButton *DistAdd;
+    QLabel *addIndicator;
     QWidget *tab_8;
     QTableView *tableView_9;
     QTableView *tableView_10;
@@ -324,7 +329,7 @@ public:
         label_103->setGeometry(QRect(80, 30, 47, 13));
         tabWidget_3 = new QTabWidget(tab_4);
         tabWidget_3->setObjectName(QStringLiteral("tabWidget_3"));
-        tabWidget_3->setGeometry(QRect(10, 10, 711, 361));
+        tabWidget_3->setGeometry(QRect(20, 10, 741, 361));
         tab_6 = new QWidget();
         tab_6->setObjectName(QStringLiteral("tab_6"));
         adminItemSelection = new QComboBox(tab_6);
@@ -391,24 +396,41 @@ public:
         label_24->setObjectName(QStringLiteral("label_24"));
         label_24->setGeometry(QRect(230, 10, 141, 21));
         label_24->setStyleSheet(QStringLiteral("font: 16pt \"Comic Sans MS\";"));
-        lineEdit_11 = new QLineEdit(tab_7);
-        lineEdit_11->setObjectName(QStringLiteral("lineEdit_11"));
-        lineEdit_11->setGeometry(QRect(590, 130, 113, 20));
-        lineEdit_12 = new QLineEdit(tab_7);
-        lineEdit_12->setObjectName(QStringLiteral("lineEdit_12"));
-        lineEdit_12->setGeometry(QRect(590, 80, 113, 20));
+        newRestname = new QLineEdit(tab_7);
+        newRestname->setObjectName(QStringLiteral("newRestname"));
+        newRestname->setGeometry(QRect(600, 70, 113, 20));
         label_25 = new QLabel(tab_7);
         label_25->setObjectName(QStringLiteral("label_25"));
-        label_25->setGeometry(QRect(630, 60, 47, 13));
+        label_25->setGeometry(QRect(640, 50, 47, 13));
         label_26 = new QLabel(tab_7);
         label_26->setObjectName(QStringLiteral("label_26"));
-        label_26->setGeometry(QRect(630, 110, 47, 13));
+        label_26->setGeometry(QRect(600, 100, 121, 21));
         AdminRestView = new QTableWidget(tab_7);
         AdminRestView->setObjectName(QStringLiteral("AdminRestView"));
         AdminRestView->setGeometry(QRect(30, 40, 551, 281));
-        pushButton_12 = new QPushButton(tab_7);
-        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
-        pushButton_12->setGeometry(QRect(600, 170, 101, 23));
+        AdminRestView->setAlternatingRowColors(true);
+        AdminRestView->setSortingEnabled(true);
+        AddRestaurant = new QPushButton(tab_7);
+        AddRestaurant->setObjectName(QStringLiteral("AddRestaurant"));
+        AddRestaurant->setGeometry(QRect(600, 300, 101, 23));
+        dis2Saddle = new QDoubleSpinBox(tab_7);
+        dis2Saddle->setObjectName(QStringLiteral("dis2Saddle"));
+        dis2Saddle->setGeometry(QRect(620, 120, 62, 22));
+        pushButton_4 = new QPushButton(tab_7);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(570, 10, 161, 21));
+        DistEdit = new QDoubleSpinBox(tab_7);
+        DistEdit->setObjectName(QStringLiteral("DistEdit"));
+        DistEdit->setGeometry(QRect(620, 210, 62, 22));
+        restIndicator = new QLabel(tab_7);
+        restIndicator->setObjectName(QStringLiteral("restIndicator"));
+        restIndicator->setGeometry(QRect(610, 180, 71, 16));
+        DistAdd = new QPushButton(tab_7);
+        DistAdd->setObjectName(QStringLiteral("DistAdd"));
+        DistAdd->setGeometry(QRect(610, 240, 75, 23));
+        addIndicator = new QLabel(tab_7);
+        addIndicator->setObjectName(QStringLiteral("addIndicator"));
+        addIndicator->setGeometry(QRect(580, 270, 141, 21));
         tabWidget_3->addTab(tab_7, QString());
         tabWidget->addTab(tab_4, QString());
         tab_8 = new QWidget();
@@ -446,7 +468,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(2);
-        tabWidget_2->setCurrentIndex(1);
+        tabWidget_2->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
 
 
@@ -499,17 +521,21 @@ public:
         addToMenu->setText(QApplication::translate("MainWindow", "Add to Menu", 0));
         label_22->setText(QApplication::translate("MainWindow", "Item Name", 0));
         label_23->setText(QApplication::translate("MainWindow", "Item Price", 0));
-        overfl0w->setText(QApplication::translate("MainWindow", "Max Items have been reached. You fat fuck.", 0));
+        overfl0w->setText(QApplication::translate("MainWindow", "Max Items have been reached. ", 0));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_6), QApplication::translate("MainWindow", "Menu Edits", 0));
         label_24->setText(QApplication::translate("MainWindow", "Restaurants", 0));
         label_25->setText(QApplication::translate("MainWindow", "Name", 0));
-        label_26->setText(QApplication::translate("MainWindow", "Distance", 0));
-        pushButton_12->setText(QApplication::translate("MainWindow", "Add Restaurant", 0));
+        label_26->setText(QApplication::translate("MainWindow", "Distance to Saddleback", 0));
+        AddRestaurant->setText(QApplication::translate("MainWindow", "Add Restaurant", 0));
+        pushButton_4->setText(QApplication::translate("MainWindow", "Add Recommend Restaurants", 0));
+        restIndicator->setText(QApplication::translate("MainWindow", "Distance to:", 0));
+        DistAdd->setText(QApplication::translate("MainWindow", "Add it!", 0));
+        addIndicator->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">All set! Click below to finish</p></body></html>", 0));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_7), QApplication::translate("MainWindow", "Restaurant Edits", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Admin", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "Restaurant Ranks", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Administrative Login", 0));
-        label_101->setText(QApplication::translate("MainWindow", "Decoder's GPS FFS", 0));
+        label_101->setText(QApplication::translate("MainWindow", "Decoder's Fast Food GPS", 0));
         menuDecoders->setTitle(QApplication::translate("MainWindow", "Decoders", 0));
     } // retranslateUi
 

@@ -45,7 +45,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -688,9 +688,9 @@
      <widget class="QTabWidget" name="tabWidget_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>10</y>
-        <width>711</width>
+        <width>741</width>
         <height>361</height>
        </rect>
       </property>
@@ -910,7 +910,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Max Items have been reached. You fat fuck.</string>
+         <string>Max Items have been reached. </string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -937,21 +937,11 @@
          <string>Restaurants</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_11">
+       <widget class="QLineEdit" name="newRestname">
         <property name="geometry">
          <rect>
-          <x>590</x>
-          <y>130</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_12">
-        <property name="geometry">
-         <rect>
-          <x>590</x>
-          <y>80</y>
+          <x>600</x>
+          <y>70</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -960,8 +950,8 @@
        <widget class="QLabel" name="label_25">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>60</y>
+          <x>640</x>
+          <y>50</y>
           <width>47</width>
           <height>13</height>
          </rect>
@@ -973,14 +963,14 @@
        <widget class="QLabel" name="label_26">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>110</y>
-          <width>47</width>
-          <height>13</height>
+          <x>600</x>
+          <y>100</y>
+          <width>121</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>Distance</string>
+         <string>Distance to Saddleback</string>
         </property>
        </widget>
        <widget class="QTableWidget" name="AdminRestView">
@@ -992,18 +982,96 @@
           <height>281</height>
          </rect>
         </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="sortingEnabled">
+         <bool>true</bool>
+        </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_12">
+       <widget class="QPushButton" name="AddRestaurant">
         <property name="geometry">
          <rect>
           <x>600</x>
-          <y>170</y>
+          <y>300</y>
           <width>101</width>
           <height>23</height>
          </rect>
         </property>
         <property name="text">
          <string>Add Restaurant</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dis2Saddle">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>120</y>
+          <width>62</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>10</y>
+          <width>161</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add Recommend Restaurants</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="DistEdit">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>210</y>
+          <width>62</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="restIndicator">
+        <property name="geometry">
+         <rect>
+          <x>610</x>
+          <y>180</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Distance to:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="DistAdd">
+        <property name="geometry">
+         <rect>
+          <x>610</x>
+          <y>240</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add it!</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="addIndicator">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>270</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;All set! Click below to finish&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -1061,7 +1129,7 @@
      <string notr="true">font: 75 20pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string>Decoder's GPS FFS</string>
+     <string>Decoder's Fast Food GPS</string>
     </property>
    </widget>
   </widget>
