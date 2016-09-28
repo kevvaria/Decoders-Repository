@@ -105,6 +105,13 @@ public:
 
 
     //test function, not complete
+    /*!
+     * \brief addRest
+     * \param restName
+     * \param sadDist
+     * \param distances
+     * \return
+     */
     bool addRest(QString restName, double sadDist, QVector<double> distances);
 
     /*!
@@ -113,6 +120,9 @@ public:
      */
     int getRestCount();
 
+protected:
+    bool updateDistances(QVector<double> distances); //updates the previous restaurnts
+    QString distancesToString(QVector<double> distances); //converts the distances to a string to store in the db
 
 
 private:

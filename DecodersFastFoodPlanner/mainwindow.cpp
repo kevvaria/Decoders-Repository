@@ -24,9 +24,9 @@ void MainWindow::on_pushButton_2_clicked()
 //        qDebug() << restNames.at(i);
 //    }
 
-
+QVector<double> distances;
    // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    qDebug() << db.removeItem("In-N-Out Burger", "Cheeseburger");
+    qDebug() << db.addRest("Paddy's", 8.98, distances );
 
 
 }

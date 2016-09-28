@@ -375,6 +375,7 @@ bool dbManager::updateDistances(QVector<double> distances)
                  QString test = query.value(0).toString();
              }
          }
+         else
      }
 
 
