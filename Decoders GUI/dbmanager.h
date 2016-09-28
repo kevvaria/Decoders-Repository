@@ -120,11 +120,25 @@ public:
      */
     int getRestCount();
 
-
+    /*!
+     * \brief getRestName
+     * \param id
+     * \return
+     */
     QString getRestName(int id);
 
-//protected:
+
+    /*!
+     * \brief updateDistances
+     * \param distances
+     * \return
+     */
     bool updateDistances(QVector<double> distances); //updates the previous restaurnts
+    /*!
+     * \brief distancesToString
+     * \param distances
+     * \return
+     */
     QString distancesToString(QVector<double> distances); //converts the distances to a string to store in the db
 
 
