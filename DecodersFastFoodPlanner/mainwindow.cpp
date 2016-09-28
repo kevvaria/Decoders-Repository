@@ -26,7 +26,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 QVector<double> distances;
    // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    qDebug() << db.addRest("Paddy's", 8.98, distances );
+    qDebug() << db.updateDistances(distances );
 
 
 }

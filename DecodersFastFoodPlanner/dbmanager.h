@@ -120,9 +120,10 @@ public:
      */
     int getRestCount();
 
-protected:
+//protected:
     bool updateDistances(QVector<double> distances); //updates the previous restaurnts
     QString distancesToString(QVector<double> distances); //converts the distances to a string to store in the db
+    //bool setDistances()
 
 
 private:

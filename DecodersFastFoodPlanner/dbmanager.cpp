@@ -334,13 +334,17 @@ bool dbManager::addItem(QString restName, QString itemName, double price)
 bool dbManager::addRest(QString restName, double sadDist, QVector<double> distances)
 {
     QSqlQuery query(db);
-    QString distancesStr;
-    query.prepare("INSERT INTO Restaurant (name, dis2Sad) VALUES (:restName, :sadDist)");
+    QString distancesStr = distancesToString(restName); //convert the distances vector to a format the db can use
+
+    query.prepare("INSERT INTO Restaurant (name, dis2Sad, distances) VALUES (:restName, :sadDist, :disStr)");
     query.bindValue(":restName", restName);
     query.bindValue(":sadDist", sadDist);
+    query.bindValue(":disStr", distancesStr);
     if(query.exec())
     {
         qDebug() << "should be added";
+
+
         return true;
     }
     else
@@ -358,9 +362,9 @@ QString dbManager::distancesToString(QVector<double> distances)
         distancesStr += QString::number(distances.at(i) )+ " ";
     }
 
-    return distancesStr.trimmed(); //cut of the ending white space
+    return distancesStr.trimmed() + "0.0"; //cut of the ending white space
 }
-
+//need
 bool dbManager::updateDistances(QVector<double> distances)
 {
     QSqlQuery query(db);
@@ -372,8 +376,22 @@ bool dbManager::updateDistances(QVector<double> distances)
          {
              if(query.next())
              {
-                 QString test = query.value(0).toString();
+                 QString disStr = query.value(0).toString();
+                 qDebug() << disStr;
+                 QSqlQuery query2(db);
+                 query2.prepare("UPDATE Restaurant SET distances = (:dist) WHERE restId = (:iId)");\
+                 query2.bindValue(":iId", i);
+                 query2.bindValue(":dist", disStr + distances);
+                 if(query2.exec())
+                 {
+                    //
+                 }
+
              }
+         }
+         else
+         {
+             qDebug() << query.lastError();
          }
      }
 
