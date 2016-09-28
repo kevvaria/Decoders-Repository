@@ -342,7 +342,7 @@ bool dbManager::addRest(QString restName, double sadDist, QVector<double> distan
     if(query.exec())
     {
         //qDebug() << "should be added";
-        //updateDistances(distances);
+        updateDistances(distances);
         return true;
     }
     else
@@ -366,6 +366,7 @@ QString dbManager::distancesToString(QVector<double> distances)
 bool dbManager::updateDistances(QVector<double> distances)
 {
     QSqlQuery query(db);
+    qDebug() << distances.size();
      for(int i = 0; i < distances.size(); i++)
      {
          query.prepare("SELECT distances FROM Restaurant WHERE restId = (:iId)");
@@ -381,19 +382,19 @@ bool dbManager::updateDistances(QVector<double> distances)
                 query2.prepare("UPDATE Restaurant SET distances = (:distStr) WHERE restId = (:iId)");
                 query2.bindValue(":iId", i);
                 query2.bindValue(":distStr", (dist + " " + QString::number(distances.at(i))));
-                while(query2.exec())
+                if(query2.exec())
                 {
 
-
+                    //qDebug() << "Updated";
                 }
-//                else
-//                {
-//                    qDebug() << query2.lastError();
-//                    return false;
-//                }
+                else
+                {
+                    qDebug() << query2.lastError();
+                    return false;
+                }
 
              }
-             return true;
+
          }
 
          else{
@@ -402,7 +403,7 @@ bool dbManager::updateDistances(QVector<double> distances)
          }
      }
 
-    return false;
+    return true;
 }
 
 QString dbManager::getRestName(int id)
