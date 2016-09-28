@@ -16,7 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     ui->adminRC->setCurrentIndex(0);
     index = 0;
-    numRests = 10;
+    numRests = restNameCB.size(); //this will change to a db method
+
+    ui->AddRestaurant->hide();
+    ui->addIndicator->hide();
+    ui->DistAdd->show();
+   ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
+
 }
 
 MainWindow::~MainWindow()
@@ -106,7 +112,7 @@ void MainWindow::on_pushButton_11_clicked()
 {
     QVector<double> distances;
     // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    qDebug() << db.updateDistances(distances );
+    //qDebug() << db.updateDistances(distances );
 
 }
 
@@ -241,17 +247,26 @@ void MainWindow::on_adminDelItem_clicked()
 void MainWindow::on_addToMenu_clicked()
 {
     QString restName = ui->adminRC->currentText();
-    QString addItemName = ui->addItemName->text();
+    QString addItemName = ui->addItemName->text().trimmed();
     double addItemPrice = ui->adminItemSpin->value();
-    //db.addItem(ui->adminRC->currentText(),ui->addItemName->text(),ui->adminItemSpin->value());
-    if(db.addItem(restName,addItemName,addItemPrice)){
-        QMessageBox::information(this, tr("We Gucci!"),
-                                 "should be added");
+
+    if(!addItemName.isEmpty())
+    {
+        if(db.addItem(restName,addItemName,addItemPrice)){
+            QMessageBox::information(this, tr("Added!"),
+                                     "Item has been added");
+        }
+        else{
+            QMessageBox::information(this, tr("Invalid!"),
+                                     "Duplicate Item");
+        }
     }
-    else{
+    else
+    {
         QMessageBox::information(this, tr("Invalid!"),
-                                 "Duplicate Item");
+                                 "Please fill all fields");
     }
+
     updateItemTable();
 }
 
@@ -260,13 +275,47 @@ void MainWindow::on_addToMenu_clicked()
 void MainWindow::on_AddRestaurant_clicked()
 {
     qDebug() << "here";
-    QVector<double> distances;
+    //QVector<double> distances;
 
     QString restName = ui->newRestname->text().trimmed();
     double dis2Sad = ui->dis2Saddle->value();
-    if(db.addRest(restName, dis2Sad, distances));
+
+    if(!restName.isEmpty())
+    {
+        if(db.addRest(restName, dis2Sad, distIn))
+        {
+            QMessageBox::information(this, tr("Added!"),
+                                     restName + " added to the list");
+
+        }
+        else
+        {
+            QMessageBox::information(this, tr("Error"),
+                                     "Duplicate Restaurant");
+        }
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Error"),
+                                 "Please fill all fields");
+    }
 
 
+    distIn.clear();
+    ui->AddRestaurant->hide();
+    ui->DistEdit->show();
+    ui->addIndicator->hide();
+    ui->DistAdd->show();
+    index = 0;
+    ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
+
+    ui->newRestname->clear();
+    ui->dis2Saddle->setValue(0.00);
+    ui->DistEdit->setValue(0.00);
+
+
+
+    distIn.clear();
     updateRestTable();
      ui->adminRC->clear();
     QVector<QString>restNameCB = db.getRestNames();
@@ -309,7 +358,7 @@ bool MainWindow::add2Rests()
         distances2.push_back(18.8);
         distances2.push_back(0.8);
         distances2.push_back(8.2);
-         distances2.push_back(10.8);
+        distances2.push_back(10.8);
         distances2.push_back(9.4);
         distances2.push_back(5.5);
         distances2.push_back(11.8);
@@ -354,5 +403,20 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_DistAdd_clicked()
 {
-    distIn.push_back(ui->DistEdit->value());
+    if(index < numRests)
+    {
+        distIn.push_back(ui->DistEdit->value());
+        index++;
+        if(index < numRests -1)
+        {
+            ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
+        }
+    }
+    else
+    {
+        ui->AddRestaurant->show();
+        ui->addIndicator->show();
+        ui->DistAdd->hide();
+    }
+
 }

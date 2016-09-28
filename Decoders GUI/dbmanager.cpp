@@ -410,6 +410,7 @@ QString dbManager::getRestName(int id)
 {
     QSqlQuery query(db);
     query.prepare("SELECT name FROM Restaurant WHERE restId = (:id)");
+    query.bindValue(":id", id);
     if(query.exec())
     {
         if(query.next())
@@ -417,6 +418,7 @@ QString dbManager::getRestName(int id)
             QString name = query.value(0).toString();
             return name;
         }
+
 
 
     }
