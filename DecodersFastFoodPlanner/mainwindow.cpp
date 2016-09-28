@@ -12,3 +12,21 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+//    qDebug() << "here";
+   // QVector<QString> restNames = db.getRestNames();
+//    for(int i = 0; i < restNames.length(); i++)
+//    {
+//        qDebug() << restNames.at(i);
+//    }
+
+QVector<double> distances;
+   // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
+    qDebug() << db.updateDistances(distances );
+
+
+}
