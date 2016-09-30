@@ -412,10 +412,18 @@ void MainWindow::on_DistAdd_clicked()
     {
         distIn.push_back(ui->DistEdit->value());
         index++;
-        if(index < numRests -1)
+        if(index < numRests)
         {
             ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
         }
+        else
+        {
+            ui->AddRestaurant->show();
+            ui->addIndicator->show();
+            ui->DistAdd->hide();
+        }
+        qDebug() << numRests;
+        qDebug() << index;
     }
     else
     {
