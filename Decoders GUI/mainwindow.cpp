@@ -349,7 +349,12 @@ bool MainWindow::add2Rests()
         db.addItem("Sonic", "New York dog", 2.89);
         db.addItem("Sonic", "French fries", 1.79);
         db.addItem("Sonic", "Medium Pepsi", 2.55);
-
+        updateRestTable();
+        QVector<QString>restNameCB = db.getRestNames();
+        for(int i = 0; i < restNameCB.length(); i++ )
+        {
+            ui->adminRC->addItem(restNameCB.at(i));
+        }
 
         QVector<double> distances2;
         distances2.push_back(13.8);
