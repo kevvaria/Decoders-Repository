@@ -24,7 +24,8 @@ QVector<QString> dbManager:: getRestNames()
     QSqlQuery query(db);
     QVector<QString> names;
 
-    query.prepare("SELECT name FROM Restaurant");
+    //select in the order they are given
+      query.prepare("SELECT name FROM Restaurant ORDER BY restId");
     if(query.exec())
     {
         while(query.next()) //these seem to be coming out in alphabetical order by default
