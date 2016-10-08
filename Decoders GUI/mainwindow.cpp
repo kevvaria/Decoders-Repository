@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->AddRestaurant->hide();
     ui->addIndicator->hide();
     ui->DistAdd->show();
-   ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
+    ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
 
 }
 
@@ -63,44 +63,7 @@ void MainWindow::ClearRestTable(){
 
 void MainWindow::on_pushButton_6_clicked()
 {
-    //    ClearTable();
 
-    //    int col = 0;
-    //    int row = 0;
-
-    //    ui->defRestTable->horizontalHeader()->setVisible(true);
-
-    //    /* Sets the columns of the of table for Registered customers*/
-
-
-    //    ui->defRestTable->insertColumn(col);
-    //    ui->defRestTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Restaurant Name"));
-    //    col++;
-
-    //    ui->defRestTable->insertColumn(col);
-    //    ui->defRestTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Distance from Saddleback"));
-    //    col++;
-
-
-
-    //    /*  Will fill tables depending on how information is collected from database
-    //     *   need to run through a loop
-    //     */
-
-    //    QVector<QString> list = db.getRestNames();
-
-    //    for(int i = 0; i < list.size(); i++)
-    //    {
-    //        QString username = list.at(i);
-
-    //        ui->CustomersTable->insertRow(row);
-    //        ui->CustomersTable->setItem(row, 2, new QTableWidgetItem(db.retrieveCustomerCompany(username)));
-    //        ui->CustomersTable->setItem(row, 0, new QTableWidgetItem(db.retrieveCustomerName(username)));
-    //        row++;
-    //    }
-
-    //    ui->CustomersTable->resizeColumnsToContents();
-    //    ui->CustomersTable->horizontalHeader()->setStretchLastSection(true);
 }
 
 void MainWindow::on_pushButton_8_clicked()
@@ -116,11 +79,7 @@ void MainWindow::on_pushButton_11_clicked()
 
 }
 
-void MainWindow::on_comboBox_3_currentTextChanged(const QString &arg1)
-{
 
-
-}
 
 void MainWindow::on_adminRC_currentTextChanged(const QString &arg1)
 {
@@ -317,7 +276,7 @@ void MainWindow::on_AddRestaurant_clicked()
 
     distIn.clear();
     updateRestTable();
-     ui->adminRC->clear();
+    ui->adminRC->clear();
     QVector<QString>restNameCB = db.getRestNames();
     for(int i = 0; i < restNameCB.length(); i++ )
     {
@@ -384,7 +343,7 @@ bool MainWindow::add2Rests()
             {
                 ui->adminRC->addItem(restNameCB.at(i));
             }
-             return true;
+            return true;
         }
     }
     return false;
@@ -431,5 +390,39 @@ void MainWindow::on_DistAdd_clicked()
         ui->addIndicator->show();
         ui->DistAdd->hide();
     }
+
+}
+
+QVector<double> MainWindow::distancestoStr(QString dist)
+{
+
+    /*
+     *     QVector<double> distDoubles;
+    QString dist = db.getDistances("Chipotle"); //get the distances for specified rest
+    //qDebug() << dist;
+    distDoubles= distancestoStr(dist);  //parse the distances string out, then assign it to the object, qvector has the = operator overloaded
+    qDebug() << distDoubles;
+
+     */
+
+    QVector<double> distDoubles;
+    QStringList list = dist.split(' ');
+
+    //qDebug() << list;
+
+    for(int i = 0; i < list.size(); i++)
+    {
+        QString temp= list.at(i);
+        distDoubles.push_back(temp.toDouble());
+    }
+
+
+    return distDoubles;
+
+}
+
+//login functionality
+void MainWindow::on_loginButton_clicked()
+{
 
 }

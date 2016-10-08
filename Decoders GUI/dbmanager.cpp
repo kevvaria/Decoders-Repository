@@ -123,7 +123,7 @@ QString dbManager::getNumItems(QString restName)
     }
 }
 
-QVector<QString> dbManager:: getMenuItems(QString restName)
+QVector<QString> dbManager::getMenuItems(QString restName)
 {
 
     QSqlQuery query(db);
@@ -424,4 +424,30 @@ QString dbManager::getRestName(int id)
 
     }
     return "error";
+}
+
+QString dbManager::getDistances(QString restName)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT Distances FROM Restaurant WHERE name = (:restName)");
+        query.bindValue(":restName", restName );
+        if(query.exec())
+        {
+            if(query.next())
+            {
+                QString dist = query.value(0).toString();
+                return dist;
+            }
+            else
+            {
+                qDebug() << "Error";
+                return "Error";
+            }
+        }
+        else
+        {
+            qDebug() << query.lastError();
+            return "Error";
+        }
+
 }

@@ -142,6 +142,9 @@ public:
     QString distancesToString(QVector<double> distances); //converts the distances to a string to store in the db
 
 
+    QString getDistances(QString restName);
+
+
 
 private:
     QSqlDatabase db; //the database

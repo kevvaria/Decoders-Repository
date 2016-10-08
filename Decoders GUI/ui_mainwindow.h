@@ -41,6 +41,7 @@ public:
     QWidget *centralWidget;
     QTabWidget *tabWidget;
     QWidget *tab;
+    QLabel *label_102;
     QWidget *tab_2;
     QTabWidget *tabWidget_2;
     QWidget *tab_5;
@@ -104,7 +105,7 @@ public:
     QLabel *restIndicator;
     QPushButton *DistAdd;
     QLabel *addIndicator;
-    QPushButton *pushButton;
+    QPushButton *loginButton;
     QLabel *label_101;
     QMenuBar *menuBar;
     QMenu *menuDecoders;
@@ -123,6 +124,10 @@ public:
         tabWidget->setGeometry(QRect(30, 50, 821, 401));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
+        label_102 = new QLabel(tab);
+        label_102->setObjectName(QStringLiteral("label_102"));
+        label_102->setGeometry(QRect(250, 20, 381, 31));
+        label_102->setStyleSheet(QStringLiteral("font: 75 20pt \"Comic Sans MS\";"));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -225,13 +230,13 @@ public:
         tab_6->setObjectName(QStringLiteral("tab_6"));
         adminItemSelection = new QComboBox(tab_6);
         adminItemSelection->setObjectName(QStringLiteral("adminItemSelection"));
-        adminItemSelection->setGeometry(QRect(290, 80, 81, 22));
+        adminItemSelection->setGeometry(QRect(280, 80, 111, 22));
         label_99 = new QLabel(tab_6);
         label_99->setObjectName(QStringLiteral("label_99"));
         label_99->setGeometry(QRect(310, 60, 47, 13));
         label_100 = new QLabel(tab_6);
         label_100->setObjectName(QStringLiteral("label_100"));
-        label_100->setGeometry(QRect(390, 60, 91, 16));
+        label_100->setGeometry(QRect(400, 60, 91, 16));
         adminCP = new QPushButton(tab_6);
         adminCP->setObjectName(QStringLiteral("adminCP"));
         adminCP->setGeometry(QRect(390, 120, 75, 23));
@@ -243,7 +248,7 @@ public:
         label_20->setGeometry(QRect(170, 10, 71, 16));
         adminDelItem = new QPushButton(tab_6);
         adminDelItem->setObjectName(QStringLiteral("adminDelItem"));
-        adminDelItem->setGeometry(QRect(300, 120, 75, 23));
+        adminDelItem->setGeometry(QRect(290, 120, 75, 23));
         line = new QFrame(tab_6);
         line->setObjectName(QStringLiteral("line"));
         line->setGeometry(QRect(490, 0, 20, 331));
@@ -276,7 +281,7 @@ public:
         adminItemSpin->setGeometry(QRect(570, 120, 62, 22));
         adminModSpin = new QDoubleSpinBox(tab_6);
         adminModSpin->setObjectName(QStringLiteral("adminModSpin"));
-        adminModSpin->setGeometry(QRect(390, 80, 62, 22));
+        adminModSpin->setGeometry(QRect(400, 80, 62, 22));
         overfl0w = new QLabel(tab_6);
         overfl0w->setObjectName(QStringLiteral("overfl0w"));
         overfl0w->setGeometry(QRect(540, 110, 121, 91));
@@ -326,9 +331,10 @@ public:
         addIndicator->setGeometry(QRect(580, 270, 141, 21));
         tabWidget_3->addTab(tab_7, QString());
         tabWidget->addTab(tab_4, QString());
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(764, 0, 121, 23));
+        loginButton = new QPushButton(centralWidget);
+        loginButton->setObjectName(QStringLiteral("loginButton"));
+        loginButton->setGeometry(QRect(764, 0, 121, 23));
+        loginButton->setStyleSheet(QStringLiteral("font: 8pt \"Comic Sans MS\";"));
         label_101 = new QLabel(centralWidget);
         label_101->setObjectName(QStringLiteral("label_101"));
         label_101->setGeometry(QRect(260, 10, 381, 31));
@@ -351,7 +357,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
 
@@ -362,6 +368,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        label_102->setText(QApplication::translate("MainWindow", "Select Your trip", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Home", 0));
         checkBox->setText(QApplication::translate("MainWindow", "Shortest Trip", 0));
         label_2->setText(QApplication::translate("MainWindow", "Menu Items", 0));
@@ -402,7 +409,7 @@ public:
         addIndicator->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">All set! Click below to finish</p></body></html>", 0));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_7), QApplication::translate("MainWindow", "Restaurant Edits", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Admin", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Administrative Login", 0));
+        loginButton->setText(QApplication::translate("MainWindow", "Administrative Login", 0));
         label_101->setText(QApplication::translate("MainWindow", "Decoder's Fast Food GPS", 0));
         menuDecoders->setTitle(QApplication::translate("MainWindow", "Decoders", 0));
     } // retranslateUi
