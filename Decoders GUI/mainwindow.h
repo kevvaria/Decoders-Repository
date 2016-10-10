@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "dbmanager.h"
 #include "Restaurant.h"
+#include "login.h"
 #include<QMessageBox>
 #include <QStringList>
 namespace Ui {
@@ -76,7 +77,7 @@ private slots:
 
     double updateReceipt(int row, int column);
 
-    void on_defMenu_cellClicked(int row, int column);
+  //  void on_defMenu_cellClicked(int row, int column);
 
     void initializeReceipt();
 
@@ -90,6 +91,10 @@ private slots:
     void on_warningBox_accepted();
 
     void on_warningBox_rejected();
+
+    void on_StartDefaultTrip_clicked();
+
+    void on_ReturnHome_clicked();
 
 private:
     int numRests; //the number of restaurants
@@ -108,9 +113,11 @@ private:
     dbManager db; //database wrapper class
     QVector<Restaurant> rest;
 
-    int indexTrip = 0;
-    int col = 0;
-    int row = 0;
+    int indexTrip;
+    int col;
+    int row;
+    Login logWindow;
+    void finishTrip();
 
 };
 

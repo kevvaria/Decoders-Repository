@@ -15,13 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dbmanager.cpp \
-    Restaurant.cpp
+    Restaurant.cpp \
+    login.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
-    Restaurant.h
+    Restaurant.h \
+    login.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    login.ui
 
 DISTFILES += \
     extracode

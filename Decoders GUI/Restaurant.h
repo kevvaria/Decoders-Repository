@@ -24,7 +24,7 @@ private:
 	Menu *tail;
 	int restaurantCount;			//Number of restaurants
 	int menuItemCount;				//Number of Items in current menu
-	double distanceTravelled;		//Total distance travelled
+    double totRev;		//Total distance travelled
 
 public:
 	//Constructor and Deconstructor
@@ -40,10 +40,13 @@ public:
 	bool isMenuFull();
 	void UpdateMilesTravelled(double milesTravelled);
 
+    void updateRev(double value);
+
     QString getRestaurantName();
     double getRestaurantDistanceFS();
 	double getTotalDistanceTravelled();
     QVector<double> getDistances();
+    double getTotRev();
 
 	void Print();
 };

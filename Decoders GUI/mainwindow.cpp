@@ -31,6 +31,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dCurrentRest->setText(dummy.getRestaurantName());
     initializeReceipt();
     displayMenu();
+    indexTrip = 0;
+    row =0;
+    col = 0;
+    //displayMenu();
+     initializeReceipt();
+     //start on the home page
+     ui->mainTab->setCurrentIndex(0);
+     //remove the trips tab upon start
+    ui->mainTab->removeTab(1);
+    //remove the admin tab
+
+    ui->mainTab->removeTab(1);
+
+    //remove both tabs
+    ui->TripsTab1->removeTab(0);
+    ui->TripsTab1->removeTab(0);
+
+
+
 }
 
 void MainWindow::clearReceipt(){
@@ -546,14 +565,29 @@ void MainWindow::initializeRest(){
 
 void MainWindow::on_menuCB_currentIndexChanged(const QString &arg1)
 {
-    ui->quantityPurchase->setValue(0);
+    ui->quantityPurchase->setValue(1);
     ui->PT->setText("0");
 }
-
+//buy item on a trip
 void MainWindow::on_pushButton_2_clicked()
 {
-    double cur = ui->CR->text().toDouble() + updateReceipt(row, col);
-    ui->CR->setText(QString::number(cur));
+
+    if(ui->quantityPurchase->value() !=0)
+    {
+        double cur = ui->CR->text().toDouble() + updateReceipt(row, col);
+        ui->CR->setText(QString::number(cur));
+        //need to add total rev for this rest
+        //same for the db
+        rest[indexTrip].updateRev(ui->PT->text().toDouble());
+        db.updateTotRev(ui->dCurrentRest->text(), ui->PT->text().toDouble());
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Invalid"),
+                                 "You need at least 1 in the quantity");
+    }
+
+
 }
 
 double MainWindow::updateReceipt(int row, int column){
@@ -625,6 +659,10 @@ void MainWindow::on_nextRest_clicked()
         initializeReceipt();
         displayMenu();
     }
+    else
+    {
+        finishTrip();
+    }
 
 }
 
@@ -648,40 +686,41 @@ void MainWindow::initializeReceipt(){
 }
 
 void MainWindow::checkDiabetes(int i){
-    switch(i){
-    case 1:
-        break;
-    case 2:
-        ui->dWarning->setText("You have just accumulated Type 2 Diabetes.\nCONGRATULATIONS!");
-        ui->dWarning->show();
-        ui->warningBox->show();
-        break;
-    case 3:
-        ui->dWarning->setText("You're getting fatter, so you need to stop.");
-        ui->dWarning->show();
-        ui->warningBox->show();
-        break;
-    case 4:
-        ui->dWarning->setText("Bruh. How are you not dead yet?");
-        ui->dWarning->show();
-        ui->warningBox->show();
-        break;
-    case 5:
-        ui->dWarning->setText("HEY FAT BOY! STOP EATING OR YOU'LL START \nRADNOMLY DEFECATING YOURSELF!");
-        ui->dWarning->show();
-        ui->warningBox->show();
-        break;
-    case 6:
-        ui->dWarning->setText("You are the chosen one. Trump 4 Pres 2k16");
-        ui->dWarning->show();
-        ui->warningBox->show();
-        break;
-    default:
-        ui->dWarning->setText("I'm done with warning your fat arse. \nHope you enjoy your chicken legs. Fatty.");
-        ui->dWarning->show();
-        ui->warningBox->show();
-        break;
-    }
+    //this needs to be refined
+//    switch(i){
+//    case 1:
+//        break;
+//    case 2:
+//        ui->dWarning->setText("You have just accumulated Type 2 Diabetes.\nCONGRATULATIONS!");
+//        ui->dWarning->show();
+//        ui->warningBox->show();
+//        break;
+//    case 3:
+//        ui->dWarning->setText("You're getting fatter, so you need to stop.");
+//        ui->dWarning->show();
+//        ui->warningBox->show();
+//        break;
+//    case 4:
+//        ui->dWarning->setText("Bruh. How are you not dead yet?");
+//        ui->dWarning->show();
+//        ui->warningBox->show();
+//        break;
+//    case 5:
+//        ui->dWarning->setText("HEY FAT BOY! STOP EATING OR YOU'LL START \nRADNOMLY DEFECATING YOURSELF!");
+//        ui->dWarning->show();
+//        ui->warningBox->show();
+//        break;
+//    case 6:
+//        ui->dWarning->setText("You are the chosen one. Trump 4 Pres 2k16");
+//        ui->dWarning->show();
+//        ui->warningBox->show();
+//        break;
+//    default:
+//        ui->dWarning->setText("I'm done with warning your fat arse. \nHope you enjoy your chicken legs. Fatty.");
+//        ui->dWarning->show();
+//        ui->warningBox->show();
+//        break;
+//    }
 }
 
 void MainWindow::on_warningBox_accepted()
@@ -694,4 +733,47 @@ void MainWindow::on_warningBox_rejected()
 {
     ui->warningBox->hide();
     ui->dWarning->hide();
+}
+
+
+//start the default trip
+void MainWindow::on_StartDefaultTrip_clicked()
+{
+    //add the trips tab in main tab
+    ui->mainTab->addTab(ui->TripsTab, "Trips");
+
+    ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
+     ui->mainTab->setCurrentIndex(1);
+     ui->quantityPurchase->setValue(1);
+}
+
+void MainWindow::on_ReturnHome_clicked()
+{
+    ui->TripsTab1->removeTab(0);
+    ui->TripsTab1->removeTab(0);
+    ui->mainTab->removeTab(1);
+    indexTrip = 0;
+
+}
+
+void MainWindow::finishTrip()
+{
+    ui->TripsTab1->removeTab(0);
+    ui->TripsTab1->addTab(ui->TripReview, "Review");
+
+
+    ui->TripReviewTable->insertColumn(0);
+    ui->TripReviewTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Name"));
+
+
+    ui->TripReviewTable->insertColumn(1);
+    ui->TripReviewTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Money Spent"));
+
+    for(int i = 0; i < rest.size(); i++)
+    {
+        ui->TripReviewTable->insertRow(i);
+        ui->TripReviewTable->setItem(i, 0, new QTableWidgetItem(rest[i].getRestaurantName()));
+        ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(rest[i].getTotRev())));
+    }
+
 }

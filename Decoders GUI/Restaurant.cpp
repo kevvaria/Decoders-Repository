@@ -3,9 +3,10 @@
 Restaurant :: Restaurant(){
 	//Initialize values to nill
 	name = "";
-    distancefromSad = distanceTravelled = 0.0;
+    distancefromSad = 0.0;
 	head = tail = NULL;
 	restaurantCount = menuItemCount = 0;
+    totRev = 0;
 }
 
 //Constructor
@@ -13,9 +14,10 @@ Restaurant :: Restaurant(QString rName, double dist,QVector<double> dis){
 	//Update values to given names and distances
 	name = rName;
     distancefromSad = dist;
-	distanceTravelled = dist;
+    //distanceTravelled = dist;
 	restaurantCount = 1;
 	menuItemCount = 0;
+    totRev = 0;
 	head = tail = NULL;
     for(int i = 0; i < dis.size();i++){
     distances.push_back(dis.at(i));
@@ -128,9 +130,9 @@ Restaurant :: ~Restaurant(){}
 //}
 
 //UpdateMilesTravelled: Update the total number of miles
-void Restaurant :: UpdateMilesTravelled(double milesTravelled){
-	distanceTravelled += milesTravelled;		//Add trip distance to restaurant distance
-}
+//void Restaurant :: UpdateMilesTravelled(double milesTravelled){
+//	distanceTravelled += milesTravelled;		//Add trip distance to restaurant distance
+//}
 
 //getRestaurantName: Returns the name of the restaurant
 QString Restaurant :: getRestaurantName(){
@@ -143,9 +145,9 @@ double Restaurant :: getRestaurantDistanceFS(){
 }
 
 //getTotalDistanceTravelled: Returns the total distance travelled in this trip
-double Restaurant :: getTotalDistanceTravelled(){
-	return this->distanceTravelled;
-}
+//double Restaurant :: getTotalDistanceTravelled(){
+//	return this->distanceTravelled;
+//}
 
 //Print: Prints the name, distance, menu items, and total distance tavelled
 //void Restaurant :: Print(){
@@ -170,4 +172,14 @@ double Restaurant :: getTotalDistanceTravelled(){
 
 QVector<double> Restaurant::getDistances(){
     return distances;
+}
+
+void Restaurant::updateRev(double value)
+{
+    totRev += value;
+}
+
+double Restaurant::getTotRev()
+{
+    return totRev;
 }

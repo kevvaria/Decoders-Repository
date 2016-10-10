@@ -104,7 +104,7 @@ public:
     bool addItem(QString restName, QString itemName, double price);
 
 
-    //test function, not complete
+
     /*!
      * \brief addRest
      * \param restName
@@ -118,7 +118,7 @@ public:
      * \brief getRestCount
      * \return Number of restuarants the db
      */
-    int getRestCount();
+   // int getRestCount();
 
     /*!
      * \brief getRestName
@@ -143,6 +143,7 @@ public:
 
 
     QString getDistances(QString restName);
+    bool updateTotRev(QString restName, double value);
 
 
 

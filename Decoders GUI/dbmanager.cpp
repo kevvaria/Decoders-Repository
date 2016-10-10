@@ -451,3 +451,33 @@ QString dbManager::getDistances(QString restName)
         }
 
 }
+
+bool dbManager::updateTotRev(QString restName, double value)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT totRev FROM Restaurant WHERE name = (:restName)");
+     query.bindValue(":restName", restName );
+
+     if(query.exec())
+     {
+         if(query.next())
+         {
+             double rev = query.value(0).toDouble();
+
+
+             QSqlQuery query2(db);
+             query2.prepare("UPDATE Restaurant SET totRev = (:newRev) WHERE name = (:restName)");
+             query2.bindValue(":restName", restName );
+             query2.bindValue(":newRev", rev+value );
+             if(query2.exec())
+             {
+                 qDebug() << "Should be updated rev";
+             }
+
+         }
+     }
+     else
+     {
+
+     }
+}
