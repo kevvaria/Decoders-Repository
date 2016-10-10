@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
@@ -50,8 +51,8 @@ public:
     QSpinBox *quantityPurchase;
     QLabel *label_5;
     QLabel *label_6;
-    QProgressBar *progressBar_2;
-    QLabel *label_14;
+    QProgressBar *diabetes;
+    QLabel *dProgress;
     QComboBox *menuCB;
     QLabel *label_15;
     QLabel *label_16;
@@ -67,6 +68,9 @@ public:
     QLabel *label;
     QLabel *dCurrentRest;
     QLabel *label_3;
+    QLabel *dlvl;
+    QDialogButtonBox *warningBox;
+    QLabel *dWarning;
     QWidget *tab_4;
     QPushButton *pushButton_5;
     QLabel *label_103;
@@ -152,13 +156,13 @@ public:
         label_6 = new QLabel(tab_5);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(360, 320, 121, 16));
-        progressBar_2 = new QProgressBar(tab_5);
-        progressBar_2->setObjectName(QStringLiteral("progressBar_2"));
-        progressBar_2->setGeometry(QRect(480, 30, 291, 16));
-        progressBar_2->setValue(24);
-        label_14 = new QLabel(tab_5);
-        label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setGeometry(QRect(540, 10, 171, 16));
+        diabetes = new QProgressBar(tab_5);
+        diabetes->setObjectName(QStringLiteral("diabetes"));
+        diabetes->setGeometry(QRect(480, 30, 291, 16));
+        diabetes->setValue(24);
+        dProgress = new QLabel(tab_5);
+        dProgress->setObjectName(QStringLiteral("dProgress"));
+        dProgress->setGeometry(QRect(510, 10, 171, 16));
         menuCB = new QComboBox(tab_5);
         menuCB->setObjectName(QStringLiteral("menuCB"));
         menuCB->setGeometry(QRect(628, 90, 91, 22));
@@ -173,13 +177,13 @@ public:
         label_19->setGeometry(QRect(670, 120, 91, 20));
         defPurchase = new QTableWidget(tab_5);
         defPurchase->setObjectName(QStringLiteral("defPurchase"));
-        defPurchase->setGeometry(QRect(320, 70, 251, 251));
+        defPurchase->setGeometry(QRect(320, 70, 301, 251));
         defMenu = new QTableWidget(tab_5);
         defMenu->setObjectName(QStringLiteral("defMenu"));
         defMenu->setGeometry(QRect(40, 70, 251, 251));
         label_98 = new QLabel(tab_5);
         label_98->setObjectName(QStringLiteral("label_98"));
-        label_98->setGeometry(QRect(410, 50, 81, 16));
+        label_98->setGeometry(QRect(430, 50, 81, 16));
         pushButton_2 = new QPushButton(tab_5);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(650, 170, 111, 23));
@@ -208,6 +212,21 @@ public:
         label_3 = new QLabel(tab_5);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(500, 320, 121, 20));
+        dlvl = new QLabel(tab_5);
+        dlvl->setObjectName(QStringLiteral("dlvl"));
+        dlvl->setGeometry(QRect(650, 10, 171, 16));
+        warningBox = new QDialogButtonBox(tab_5);
+        warningBox->setObjectName(QStringLiteral("warningBox"));
+        warningBox->setGeometry(QRect(270, 60, 231, 151));
+        warningBox->setAutoFillBackground(true);
+        warningBox->setInputMethodHints(Qt::ImhNone);
+        warningBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        warningBox->setCenterButtons(true);
+        dWarning = new QLabel(tab_5);
+        dWarning->setObjectName(QStringLiteral("dWarning"));
+        dWarning->setGeometry(QRect(320, 70, 141, 51));
+        dWarning->setStyleSheet(QStringLiteral("font: 75 10pt \"Comic Sans MS\";"));
+        dWarning->setWordWrap(true);
         tabWidget_2->addTab(tab_5, QString());
         tabWidget->addTab(tab_2, QString());
         tab_4 = new QWidget();
@@ -370,7 +389,7 @@ public:
         label_4->setText(QApplication::translate("MainWindow", "Quantity", 0));
         label_5->setText(QApplication::translate("MainWindow", "Current Receipt", 0));
         label_6->setText(QApplication::translate("MainWindow", "Total Distance Travelled", 0));
-        label_14->setText(QApplication::translate("MainWindow", "Diabetes Progression Bar", 0));
+        dProgress->setText(QApplication::translate("MainWindow", "Diabetes Progression Bar Lvl.", 0));
         label_15->setText(QApplication::translate("MainWindow", "Grand Total", 0));
         label_16->setText(QApplication::translate("MainWindow", "Item", 0));
         label_19->setText(QApplication::translate("MainWindow", "Purchase Total", 0));
@@ -383,6 +402,8 @@ public:
         label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">YOU ARE CURRENTLY AT:</span></p></body></html>", 0));
         dCurrentRest->setText(QString());
         label_3->setText(QString());
+        dlvl->setText(QString());
+        dWarning->setText(QApplication::translate("MainWindow", "Hi", 0));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("MainWindow", "Default", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Trips", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "Delete Item", 0));

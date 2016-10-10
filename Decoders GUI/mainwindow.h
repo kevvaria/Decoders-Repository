@@ -85,6 +85,12 @@ private slots:
 
     void on_nextRest_clicked();
 
+    void checkDiabetes(int i);
+
+    void on_warningBox_accepted();
+
+    void on_warningBox_rejected();
+
 private:
     int numRests; //the number of restaurants
     int index;    //index for distances

@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->diabetes->setValue(0);
+    ui->warningBox->hide();
+    ui->dWarning->hide();
+    ui->dlvl->setText("1");
     updateRestTable();
     QVector<QString>restNameCB = db.getRestNames();
     for(int i = 0; i < restNameCB.length(); i++ )
@@ -586,6 +590,32 @@ void MainWindow::on_nextRest_clicked()
     ui->GT->setText(QString::number(cur));
     indexTrip++;
     if(indexTrip < rest.size()){
+        if(ui->diabetes->value() < 100){
+            double every5 = ui->CR->text().toDouble()/5;
+            qDebug() << "every5: " << every5;
+            if(every5 > 100){
+                ui->dlvl->setText(QString::number((int)(every5/100) + ui->dlvl->text().toInt()));
+                if(((int)every5 % 100) + (double)ui->diabetes->value() > 100){
+                        ui->diabetes->setValue((((int)every5%100) + ui->diabetes->value()) - 100);
+                }
+                else{
+                    ui->diabetes->setValue(((int)every5%100) + ui->diabetes->value());
+                }
+            }
+            else{
+                if((((int)every5%100) + ui->diabetes->value()) > 100){
+                   ui->dlvl->setText(QString::number(((int)every5%100+ ui->diabetes->value() - 100) + ui->dlvl->text().toInt()));
+                   ui->diabetes->setValue(((int)every5%100) + ui->diabetes->value() - 100);
+                }
+                else{
+                    ui->diabetes->setValue(((int)every5%100) + ui->diabetes->value());
+                }
+
+            }
+            every5 = 0;
+
+        }
+        checkDiabetes(ui->dlvl->text().toInt());
         ui->quantityPurchase->setValue(0);
         ui->PT->setText("0");
         ui->CR->setText("0");
@@ -615,4 +645,53 @@ void MainWindow::initializeReceipt(){
 
     ui->defPurchase->insertColumn(col);
     ui->defPurchase->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
+}
+
+void MainWindow::checkDiabetes(int i){
+    switch(i){
+    case 1:
+        break;
+    case 2:
+        ui->dWarning->setText("You have just accumulated Type 2 Diabetes.\nCONGRATULATIONS!");
+        ui->dWarning->show();
+        ui->warningBox->show();
+        break;
+    case 3:
+        ui->dWarning->setText("You're getting fatter, so you need to stop.");
+        ui->dWarning->show();
+        ui->warningBox->show();
+        break;
+    case 4:
+        ui->dWarning->setText("Bruh. How are you not dead yet?");
+        ui->dWarning->show();
+        ui->warningBox->show();
+        break;
+    case 5:
+        ui->dWarning->setText("HEY FAT BOY! STOP EATING OR YOU'LL START \nRADNOMLY DEFECATING YOURSELF!");
+        ui->dWarning->show();
+        ui->warningBox->show();
+        break;
+    case 6:
+        ui->dWarning->setText("You are the chosen one. Trump 4 Pres 2k16");
+        ui->dWarning->show();
+        ui->warningBox->show();
+        break;
+    default:
+        ui->dWarning->setText("I'm done with warning your fat arse. \nHope you enjoy your chicken legs. Fatty.");
+        ui->dWarning->show();
+        ui->warningBox->show();
+        break;
+    }
+}
+
+void MainWindow::on_warningBox_accepted()
+{
+    ui->warningBox->hide();
+    ui->dWarning->hide();
+}
+
+void MainWindow::on_warningBox_rejected()
+{
+    ui->warningBox->hide();
+    ui->dWarning->hide();
 }
