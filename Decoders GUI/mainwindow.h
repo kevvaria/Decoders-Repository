@@ -42,7 +42,6 @@ private slots:
 
 
 
-
     void on_AddRestaurant_clicked();
 
 
