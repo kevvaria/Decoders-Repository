@@ -17,12 +17,31 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->adminRC->setCurrentIndex(0);
     index = 0;
     numRests = restNameCB.size(); //this will change to a db method
-
+    initializeRest();
     ui->AddRestaurant->hide();
     ui->addIndicator->hide();
     ui->DistAdd->show();
     ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
 
+    Restaurant dummy = rest.at(indexTrip);
+    ui->dCurrentRest->setText(dummy.getRestaurantName());
+    initializeReceipt();
+    displayMenu();
+}
+
+void MainWindow::clearReceipt(){
+    int currentRows = ui->defPurchase->rowCount();
+    int currentCol =  ui->defPurchase->columnCount();
+
+    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+    {
+        ui->defPurchase->removeRow(0);
+    }
+
+    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+    {
+        ui->defPurchase->removeColumn(0);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -43,6 +62,20 @@ void MainWindow::ClearItemTable()
     for(int colRemove = 0; colRemove < currentCol; colRemove++)
     {
         ui->adminMenuItem->removeColumn(0);
+    }
+
+    //Delete Menu from trips
+    currentRows = ui->defMenu->rowCount();
+    currentCol =  ui->defMenu->columnCount();
+
+    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+    {
+        ui->defMenu->removeRow(0);
+    }
+
+    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+    {
+        ui->defMenu->removeColumn(0);
     }
 
 }
@@ -135,6 +168,14 @@ void MainWindow::updateRestTable(){
     int col = 0;
     int row = 0;
     ui->AdminRestView->horizontalHeader()->setVisible(true);
+    //    ui->defRestTable->horizontalHeader()->setVisible(true);
+    //    ui->defRestTable->horizontalHeader()->setVisible(true);
+
+    //    ui->defRestTable->insertColumn(col);
+    //    ui->defRestTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Name"));
+
+    //    ui->defTripTable->insertColumn(col);
+    //    ui->defTripTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Name"));
 
     ui->AdminRestView->insertColumn(col);
     ui->AdminRestView->setHorizontalHeaderItem(col, new QTableWidgetItem("Total Menu Items"));
@@ -156,13 +197,24 @@ void MainWindow::updateRestTable(){
     for(int i = 0; i < currentRest.length();i++)
     {
         ui->AdminRestView->insertRow(row);
+        //        ui->defRestTable->insertRow(row);
+        //        ui->defTripTable->insertRow(row);
         ui->AdminRestView->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
+        //        ui->defRestTable->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
+        //        ui->defTripTable->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
+
         ui->AdminRestView->setItem(row, 1, new QTableWidgetItem(db.getSadDist(currentRest.at(i))));
         ui->AdminRestView->setItem(row, 2, new QTableWidgetItem(db.getRev(currentRest.at(i))));
         ui->AdminRestView->setItem(row, 3, new QTableWidgetItem(db.getNumItems(currentRest.at(i))));
     }
     ui->AdminRestView->resizeColumnsToContents();
     ui->AdminRestView->horizontalHeader()->setStretchLastSection(true);
+    //    ui->defRestTable->resizeColumnsToContents();
+    //    ui->defRestTable->horizontalHeader()->setStretchLastSection(true);
+    //    ui->defTripTable->resizeColumnsToContents();
+    //    ui->defTripTable->horizontalHeader()->setStretchLastSection(true);
+
+
 
 }
 
@@ -425,4 +477,142 @@ QVector<double> MainWindow::distancestoStr(QString dist)
 void MainWindow::on_loginButton_clicked()
 {
 
+}
+
+
+void MainWindow:: dMenu(){
+    //    QString currentRestIn = ui->dCurrentRest->text();
+    //    ui->menuCB->clear();
+    //    displayMenu(currentRestIn);
+}
+
+void MainWindow::displayMenu(){
+    ui->defMenu->clear();
+    ClearItemTable();
+    int col = 0;
+    int row = 0;
+    ui->defMenu->horizontalHeader()->setVisible(true);
+
+    ui->defMenu->insertColumn(col);
+    ui->defMenu->setHorizontalHeaderItem(col, new QTableWidgetItem("Price"));
+
+
+    ui->defMenu->insertColumn(col);
+    ui->defMenu->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
+
+    QVector<QString> currentRestIn = db.getMenuItems(ui->dCurrentRest->text());
+    qDebug() << currentRestIn;
+
+    for(int i = 0; i < currentRestIn.length();i++)
+    {
+        ui->defMenu->insertRow(row);
+        ui->defMenu->setItem(row, 0, new QTableWidgetItem(currentRestIn.at(i)));
+        ui->defMenu->setItem(row, 1, new QTableWidgetItem(db.getItemPrice(ui->dCurrentRest->text(),currentRestIn.at(i))));
+    }
+    ui->defMenu->resizeColumnsToContents();
+    ui->defMenu->horizontalHeader()->setStretchLastSection(true);
+
+    for(int i = 0; i < currentRestIn.length(); i++ )
+    {
+        ui->menuCB->addItem(currentRestIn.at(i));
+    }
+    ui->menuCB->setCurrentIndex(0);
+
+
+}
+
+void MainWindow::on_quantityPurchase_valueChanged(int arg1)
+{
+    double itemPrice = db.getItemPrice(ui->dCurrentRest->text(),ui->menuCB->currentText()).toDouble();
+    qDebug() << itemPrice;
+    double quan = (arg1 * itemPrice);
+    qDebug() << quan;
+    QString purchaseT = QString::number(quan);
+    qDebug() << purchaseT;
+    ui->PT->setText(purchaseT);
+}
+
+void MainWindow::initializeRest(){
+    for(int i = 0; i < numRests;i++){
+        rest.push_back(Restaurant(db.getRestName(i),db.getSadDist(db.getRestName(i)).toDouble(),distancestoStr(db.getDistances(db.getRestName(i)))));
+        Restaurant dum = rest.at(i);
+        qDebug() << dum.getRestaurantName();
+    }
+}
+
+void MainWindow::on_menuCB_currentIndexChanged(const QString &arg1)
+{
+    ui->quantityPurchase->setValue(0);
+    ui->PT->setText("0");
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    double cur = ui->CR->text().toDouble() + updateReceipt(row, col);
+    ui->CR->setText(QString::number(cur));
+}
+
+double MainWindow::updateReceipt(int row, int column){
+
+
+    double itemPrice = db.getItemPrice(ui->dCurrentRest->text(),ui->menuCB->currentText()).toDouble();
+
+
+    ui->defPurchase->insertRow(row);
+    ui->defPurchase->setItem(row, 0, new QTableWidgetItem(ui->menuCB->currentText()));
+    ui->defPurchase->setItem(row, 1, new QTableWidgetItem(ui->quantityPurchase->text()));
+    ui->defPurchase->setItem(row, 2, new QTableWidgetItem(QString::number(itemPrice)));
+    ui->defPurchase->setItem(row, 3, new QTableWidgetItem(ui->PT->text()));
+
+    ui->defPurchase->resizeColumnsToContents();
+    ui->defPurchase->horizontalHeader()->setStretchLastSection(true);
+    return ui->PT->text().toDouble();
+}
+
+
+
+bool MainWindow::on_nextRest_toggled(bool checked)
+{
+    double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
+    ui->GT->setText(QString::number(cur));
+    indexTrip++;
+    qDebug() << ui->nextRest->isChecked();
+    return ui->nextRest->isChecked();
+}
+
+void MainWindow::on_nextRest_clicked()
+{
+    double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
+    ui->GT->setText(QString::number(cur));
+    indexTrip++;
+    if(indexTrip < rest.size()){
+        ui->quantityPurchase->setValue(0);
+        ui->PT->setText("0");
+        ui->CR->setText("0");
+        ui->menuCB->clear();
+        Restaurant dummy = rest.at(indexTrip);
+        ui->dCurrentRest->setText(dummy.getRestaurantName());
+        initializeReceipt();
+        displayMenu();
+    }
+
+}
+
+void MainWindow::initializeReceipt(){
+    ui->defPurchase->clear();
+    clearReceipt();
+    ui->defPurchase->horizontalHeader()->setVisible(true);
+
+    ui->defPurchase->insertColumn(col);
+    ui->defPurchase->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Total"));
+
+
+    ui->defPurchase->insertColumn(col);
+    ui->defPurchase->setHorizontalHeaderItem(col, new QTableWidgetItem("Price"));
+
+    ui->defPurchase->insertColumn(col);
+    ui->defPurchase->setHorizontalHeaderItem(col, new QTableWidgetItem("Quantity"));
+
+    ui->defPurchase->insertColumn(col);
+    ui->defPurchase->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
 }

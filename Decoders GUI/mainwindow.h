@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dbmanager.h"
+#include "Restaurant.h"
 #include<QMessageBox>
 #include <QStringList>
 namespace Ui {
@@ -59,6 +60,31 @@ private slots:
 
     void on_loginButton_clicked();
 
+    void displayMenu();
+
+    void on_quantityPurchase_valueChanged(int arg1);
+
+    void initializeRest();
+
+    void dMenu();
+
+    void on_menuCB_currentIndexChanged(const QString &arg1);
+
+    void on_pushButton_2_clicked();
+
+    void clearReceipt();
+
+    double updateReceipt(int row, int column);
+
+    void on_defMenu_cellClicked(int row, int column);
+
+    void initializeReceipt();
+
+
+    bool on_nextRest_toggled(bool checked);
+
+    void on_nextRest_clicked();
+
 private:
     int numRests; //the number of restaurants
     int index;    //index for distances
@@ -74,6 +100,12 @@ private:
     bool add2Rests(); //adds the two additional given restaurants to the db
     Ui::MainWindow *ui;
     dbManager db; //database wrapper class
+    QVector<Restaurant> rest;
+
+    int indexTrip = 0;
+    int col = 0;
+    int row = 0;
+
 };
 
 #endif // MAINWINDOW_H

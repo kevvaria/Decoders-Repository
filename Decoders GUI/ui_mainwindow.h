@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.6.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -28,7 +28,6 @@
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -45,31 +44,29 @@ public:
     QWidget *tab_2;
     QTabWidget *tabWidget_2;
     QWidget *tab_5;
-    QTableView *defRestTable;
     QCheckBox *checkBox;
-    QLabel *label_2;
+    QLabel *menuItems;
     QLabel *label_4;
-    QSpinBox *spinBox_2;
+    QSpinBox *quantityPurchase;
     QLabel *label_5;
-    QLineEdit *lineEdit_2;
     QLabel *label_6;
-    QTableView *defTripTable;
-    QLabel *label_9;
-    QLabel *label_12;
     QProgressBar *progressBar_2;
     QLabel *label_14;
-    QLineEdit *lineEdit_5;
-    QComboBox *comboBox;
-    QLineEdit *lineEdit_7;
+    QComboBox *menuCB;
     QLabel *label_15;
     QLabel *label_16;
     QLabel *label_19;
-    QLineEdit *lineEdit_9;
-    QTableView *defPurchase;
-    QTableView *defPurchase_2;
+    QTableWidget *defPurchase;
+    QTableWidget *defMenu;
     QLabel *label_98;
     QPushButton *pushButton_2;
-    QPushButton *pushButton_6;
+    QLabel *PT;
+    QLabel *CR;
+    QLabel *GT;
+    QPushButton *nextRest;
+    QLabel *label;
+    QLabel *dCurrentRest;
+    QLabel *label_3;
     QWidget *tab_4;
     QPushButton *pushButton_5;
     QLabel *label_103;
@@ -136,40 +133,25 @@ public:
         tabWidget_2->setGeometry(QRect(0, 0, 781, 391));
         tab_5 = new QWidget();
         tab_5->setObjectName(QStringLiteral("tab_5"));
-        defRestTable = new QTableView(tab_5);
-        defRestTable->setObjectName(QStringLiteral("defRestTable"));
-        defRestTable->setGeometry(QRect(10, 30, 171, 291));
         checkBox = new QCheckBox(tab_5);
         checkBox->setObjectName(QStringLiteral("checkBox"));
         checkBox->setGeometry(QRect(390, 30, 91, 16));
-        label_2 = new QLabel(tab_5);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(420, 50, 61, 20));
-        label_2->setAutoFillBackground(false);
+        menuItems = new QLabel(tab_5);
+        menuItems->setObjectName(QStringLiteral("menuItems"));
+        menuItems->setGeometry(QRect(130, 50, 61, 20));
+        menuItems->setAutoFillBackground(false);
         label_4 = new QLabel(tab_5);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(730, 130, 47, 31));
-        spinBox_2 = new QSpinBox(tab_5);
-        spinBox_2->setObjectName(QStringLiteral("spinBox_2"));
-        spinBox_2->setGeometry(QRect(730, 160, 42, 22));
+        label_4->setGeometry(QRect(720, 60, 47, 31));
+        quantityPurchase = new QSpinBox(tab_5);
+        quantityPurchase->setObjectName(QStringLiteral("quantityPurchase"));
+        quantityPurchase->setGeometry(QRect(720, 90, 42, 22));
         label_5 = new QLabel(tab_5);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(680, 270, 81, 16));
-        lineEdit_2 = new QLineEdit(tab_5);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(520, 320, 121, 20));
+        label_5->setGeometry(QRect(670, 200, 81, 16));
         label_6 = new QLabel(tab_5);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(390, 320, 121, 16));
-        defTripTable = new QTableView(tab_5);
-        defTripTable->setObjectName(QStringLiteral("defTripTable"));
-        defTripTable->setGeometry(QRect(200, 30, 171, 291));
-        label_9 = new QLabel(tab_5);
-        label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(60, 10, 81, 16));
-        label_12 = new QLabel(tab_5);
-        label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(260, 10, 81, 16));
+        label_6->setGeometry(QRect(360, 320, 121, 16));
         progressBar_2 = new QProgressBar(tab_5);
         progressBar_2->setObjectName(QStringLiteral("progressBar_2"));
         progressBar_2->setGeometry(QRect(480, 30, 291, 16));
@@ -177,42 +159,55 @@ public:
         label_14 = new QLabel(tab_5);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setGeometry(QRect(540, 10, 171, 16));
-        lineEdit_5 = new QLineEdit(tab_5);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
-        lineEdit_5->setGeometry(QRect(660, 330, 113, 20));
-        comboBox = new QComboBox(tab_5);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(660, 160, 69, 22));
-        lineEdit_7 = new QLineEdit(tab_5);
-        lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
-        lineEdit_7->setGeometry(QRect(660, 290, 113, 20));
+        menuCB = new QComboBox(tab_5);
+        menuCB->setObjectName(QStringLiteral("menuCB"));
+        menuCB->setGeometry(QRect(628, 90, 91, 22));
         label_15 = new QLabel(tab_5);
         label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setGeometry(QRect(690, 310, 71, 16));
+        label_15->setGeometry(QRect(680, 280, 71, 16));
         label_16 = new QLabel(tab_5);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setGeometry(QRect(680, 140, 47, 13));
+        label_16->setGeometry(QRect(670, 70, 47, 13));
         label_19 = new QLabel(tab_5);
         label_19->setObjectName(QStringLiteral("label_19"));
-        label_19->setGeometry(QRect(680, 190, 91, 20));
-        lineEdit_9 = new QLineEdit(tab_5);
-        lineEdit_9->setObjectName(QStringLiteral("lineEdit_9"));
-        lineEdit_9->setGeometry(QRect(660, 210, 113, 20));
-        defPurchase = new QTableView(tab_5);
+        label_19->setGeometry(QRect(670, 120, 91, 20));
+        defPurchase = new QTableWidget(tab_5);
         defPurchase->setObjectName(QStringLiteral("defPurchase"));
-        defPurchase->setGeometry(QRect(520, 70, 121, 251));
-        defPurchase_2 = new QTableView(tab_5);
-        defPurchase_2->setObjectName(QStringLiteral("defPurchase_2"));
-        defPurchase_2->setGeometry(QRect(390, 70, 121, 251));
+        defPurchase->setGeometry(QRect(320, 70, 251, 251));
+        defMenu = new QTableWidget(tab_5);
+        defMenu->setObjectName(QStringLiteral("defMenu"));
+        defMenu->setGeometry(QRect(40, 70, 251, 251));
         label_98 = new QLabel(tab_5);
         label_98->setObjectName(QStringLiteral("label_98"));
-        label_98->setGeometry(QRect(550, 50, 81, 16));
+        label_98->setGeometry(QRect(410, 50, 81, 16));
         pushButton_2 = new QPushButton(tab_5);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(660, 240, 111, 23));
-        pushButton_6 = new QPushButton(tab_5);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(130, 330, 111, 23));
+        pushButton_2->setGeometry(QRect(650, 170, 111, 23));
+        PT = new QLabel(tab_5);
+        PT->setObjectName(QStringLiteral("PT"));
+        PT->setGeometry(QRect(700, 150, 47, 13));
+        CR = new QLabel(tab_5);
+        CR->setObjectName(QStringLiteral("CR"));
+        CR->setGeometry(QRect(700, 220, 47, 13));
+        GT = new QLabel(tab_5);
+        GT->setObjectName(QStringLiteral("GT"));
+        GT->setGeometry(QRect(700, 300, 47, 13));
+        nextRest = new QPushButton(tab_5);
+        nextRest->setObjectName(QStringLiteral("nextRest"));
+        nextRest->setGeometry(QRect(660, 250, 101, 23));
+        label = new QLabel(tab_5);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(0, 10, 251, 31));
+        label->setStyleSheet(QStringLiteral("font: 75 italic 36pt \"Comic Sans MS\";"));
+        label->setWordWrap(true);
+        dCurrentRest = new QLabel(tab_5);
+        dCurrentRest->setObjectName(QStringLiteral("dCurrentRest"));
+        dCurrentRest->setGeometry(QRect(250, 0, 211, 51));
+        dCurrentRest->setStyleSheet(QStringLiteral("font: 75 italic 14pt \"Comic Sans MS\";"));
+        dCurrentRest->setWordWrap(true);
+        label_3 = new QLabel(tab_5);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(500, 320, 121, 20));
         tabWidget_2->addTab(tab_5, QString());
         tabWidget->addTab(tab_2, QString());
         tab_4 = new QWidget();
@@ -357,9 +352,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(1);
+        tabWidget_3->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -371,19 +366,23 @@ public:
         label_102->setText(QApplication::translate("MainWindow", "Select Your trip", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Home", 0));
         checkBox->setText(QApplication::translate("MainWindow", "Shortest Trip", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Menu Items", 0));
+        menuItems->setText(QApplication::translate("MainWindow", "Menu Items", 0));
         label_4->setText(QApplication::translate("MainWindow", "Quantity", 0));
         label_5->setText(QApplication::translate("MainWindow", "Current Receipt", 0));
         label_6->setText(QApplication::translate("MainWindow", "Total Distance Travelled", 0));
-        label_9->setText(QApplication::translate("MainWindow", "Restaurants", 0));
-        label_12->setText(QApplication::translate("MainWindow", "Trip List", 0));
         label_14->setText(QApplication::translate("MainWindow", "Diabetes Progression Bar", 0));
         label_15->setText(QApplication::translate("MainWindow", "Grand Total", 0));
         label_16->setText(QApplication::translate("MainWindow", "Item", 0));
         label_19->setText(QApplication::translate("MainWindow", "Purchase Total", 0));
         label_98->setText(QApplication::translate("MainWindow", "Purchase List", 0));
         pushButton_2->setText(QApplication::translate("MainWindow", "Purchase Item", 0));
-        pushButton_6->setText(QApplication::translate("MainWindow", "View All Restaurants", 0));
+        PT->setText(QApplication::translate("MainWindow", "0", 0));
+        CR->setText(QApplication::translate("MainWindow", "0", 0));
+        GT->setText(QApplication::translate("MainWindow", "0", 0));
+        nextRest->setText(QApplication::translate("MainWindow", "Next Restaurant", 0));
+        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">YOU ARE CURRENTLY AT:</span></p></body></html>", 0));
+        dCurrentRest->setText(QString());
+        label_3->setText(QString());
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("MainWindow", "Default", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Trips", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "Delete Item", 0));
