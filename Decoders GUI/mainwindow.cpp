@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    indexTrip = 0;
     ui->setupUi(this);
     ui->diabetes->setValue(0);
     ui->warningBox->hide();
@@ -18,24 +19,27 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->adminRC->addItem(restNameCB.at(i));
     }
+     numRests = restNameCB.size(); //this will change to a db method
     ui->adminRC->setCurrentIndex(0);
     index = 0;
-    numRests = restNameCB.size(); //this will change to a db method
+
     initializeRest();
     ui->AddRestaurant->hide();
     ui->addIndicator->hide();
     ui->DistAdd->show();
     ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
 
-    Restaurant dummy = rest.at(indexTrip);
+    isLoggedIn = false;
+
+  Restaurant dummy = rest.at(indexTrip);
     ui->dCurrentRest->setText(dummy.getRestaurantName());
     initializeReceipt();
     displayMenu();
     indexTrip = 0;
     row =0;
     col = 0;
-    //displayMenu();
-     initializeReceipt();
+    displayMenu();
+    // initializeReceipt();
      //start on the home page
      ui->mainTab->setCurrentIndex(0);
      //remove the trips tab upon start
@@ -47,9 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //remove both tabs
     ui->TripsTab1->removeTab(0);
     ui->TripsTab1->removeTab(0);
-
-
-
 }
 
 void MainWindow::clearReceipt(){
@@ -499,7 +500,32 @@ QVector<double> MainWindow::distancestoStr(QString dist)
 //login functionality
 void MainWindow::on_loginButton_clicked()
 {
+        if(!isLoggedIn)
+        {
+            logWindow.exec();
 
+            if(logWindow.getValid())
+            {
+                isLoggedIn = true;
+                ui->mainTab->addTab(ui->AdminTab, "Admin");
+                ui->loginButton->setText("LogOut");
+                updateItemTable();
+                ui->mainTab->setCurrentIndex(1);
+            }
+            else
+            {
+                QMessageBox::information(this, tr("Aborted"),
+                                         "Login failed/aborted.");
+            }
+        }
+        else
+        {
+
+                ui->mainTab->removeTab(1);
+                isLoggedIn = false;
+                ui->loginButton->setText("Administrative Login");
+
+        }
 }
 
 
@@ -565,7 +591,7 @@ void MainWindow::initializeRest(){
 
 void MainWindow::on_menuCB_currentIndexChanged(const QString &arg1)
 {
-    ui->quantityPurchase->setValue(1);
+    ui->quantityPurchase->setValue(0);
     ui->PT->setText("0");
 }
 //buy item on a trip
@@ -580,6 +606,8 @@ void MainWindow::on_pushButton_2_clicked()
         //same for the db
         rest[indexTrip].updateRev(ui->PT->text().toDouble());
         db.updateTotRev(ui->dCurrentRest->text(), ui->PT->text().toDouble());
+        spentInTrip += ui->PT->text().toDouble();
+        qDebug() << spentInTrip;
     }
     else
     {
@@ -744,7 +772,7 @@ void MainWindow::on_StartDefaultTrip_clicked()
 
     ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
      ui->mainTab->setCurrentIndex(1);
-     ui->quantityPurchase->setValue(1);
+     ui->quantityPurchase->setValue(0);
 }
 
 void MainWindow::on_ReturnHome_clicked()
@@ -768,6 +796,7 @@ void MainWindow::finishTrip()
 
     ui->TripReviewTable->insertColumn(1);
     ui->TripReviewTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Money Spent"));
+    ui->TotSpent->setText(QString::number(spentInTrip));
 
     for(int i = 0; i < rest.size(); i++)
     {

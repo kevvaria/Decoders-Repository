@@ -16,14 +16,30 @@ Login::~Login()
 
 void Login::on_buttonBox_accepted()
 {
-    //set isValid to true
+   if(ui->pwEdit->text().trimmed() == "YugeO")
+   {
+       isValid = true;
+   }
+   ui->pwEdit->clear();
+
+    this->close();
 }
 
 void Login::on_buttonBox_rejected()
 {
-
+    isValid = false;
+     ui->pwEdit->clear();
+    this->close();
 }
 bool Login::getValid()
 {
-    return isValid;
+    if(isValid)
+    {
+        isValid = false;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }

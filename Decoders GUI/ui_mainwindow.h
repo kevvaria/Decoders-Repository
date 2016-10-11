@@ -76,6 +76,8 @@ public:
     QLabel *label_2;
     QPushButton *ReturnHome;
     QTableWidget *TripReviewTable;
+    QLabel *label_7;
+    QLabel *TotSpent;
     QWidget *AdminTab;
     QPushButton *pushButton_5;
     QLabel *label_103;
@@ -253,6 +255,12 @@ public:
         TripReviewTable = new QTableWidget(TripReview);
         TripReviewTable->setObjectName(QStringLiteral("TripReviewTable"));
         TripReviewTable->setGeometry(QRect(10, 20, 271, 321));
+        label_7 = new QLabel(TripReview);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(320, 150, 111, 19));
+        TotSpent = new QLabel(TripReview);
+        TotSpent->setObjectName(QStringLiteral("TotSpent"));
+        TotSpent->setGeometry(QRect(420, 150, 68, 19));
         TripsTab1->addTab(TripReview, QString());
         mainTab->addTab(TripsTab, QString());
         AdminTab = new QWidget();
@@ -382,7 +390,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 886, 21));
+        menuBar->setGeometry(QRect(0, 0, 886, 31));
         menuDecoders = new QMenu(menuBar);
         menuDecoders->setObjectName(QStringLiteral("menuDecoders"));
         MainWindow->setMenuBar(menuBar);
@@ -397,8 +405,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTab->setCurrentIndex(0);
-        TripsTab1->setCurrentIndex(0);
+        mainTab->setCurrentIndex(1);
+        TripsTab1->setCurrentIndex(1);
         tabWidget_3->setCurrentIndex(0);
 
 
@@ -434,6 +442,8 @@ public:
         TripsTab1->setTabText(TripsTab1->indexOf(TripTab), QApplication::translate("MainWindow", "Trip", 0));
         label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Your Trip is complete!</span></p><p><span style=\" font-size:12pt;\">This Page is WIP</span></p></body></html>", 0));
         ReturnHome->setText(QApplication::translate("MainWindow", "Return to Home", 0));
+        label_7->setText(QApplication::translate("MainWindow", "Total Spent:", 0));
+        TotSpent->setText(QApplication::translate("MainWindow", "0", 0));
         TripsTab1->setTabText(TripsTab1->indexOf(TripReview), QApplication::translate("MainWindow", "Trip Complete", 0));
         mainTab->setTabText(mainTab->indexOf(TripsTab), QApplication::translate("MainWindow", "Trips", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "Delete Item", 0));

@@ -118,6 +118,8 @@ private:
     int row;
     Login logWindow;
     void finishTrip();
+    double spentInTrip;
+    bool isLoggedIn;
 
 };
 
