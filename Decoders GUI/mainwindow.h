@@ -96,6 +96,8 @@ private slots:
 
     void on_ReturnHome_clicked();
 
+    void clearReview();
+
 private:
     int numRests; //the number of restaurants
     int index;    //index for distances

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->warningBox->hide();
     ui->dWarning->hide();
     ui->dlvl->setText("1");
+    ui->quantityPurchase->setValue(1);
     updateRestTable();
     QVector<QString>restNameCB = db.getRestNames();
     for(int i = 0; i < restNameCB.length(); i++ )
@@ -789,6 +790,7 @@ void MainWindow::on_ReturnHome_clicked()
     ui->mainTab->removeTab(1);
     indexTrip = 0;
     ui->TripReviewTable->clear();
+    clearReview();
     //add code to remove previous rows and columns
 
 }
@@ -814,4 +816,19 @@ void MainWindow::finishTrip()
         ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(rest[i].getTotRev())));
     }
 
+}
+
+void MainWindow::clearReview(){
+    int currentRows = ui->TripReviewTable->rowCount();
+    int currentCol =  ui->TripReviewTable->columnCount();
+
+    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+    {
+        ui->TripReviewTable->removeRow(0);
+    }
+
+    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+    {
+        ui->TripReviewTable->removeColumn(0);
+    }
 }
