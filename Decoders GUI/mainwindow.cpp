@@ -536,6 +536,8 @@ void MainWindow:: dMenu(){
 }
 
 void MainWindow::displayMenu(){
+
+    ui->menuCB->clear();
     ui->defMenu->clear();
     ClearItemTable();
     int col = 0;
@@ -767,12 +769,17 @@ void MainWindow::on_warningBox_rejected()
 //start the default trip
 void MainWindow::on_StartDefaultTrip_clicked()
 {
-    //add the trips tab in main tab
-    ui->mainTab->addTab(ui->TripsTab, "Trips");
+    ui->dCurrentRest->setText(rest[0].getRestaurantName());
+   indexTrip = 0;
+   //ui->defMenu->clear();
+   displayMenu();
+   //add the trips tab in main tab
+   ui->mainTab->addTab(ui->TripsTab, "Trips");
 
-    ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
-     ui->mainTab->setCurrentIndex(1);
-     ui->quantityPurchase->setValue(0);
+   ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
+    ui->mainTab->setCurrentIndex(1);
+    ui->quantityPurchase->setValue(1);
+    //indexTrip = 0;
 }
 
 void MainWindow::on_ReturnHome_clicked()
@@ -781,6 +788,8 @@ void MainWindow::on_ReturnHome_clicked()
     ui->TripsTab1->removeTab(0);
     ui->mainTab->removeTab(1);
     indexTrip = 0;
+    ui->TripReviewTable->clear();
+    //add code to remove previous rows and columns
 
 }
 
