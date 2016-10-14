@@ -1,0 +1,8 @@
+//QString MainWindow::on_defTripTable_cellClicked(int row, int column)
+//{
+//    QString currentRestIn = ui->defTripTable->item(row,column)->text();
+//    qDebug() << currentRestIn;
+//    ui->menuCB->clear();
+//    displayMenu(currentRestIn);
+//    return currentRestIn;
+//}

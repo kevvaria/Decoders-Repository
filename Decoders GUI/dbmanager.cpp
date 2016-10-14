@@ -24,7 +24,8 @@ QVector<QString> dbManager:: getRestNames()
     QSqlQuery query(db);
     QVector<QString> names;
 
-    query.prepare("SELECT name FROM Restaurant");
+    //select in the order they are given
+      query.prepare("SELECT name FROM Restaurant ORDER BY restId");
     if(query.exec())
     {
         while(query.next()) //these seem to be coming out in alphabetical order by default
@@ -122,7 +123,7 @@ QString dbManager::getNumItems(QString restName)
     }
 }
 
-QVector<QString> dbManager:: getMenuItems(QString restName)
+QVector<QString> dbManager::getMenuItems(QString restName)
 {
 
     QSqlQuery query(db);
@@ -423,4 +424,60 @@ QString dbManager::getRestName(int id)
 
     }
     return "error";
+}
+
+QString dbManager::getDistances(QString restName)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT Distances FROM Restaurant WHERE name = (:restName)");
+        query.bindValue(":restName", restName );
+        if(query.exec())
+        {
+            if(query.next())
+            {
+                QString dist = query.value(0).toString();
+                return dist;
+            }
+            else
+            {
+                qDebug() << "Error";
+                return "Error";
+            }
+        }
+        else
+        {
+            qDebug() << query.lastError();
+            return "Error";
+        }
+
+}
+
+bool dbManager::updateTotRev(QString restName, double value)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT totRev FROM Restaurant WHERE name = (:restName)");
+     query.bindValue(":restName", restName );
+
+     if(query.exec())
+     {
+         if(query.next())
+         {
+             double rev = query.value(0).toDouble();
+
+
+             QSqlQuery query2(db);
+             query2.prepare("UPDATE Restaurant SET totRev = (:newRev) WHERE name = (:restName)");
+             query2.bindValue(":restName", restName );
+             query2.bindValue(":newRev", rev+value );
+             if(query2.exec())
+             {
+                 qDebug() << "Should be updated rev";
+             }
+
+         }
+     }
+     else
+     {
+
+     }
 }
