@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->warningBox->hide();
     ui->dWarning->hide();
     ui->dlvl->setText("1");
-    ui->quantityPurchase->setValue(1);
     updateRestTable();
+    ui->quantityPurchase->setValue(1);
     QVector<QString>restNameCB = db.getRestNames();
     for(int i = 0; i < restNameCB.length(); i++ )
     {
@@ -554,7 +554,6 @@ void MainWindow::displayMenu(){
 
     QVector<QString> currentRestIn = db.getMenuItems(ui->dCurrentRest->text());
     qDebug() << currentRestIn;
-
     for(int i = 0; i < currentRestIn.length();i++)
     {
         ui->defMenu->insertRow(row);
@@ -594,8 +593,10 @@ void MainWindow::initializeRest(){
 
 void MainWindow::on_menuCB_currentIndexChanged(const QString &arg1)
 {
-    ui->quantityPurchase->setValue(0);
-    ui->PT->setText("0");
+    QVector<QString> currentRestIn = db.getMenuItems(ui->dCurrentRest->text());
+    ui->quantityPurchase->setValue(1);
+    double value=db.getItemPrice(ui->dCurrentRest->text(),ui->menuCB->currentText()).toDouble()* ui->quantityPurchase->value() ;
+    ui->PT->setText(QString::number(value));
 }
 //buy item on a trip
 void MainWindow::on_pushButton_2_clicked()
@@ -640,17 +641,18 @@ double MainWindow::updateReceipt(int row, int column){
 
 
 
-bool MainWindow::on_nextRest_toggled(bool checked)
-{
-    double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
-    ui->GT->setText(QString::number(cur));
-    indexTrip++;
-    qDebug() << ui->nextRest->isChecked();
-    return ui->nextRest->isChecked();
-}
+//bool MainWindow::on_nextRest_toggled(bool checked)
+//{
+//    double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
+//    ui->GT->setText(QString::number(cur));
+//    indexTrip++;
+//    qDebug() << ui->nextRest->isChecked();
+//    return ui->nextRest->isChecked();
+//}
 
 void MainWindow::on_nextRest_clicked()
 {
+    ui->quantityPurchase->setValue(1);
     double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
     ui->GT->setText(QString::number(cur));
     indexTrip++;
@@ -681,7 +683,6 @@ void MainWindow::on_nextRest_clicked()
 
         }
         checkDiabetes(ui->dlvl->text().toInt());
-        ui->quantityPurchase->setValue(0);
         ui->PT->setText("0");
         ui->CR->setText("0");
         ui->menuCB->clear();
@@ -689,6 +690,7 @@ void MainWindow::on_nextRest_clicked()
         ui->dCurrentRest->setText(dummy.getRestaurantName());
         initializeReceipt();
         displayMenu();
+
     }
     else
     {
@@ -831,4 +833,8 @@ void MainWindow::clearReview(){
     {
         ui->TripReviewTable->removeColumn(0);
     }
+}
+
+QVector<Restaurant> MainWindow::sortR(QVector<Restaurant> hi){
+    return hi;
 }

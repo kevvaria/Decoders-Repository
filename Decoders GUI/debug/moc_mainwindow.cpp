@@ -9,6 +9,7 @@
 #include "../mainwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+#include <QtCore/QVector>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -19,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[37];
-    char stringdata0[653];
+    QByteArrayData data[38];
+    char stringdata0[654];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -56,16 +57,17 @@ QT_MOC_LITERAL(23, 438, 13), // "updateReceipt"
 QT_MOC_LITERAL(24, 452, 3), // "row"
 QT_MOC_LITERAL(25, 456, 6), // "column"
 QT_MOC_LITERAL(26, 463, 17), // "initializeReceipt"
-QT_MOC_LITERAL(27, 481, 19), // "on_nextRest_toggled"
-QT_MOC_LITERAL(28, 501, 7), // "checked"
-QT_MOC_LITERAL(29, 509, 19), // "on_nextRest_clicked"
-QT_MOC_LITERAL(30, 529, 13), // "checkDiabetes"
-QT_MOC_LITERAL(31, 543, 1), // "i"
-QT_MOC_LITERAL(32, 545, 22), // "on_warningBox_accepted"
-QT_MOC_LITERAL(33, 568, 22), // "on_warningBox_rejected"
-QT_MOC_LITERAL(34, 591, 27), // "on_StartDefaultTrip_clicked"
-QT_MOC_LITERAL(35, 619, 21), // "on_ReturnHome_clicked"
-QT_MOC_LITERAL(36, 641, 11) // "clearReview"
+QT_MOC_LITERAL(27, 481, 19), // "on_nextRest_clicked"
+QT_MOC_LITERAL(28, 501, 13), // "checkDiabetes"
+QT_MOC_LITERAL(29, 515, 1), // "i"
+QT_MOC_LITERAL(30, 517, 22), // "on_warningBox_accepted"
+QT_MOC_LITERAL(31, 540, 22), // "on_warningBox_rejected"
+QT_MOC_LITERAL(32, 563, 27), // "on_StartDefaultTrip_clicked"
+QT_MOC_LITERAL(33, 591, 21), // "on_ReturnHome_clicked"
+QT_MOC_LITERAL(34, 613, 11), // "clearReview"
+QT_MOC_LITERAL(35, 625, 5), // "sortR"
+QT_MOC_LITERAL(36, 631, 19), // "QVector<Restaurant>"
+QT_MOC_LITERAL(37, 651, 2) // "hi"
 
     },
     "MainWindow\0on_pushButton_6_clicked\0\0"
@@ -81,11 +83,11 @@ QT_MOC_LITERAL(36, 641, 11) // "clearReview"
     "initializeRest\0dMenu\0on_menuCB_currentIndexChanged\0"
     "on_pushButton_2_clicked\0clearReceipt\0"
     "updateReceipt\0row\0column\0initializeReceipt\0"
-    "on_nextRest_toggled\0checked\0"
     "on_nextRest_clicked\0checkDiabetes\0i\0"
     "on_warningBox_accepted\0on_warningBox_rejected\0"
     "on_StartDefaultTrip_clicked\0"
-    "on_ReturnHome_clicked\0clearReview"
+    "on_ReturnHome_clicked\0clearReview\0"
+    "sortR\0QVector<Restaurant>\0hi"
 };
 #undef QT_MOC_LITERAL
 
@@ -125,14 +127,14 @@ static const uint qt_meta_data_MainWindow[] = {
       22,    0,  189,    2, 0x08 /* Private */,
       23,    2,  190,    2, 0x08 /* Private */,
       26,    0,  195,    2, 0x08 /* Private */,
-      27,    1,  196,    2, 0x08 /* Private */,
-      29,    0,  199,    2, 0x08 /* Private */,
-      30,    1,  200,    2, 0x08 /* Private */,
-      32,    0,  203,    2, 0x08 /* Private */,
-      33,    0,  204,    2, 0x08 /* Private */,
-      34,    0,  205,    2, 0x08 /* Private */,
-      35,    0,  206,    2, 0x08 /* Private */,
-      36,    0,  207,    2, 0x08 /* Private */,
+      27,    0,  196,    2, 0x08 /* Private */,
+      28,    1,  197,    2, 0x08 /* Private */,
+      30,    0,  200,    2, 0x08 /* Private */,
+      31,    0,  201,    2, 0x08 /* Private */,
+      32,    0,  202,    2, 0x08 /* Private */,
+      33,    0,  203,    2, 0x08 /* Private */,
+      34,    0,  204,    2, 0x08 /* Private */,
+      35,    1,  205,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -157,14 +159,14 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Double, QMetaType::Int, QMetaType::Int,   24,   25,
     QMetaType::Void,
-    QMetaType::Bool, QMetaType::Bool,   28,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   31,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   29,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    0x80000000 | 36, 0x80000000 | 36,   37,
 
        0        // eod
 };
@@ -198,15 +200,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 20: { double _r = _t->updateReceipt((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = _r; }  break;
         case 21: _t->initializeReceipt(); break;
-        case 22: { bool _r = _t->on_nextRest_toggled((*reinterpret_cast< bool(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 23: _t->on_nextRest_clicked(); break;
-        case 24: _t->checkDiabetes((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 25: _t->on_warningBox_accepted(); break;
-        case 26: _t->on_warningBox_rejected(); break;
-        case 27: _t->on_StartDefaultTrip_clicked(); break;
-        case 28: _t->on_ReturnHome_clicked(); break;
-        case 29: _t->clearReview(); break;
+        case 22: _t->on_nextRest_clicked(); break;
+        case 23: _t->checkDiabetes((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 24: _t->on_warningBox_accepted(); break;
+        case 25: _t->on_warningBox_rejected(); break;
+        case 26: _t->on_StartDefaultTrip_clicked(); break;
+        case 27: _t->on_ReturnHome_clicked(); break;
+        case 28: _t->clearReview(); break;
+        case 29: { QVector<Restaurant> _r = _t->sortR((*reinterpret_cast< QVector<Restaurant>(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QVector<Restaurant>*>(_a[0]) = _r; }  break;
         default: ;
         }
     }

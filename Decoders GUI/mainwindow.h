@@ -81,9 +81,6 @@ private slots:
 
     void initializeReceipt();
 
-
-    bool on_nextRest_toggled(bool checked);
-
     void on_nextRest_clicked();
 
     void checkDiabetes(int i);
@@ -97,6 +94,8 @@ private slots:
     void on_ReturnHome_clicked();
 
     void clearReview();
+
+    QVector<Restaurant> sortR(QVector<Restaurant> hi);
 
 private:
     int numRests; //the number of restaurants
