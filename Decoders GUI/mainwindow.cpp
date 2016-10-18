@@ -772,6 +772,7 @@ void MainWindow::on_warningBox_rejected()
 //start the default trip
 void MainWindow::on_StartDefaultTrip_clicked()
 {
+    initializeReceipt();
     ui->dCurrentRest->setText(rest[0].getRestaurantName());
    indexTrip = 0;
    //ui->defMenu->clear();
