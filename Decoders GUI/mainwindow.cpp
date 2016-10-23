@@ -599,7 +599,7 @@ void MainWindow::on_menuCB_currentIndexChanged(const QString &arg1)
     QVector<QString> currentRestIn = db.getMenuItems(ui->dCurrentRest->text());
     ui->quantityPurchase->setValue(1);
     double value=db.getItemPrice(ui->dCurrentRest->text(),ui->menuCB->currentText()).toDouble()* ui->quantityPurchase->value() ;
-    ui->PT->setText(QString::number(value));
+    ui->PT->setText(QString::number(value, 'f', 2));
 }
 //buy item on a trip
 void MainWindow::on_pushButton_2_clicked()
@@ -608,7 +608,7 @@ void MainWindow::on_pushButton_2_clicked()
     if(ui->quantityPurchase->value() !=0)
     {
         double cur = ui->CR->text().toDouble() + updateReceipt(row, col);
-        ui->CR->setText(QString::number(cur));
+        ui->CR->setText(QString::number(cur, 'f', 2));
         //need to add total rev for this rest
         //same for the db
         nSort[indexTrip].updateRev(ui->PT->text().toDouble());
@@ -635,7 +635,7 @@ double MainWindow::updateReceipt(int row, int column){
     ui->defPurchase->insertRow(row);
     ui->defPurchase->setItem(row, 0, new QTableWidgetItem(ui->menuCB->currentText()));
     ui->defPurchase->setItem(row, 1, new QTableWidgetItem(ui->quantityPurchase->text()));
-    ui->defPurchase->setItem(row, 2, new QTableWidgetItem(QString::number(itemPrice)));
+    ui->defPurchase->setItem(row, 2, new QTableWidgetItem(QString::number(itemPrice, 'f', 2)));
     ui->defPurchase->setItem(row, 3, new QTableWidgetItem(ui->PT->text()));
 
     ui->defPurchase->resizeColumnsToContents();
@@ -649,7 +649,7 @@ double MainWindow::updateReceipt(int row, int column){
 //{
 //    double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
 //    ui->GT->setText(QString::number(cur));
-//    indexTrip++;
+//    indexr++;
 //    qDebug() << ui->nextRest->isChecked();
 //    return ui->nextRest->isChecked();
 //}
@@ -658,7 +658,7 @@ void MainWindow::on_nextRest_clicked()
 {
     ui->quantityPurchase->setValue(1);
     double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
-    ui->GT->setText(QString::number(cur));
+    ui->GT->setText(QString::number(cur, 'f', 2));
     indexTrip++;
     if(indexTrip < nSort.size()){
 //        if(ui->diabetes->value() < 100){
@@ -807,7 +807,7 @@ void MainWindow::finishTrip()
     {
         ui->TripReviewTable->insertRow(i);
         ui->TripReviewTable->setItem(i, 0, new QTableWidgetItem(nSort[i].getRestaurantName()));
-        ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(nSort[i].getTotRev())));
+        ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(nSort[i].getTotRev(), 'f', 2)));
     }
     ui->TripReviewTable->resizeColumnsToContents();
     ui->TripReviewTable->horizontalHeader()->setStretchLastSection(true);
@@ -889,10 +889,11 @@ void MainWindow::on_startTrip_clicked()
     initializeReceipt();
     switch(tripNum)
     {
-    case 1:
+    case 1: //fill up the master list, need to change to use kevals method instead
         for(int i = 0; i < rest.size();i++){
             nSort.push_back(rest.at(i));
         }
+
         break;
     case 2:
         nSort.push_front(getRest(ui->c1Label->text()));
@@ -905,7 +906,10 @@ void MainWindow::on_startTrip_clicked()
             }
             i++;
         }
+
         break;
+        //filled out within
+       // on_restTable_cellDoubleClicked
 //    case 3:
 //        qDebug() << "hi";
 //        break;
@@ -972,7 +976,7 @@ void MainWindow::on_c1SB_valueChanged(int arg1)
 {
     numAdd = arg1;
 }
-
+//add all restaurants based on what user wants
 void MainWindow::on_restTable_cellDoubleClicked(int row1, int column1)
 {
    Restaurant dummy = rest.at(row1);
@@ -1010,7 +1014,7 @@ Restaurant MainWindow::getRest(QString re){
         }
     }
 }
-
+//custom trip 2, pick all and sort
 void MainWindow::on_ctPush_clicked()
 {
     ui->startTrip->hide();
