@@ -471,34 +471,34 @@ void MainWindow::on_DistAdd_clicked()
 
 }
 
-QVector<double> MainWindow::distancestoStr(QString dist)
-{
+QVector<Distance> MainWindow::distancestoStr(QString dist) {
+    /* * QVector<double> distDoubles;
+     * QString dist = db.getDistances("Chipotle");
+     * //get the distances for specified rest
+     * //qDebug() << dist;
+     * distDoubles= distancestoStr(dist);
+     * //parse the distances string out, then assign it to
+     * the object, qvector has the = operator overloaded
+     * qDebug() << distDoubles; */
 
-    /*
-     *     QVector<double> distDoubles;
-    QString dist = db.getDistances("Chipotle"); //get the distances for specified rest
-    //qDebug() << dist;
-    distDoubles= distancestoStr(dist);  //parse the distances string out, then assign it to the object, qvector has the = operator overloaded
-    qDebug() << distDoubles;
-
-     */
-
-    QVector<double> distDoubles;
+    QVector<Distance> distDoubles;
     QStringList list = dist.split(' ');
 
     //qDebug() << list;
-
-    for(int i = 0; i < list.size(); i++)
-    {
+    for(int i = 0; i < list.size(); i++){
         QString temp= list.at(i);
-        distDoubles.push_back(temp.toDouble());
+        distDoubles.push_back(Distance(i, temp.toDouble()));
     }
 
+    qSort(distDoubles.begin(),distDoubles.end(), DistSort());
 
+    qDebug() << "Distances vector debugging";
+    for(int i = 0; i < distDoubles.size(); i++)
+    {
+        qDebug() << distDoubles[i].getIndex() << ", " << distDoubles[i].getDistance();
+    }
     return distDoubles;
-
 }
-
 //login functionality
 void MainWindow::on_loginButton_clicked()
 {
@@ -828,8 +828,32 @@ void MainWindow::clearReview(){
     }
 }
 
-QVector<Restaurant> MainWindow::sortR(QVector<Restaurant> hi){
-    return hi;
+QVector<int> MainWindow::sortR(QVector<Restaurant> restVec){
+    //Declare new vector to put the sorted vector into
+        QVector<int> efficientOrder;
+
+        int lowest = 0;
+        int lowestDist = 200.00;
+        for(int i = 0; i<10; i++){
+            if(lowestDist > restVec[i].getRestaurantDistanceFS()){
+                lowestDist = restVec[i].getRestaurantDistanceFS();
+                lowest = i;
+            }
+        }
+        qDebug() << "Lowest Index: " << lowest;
+
+        int k;
+        for(k = 0; k < restVec.size(); k++){
+            if(k == lowest){
+                for(int j = 0; j < 10; j++){
+                    Restaurant dummy = restVec.at(k);
+                    Distance dummy2 = dummy.getDistances().at(j);
+                    efficientOrder.push_back( dummy2.getIndex() );
+                }
+                break;
+            }
+        }
+        return efficientOrder;
 }
 
 void MainWindow::on_actionAdmin_Login_triggered()   //Login through the toolbar at the top instead of button.

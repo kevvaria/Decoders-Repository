@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dbmanager.cpp \
     Restaurant.cpp \
-    login.cpp
+    login.cpp \
+    distance.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
     Restaurant.h \
-    login.h
+    login.h \
+    distance.h
 
 FORMS    += mainwindow.ui \
     login.ui
