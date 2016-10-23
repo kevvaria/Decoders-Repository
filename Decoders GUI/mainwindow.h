@@ -134,8 +134,11 @@ private:
     bool add2Rests(); //adds the two additional given restaurants to the db
     Ui::MainWindow *ui;
     dbManager db; //database wrapper class
-    QVector<Restaurant> rest;
-    QVector<Restaurant> nSort;
+    QVector<Restaurant> rest; //master list of restaurants
+    QVector<Restaurant> nSort; //the list we iterate thru
+    QVector<Restaurant> temp; //temporary holder list
+
+
 
     int indexTrip;
     int col;
@@ -146,7 +149,7 @@ private:
     bool isLoggedIn;
     int numAdd;
     int tripNum;
-     QVector<int> sortR(QVector<Restaurant> restVec);
+    QVector<int> sortR(QVector<Restaurant> restVec);
 
 };
 

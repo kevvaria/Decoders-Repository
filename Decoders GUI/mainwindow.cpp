@@ -776,6 +776,7 @@ void MainWindow::on_ReturnHome_clicked()
     ui->mainTab->removeTab(ui->mainTab->indexOf(ui->TripsTab));
     ui->mainTab->addTab(ui->HomeTab,"Home");
     nSort.clear();
+    temp.clear();
     ui->startTrip->hide();
     ui->c1SB->hide();
     ui->restList->hide();
@@ -911,12 +912,23 @@ void MainWindow::on_startTrip_clicked()
 {
     ui->mainTab->removeTab(ui->mainTab->indexOf(ui->HomeTab));
     initializeReceipt();
+    QVector<int> toVisit;
+    QString nameTemp;
     switch(tripNum)
     {
     case 1: //fill up the master list, need to change to use kevals method instead
-        for(int i = 0; i < rest.size();i++){
-            nSort.push_back(rest.at(i));
+        for(int i = 0; i < rest.size();i++)
+        {
+            temp.push_back(rest.at(i));
         }
+        toVisit = sortR(temp); //pass in the temp list
+        for(int i = 0; i < toVisit.size(); i++)
+        {
+            nameTemp = db.getRestName(toVisit[i]);
+            nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+        }
+
+
 
         break;
     case 2:
