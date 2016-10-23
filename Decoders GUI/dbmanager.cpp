@@ -32,7 +32,7 @@ QVector<QString> dbManager:: getRestNames()
         {
             QString name =query.value(0).toString();
             //qDebug() << name;
-            names.push_back(name);
+            names.push_front(name);
         }
     }
     else
@@ -478,6 +478,7 @@ bool dbManager::updateTotRev(QString restName, double value)
      }
      else
      {
-
+         qDebug() << query.lastError();
+         return "Error";
      }
 }

@@ -85,17 +85,36 @@ private slots:
 
     void checkDiabetes(int i);
 
-    void on_warningBox_accepted();
-
-    void on_warningBox_rejected();
-
-    void on_StartDefaultTrip_clicked();
-
     void on_ReturnHome_clicked();
 
     void clearReview();
 
     QVector<Restaurant> sortR(QVector<Restaurant> hi);
+
+    void on_actionAdmin_Login_triggered();  //Login through the toolbar at the top instead of button.
+
+
+    void on_defMenu_clicked();          //More fluid item ordering! Can use the actual menu to select which item you want to order or the combo box.
+
+    void on_StartDefaultTrip_clicked(); //Button on Home page to display summary of trip
+
+    void on_testTrip_clicked();     //Button on Home page to display summary of trip
+
+    void on_startTrip_clicked();    //Opens trip tab and beginds the trip
+
+    void comboBoxDisplayMenuPrototype();    //Combo Box restaurant switch
+
+    void on_actionExit_triggered();
+
+    void on_c1SB_valueChanged(int arg1);
+
+    void on_restTable_cellDoubleClicked(int row, int column);
+
+    Restaurant getRest(QString re);
+
+    int getRestIndex(Restaurant re);
+
+    void on_ctPush_clicked();
 
 private:
     int numRests; //the number of restaurants
@@ -113,6 +132,7 @@ private:
     Ui::MainWindow *ui;
     dbManager db; //database wrapper class
     QVector<Restaurant> rest;
+    QVector<Restaurant> nSort;
 
     int indexTrip;
     int col;
@@ -121,6 +141,8 @@ private:
     void finishTrip();
     double spentInTrip;
     bool isLoggedIn;
+    int numAdd;
+    int tripNum;
 
 };
 
