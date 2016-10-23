@@ -149,7 +149,7 @@ private:
     bool isLoggedIn;
     int numAdd;
     int tripNum;
-    QVector<int> sortR(QVector<Restaurant> restVec);
+    QVector<int> sortR(QVector<Restaurant> restVec, bool trip2);
 
 };
 

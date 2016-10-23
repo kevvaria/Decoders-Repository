@@ -829,20 +829,27 @@ void MainWindow::clearReview(){
     }
 }
 
-QVector<int> MainWindow::sortR(QVector<Restaurant> restVec){
+QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
     //Declare new vector to put the sorted vector into
         QVector<int> efficientOrder;
-
+    qDebug() << "start of sortR";
         int lowest = 0;
         int lowestDist = 200.00;
-        for(int i = 0; i<10; i++){
-            if(lowestDist > restVec[i].getRestaurantDistanceFS()){
-                lowestDist = restVec[i].getRestaurantDistanceFS();
-                lowest = i;
-            }
-        }
-        qDebug() << "Lowest Index: " << lowest;
+        if(!trip2)
+        {
 
+            for(int i = 0; i<10; i++){
+                if(lowestDist > restVec[i].getRestaurantDistanceFS()){
+                    lowestDist = restVec[i].getRestaurantDistanceFS();
+                    lowest = i;
+                }
+            }
+            qDebug() << "Lowest Index: " << lowest;
+        }
+
+        
+        
+ qDebug() << "after lowest";
         int k;
         for(k = 0; k < restVec.size(); k++){
             if(k == lowest){
@@ -854,6 +861,7 @@ QVector<int> MainWindow::sortR(QVector<Restaurant> restVec){
                 break;
             }
         }
+         qDebug() << "returning";
         return efficientOrder;
 }
 
@@ -910,6 +918,7 @@ void MainWindow::on_testTrip_clicked()
 
 void MainWindow::on_startTrip_clicked()
 {
+
     ui->mainTab->removeTab(ui->mainTab->indexOf(ui->HomeTab));
     initializeReceipt();
     QVector<int> toVisit;
@@ -921,27 +930,35 @@ void MainWindow::on_startTrip_clicked()
         {
             temp.push_back(rest.at(i));
         }
-        toVisit = sortR(temp); //pass in the temp list
+        toVisit = sortR(temp, false); //pass in the temp list
         for(int i = 0; i < toVisit.size(); i++)
         {
             nameTemp = db.getRestName(toVisit[i]);
             nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
         }
-
-
-
         break;
     case 2:
-        nSort.push_front(getRest(ui->c1Label->text()));
-        qDebug() << "Current:" << nSort[0].getRestaurantName();
+        qDebug() << "start of case 2";
+        //int numVisit = ui->c1SB->value;
+        //numAdd is number to visit
+        temp.push_front(getRest(ui->c1Label->text()));
+       // nSort.push_front(getRest(ui->c1Label->text()));
+       // qDebug() << "Current:" << nSort[0].getRestaurantName();
         int i = 0;
-        while(!(numAdd == nSort.size())){
-            Restaurant dummy = rest.at(i);
-            if(dummy.getRestaurantName() != ui->c1Label->text()){
-                nSort.push_back(rest.at(i));
-            }
-            i++;
-        }
+        toVisit = sortR(temp, true);
+
+          for(int i = 0; i < numAdd; i++)
+          {
+              nameTemp = db.getRestName(toVisit[i]);
+              nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+          }
+//        while(!(numAdd == nSort.size())){
+//            Restaurant dummy = rest.at(i);
+//            if(dummy.getRestaurantName() != ui->c1Label->text()){
+//                nSort.push_back(rest.at(i));
+//            }
+//            i++;
+//        }
 
         break;
         //filled out within
