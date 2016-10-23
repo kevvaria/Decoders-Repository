@@ -32,7 +32,7 @@ QVector<QString> dbManager:: getRestNames()
         {
             QString name =query.value(0).toString();
             //qDebug() << name;
-            names.push_back(name);
+            names.push_front(name);
         }
     }
     else
@@ -80,7 +80,7 @@ QString dbManager::getRev(QString restName)
         {
             double rev = query.value(0).toDouble();
            // qDebug() << rev;
-            return QString::number(rev);
+            return QString::number(rev, 'f', 2);
         }
         else
         {
@@ -163,7 +163,7 @@ QString dbManager::getItemPrice(QString restName, QString itemName)
         {
             double price =  query.value(0).toDouble();
            // qDebug() << price;
-            return QString::number(price);
+            return QString::number(price, 'f', 2);
         }
     }
     else
@@ -478,6 +478,7 @@ bool dbManager::updateTotRev(QString restName, double value)
      }
      else
      {
-
+         qDebug() << query.lastError();
+         return "Error";
      }
 }
