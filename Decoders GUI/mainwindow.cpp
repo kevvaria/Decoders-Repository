@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->quantityPurchase->setMinimum(1);
     ui->dlvl->setText("1");
     updateRestTable();
-
+    initcRest();
     ui->startTrip->hide();
     ui->c1SB->hide();
     ui->restList->hide();
@@ -127,6 +127,15 @@ void MainWindow::ClearRestTable(){
     {
         ui->AdminRestView->removeColumn(0);
     }
+    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+    {
+        ui->restTable->removeRow(0);
+    }
+
+    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+    {
+        ui->restTable->removeColumn(0);
+    }
 }
 
 void MainWindow::on_pushButton_6_clicked()
@@ -219,33 +228,10 @@ void MainWindow::updateRestTable(){
 
     QVector<QString> currentRest = db.getRestNames();
 
-    ui->restTable->horizontalHeader()->setVisible(true);
-
-    ui->restTable->insertColumn(col);
-    ui->restTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Name"));
-
-
-    ui->restTable->resizeColumnsToContents();
-    ui->restTable->horizontalHeader()->setStretchLastSection(true);
-    for(int i = 0; i < currentRest.length();i++)
-    {
-        ui->restTable->insertRow(row);
-        ui->restTable->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
-
-    }
-    ui->restTable->resizeColumnsToContents();
-    ui->restTable->horizontalHeader()->setStretchLastSection(true);
-
-
-
     for(int i = 0; i < currentRest.length();i++)
     {
         ui->AdminRestView->insertRow(row);
-        //        ui->defRestTable->insertRow(row);
-        //        ui->defTripTable->insertRow(row);
         ui->AdminRestView->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
-        //        ui->defRestTable->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
-        //        ui->defTripTable->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
 
         ui->AdminRestView->setItem(row, 1, new QTableWidgetItem(db.getSadDist(currentRest.at(i))));
         ui->AdminRestView->setItem(row, 2, new QTableWidgetItem(db.getRev(currentRest.at(i))));
@@ -527,6 +513,7 @@ void MainWindow::on_loginButton_clicked()
                 ui->mainTab->addTab(ui->AdminTab, "Admin");
                 ui->loginButton->setText("LogOut");
                 updateItemTable();
+                updateRestTable();
                 ui->mainTab->setCurrentWidget(ui->AdminTab);
 
 
@@ -789,6 +776,15 @@ void MainWindow::on_ReturnHome_clicked()
     ui->mainTab->removeTab(ui->mainTab->indexOf(ui->TripsTab));
     ui->mainTab->addTab(ui->HomeTab,"Home");
     nSort.clear();
+    ui->startTrip->hide();
+    ui->c1SB->hide();
+    ui->restList->hide();
+    ui->restTable->hide();
+    ui->c1Label->hide();
+    ui->loR->hide();
+    ui->start->hide();
+    ui->label_9->hide();
+    ui->addR->hide();
     //add code to remove previous rows and columns
 
 }
@@ -811,7 +807,7 @@ void MainWindow::finishTrip()
     {
         ui->TripReviewTable->insertRow(i);
         ui->TripReviewTable->setItem(i, 0, new QTableWidgetItem(nSort[i].getRestaurantName()));
-        ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(nSort[getRestIndex(nSort.at(i))].getTotRev())));
+        ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(nSort[i].getTotRev())));
     }
     ui->TripReviewTable->resizeColumnsToContents();
     ui->TripReviewTable->horizontalHeader()->setStretchLastSection(true);
@@ -870,6 +866,7 @@ void MainWindow::on_StartDefaultTrip_clicked()
 void MainWindow::on_testTrip_clicked()
 {
     ui->c1SB->show();
+    ui->c1Label->setText("");
     ui->c1SB->setMaximum(rest.size());
     ui->restList->show();
     ui->restTable->show();
@@ -998,6 +995,7 @@ void MainWindow::on_restTable_cellDoubleClicked(int row1, int column1)
            dup = false;
        }
        else{
+           ui->c1Label->setText(dummy.getRestaurantName());
            nSort.push_front(dummy);
            ui->restList->addItem(dummy.getRestaurantName());
        }
@@ -1015,6 +1013,10 @@ Restaurant MainWindow::getRest(QString re){
 
 void MainWindow::on_ctPush_clicked()
 {
+    ui->startTrip->hide();
+    ui->c1Label->setText("");
+    nSort.clear();
+    ui->restList->clear();
     ui->c1Label->hide();
     ui->start->hide();
     ui->c1SB->hide();
@@ -1037,4 +1039,29 @@ int MainWindow::getRestIndex(Restaurant re){
         }
     }
     return index;
+}
+
+void MainWindow::initcRest(){
+    ui->restTable->clear();
+    ClearRestTable();
+    int col = 0;
+    int row = 0;
+
+    QVector<QString> currentRest = db.getRestNames();
+    ui->restTable->horizontalHeader()->setVisible(true);
+
+    ui->restTable->insertColumn(col);
+    ui->restTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Name"));
+
+
+    ui->restTable->resizeColumnsToContents();
+    ui->restTable->horizontalHeader()->setStretchLastSection(true);
+    for(int i = 0; i < currentRest.length();i++)
+    {
+        ui->restTable->insertRow(row);
+        ui->restTable->setItem(row, 0, new QTableWidgetItem(currentRest.at(i)));
+
+    }
+    ui->restTable->resizeColumnsToContents();
+    ui->restTable->horizontalHeader()->setStretchLastSection(true);
 }

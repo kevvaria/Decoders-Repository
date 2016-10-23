@@ -116,6 +116,8 @@ private slots:
 
     void on_ctPush_clicked();
 
+    void initcRest();
+
 private:
     int numRests; //the number of restaurants
     int index;    //index for distances
