@@ -650,7 +650,7 @@ public:
         start->setGeometry(QRect(470, 130, 111, 16));
         c1Label = new QLabel(HomeTab);
         c1Label->setObjectName(QStringLiteral("c1Label"));
-        c1Label->setGeometry(QRect(490, 160, 47, 13));
+        c1Label->setGeometry(QRect(460, 160, 111, 20));
         restTable = new QTableWidget(HomeTab);
         restTable->setObjectName(QStringLiteral("restTable"));
         restTable->setGeometry(QRect(180, 70, 256, 192));
@@ -956,7 +956,7 @@ public:
         label_25->setGeometry(QRect(490, 46, 27, 16));
         newRestname = new QLineEdit(tab_7);
         newRestname->setObjectName(QStringLiteral("newRestname"));
-        newRestname->setGeometry(QRect(490, 82, 110, 20));
+        newRestname->setGeometry(QRect(490, 82, 151, 20));
         label_26 = new QLabel(tab_7);
         label_26->setObjectName(QStringLiteral("label_26"));
         label_26->setGeometry(QRect(490, 108, 111, 16));
@@ -965,7 +965,7 @@ public:
         dis2Saddle->setGeometry(QRect(490, 143, 51, 18));
         restIndicator = new QLabel(tab_7);
         restIndicator->setObjectName(QStringLiteral("restIndicator"));
-        restIndicator->setGeometry(QRect(490, 167, 58, 16));
+        restIndicator->setGeometry(QRect(490, 167, 181, 16));
         DistEdit = new QDoubleSpinBox(tab_7);
         DistEdit->setObjectName(QStringLiteral("DistEdit"));
         DistEdit->setGeometry(QRect(490, 203, 51, 18));
@@ -1010,9 +1010,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTab->setCurrentIndex(1);
+        mainTab->setCurrentIndex(0);
         TripsTab1->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(0);
+        tabWidget_3->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

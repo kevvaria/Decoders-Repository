@@ -152,7 +152,7 @@ void MainWindow::on_pushButton_11_clicked()
 {
     QVector<double> distances;
     // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    //qDebug() << db.updateDistances(distances );
+    //(qDebug)() << db.updateDistances(distances );
 
 }
 
@@ -178,7 +178,7 @@ void MainWindow::updateItemTable()
     ui->adminMenuItem->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
 
     QVector<QString> currentRestIn = db.getMenuItems(ui->adminRC->currentText());
-    qDebug() << ui->adminRC->currentText();
+    //qDebug() << ui->adminRC->currentText();
 
 
     for(int i = 0; i < currentRestIn.length();i++)
@@ -207,6 +207,7 @@ void MainWindow::updateItemTable()
 }
 
 void MainWindow::updateRestTable(){
+   qDebug() << "starting the update";
     ui->AdminRestView->clear();
     ClearRestTable();
     int col = 0;
@@ -249,7 +250,7 @@ void MainWindow::on_adminCP_clicked()
     QString itemName = ui->adminItemSelection->currentText();
     QString restName = ui->adminRC->currentText();
     double changedPrice = ui->adminModSpin->value();
-    qDebug() << changedPrice;
+    //qDebug() << changedPrice;
     if(db.updateItem(restName,itemName,changedPrice))
     {
         QMessageBox::information(this, tr("Updated!"),
@@ -311,7 +312,7 @@ void MainWindow::on_addToMenu_clicked()
 
 void MainWindow::on_AddRestaurant_clicked()
 {
-    qDebug() << "here";
+    //qDebug() << "here";
     //QVector<double> distances;
 
     QString restName = ui->newRestname->text().trimmed();
@@ -323,6 +324,10 @@ void MainWindow::on_AddRestaurant_clicked()
         {
             QMessageBox::information(this, tr("Added!"),
                                      restName + " added to the list");
+            numRests++;
+             initializeRest();
+             initcRest();
+
 
         }
         else
@@ -366,64 +371,70 @@ void MainWindow::on_AddRestaurant_clicked()
 
 bool MainWindow::add2Rests()
 {
-    //add sonic to the db
-    QVector<double> distances;
-    distances.push_back(11.5);
-    distances.push_back(14.2);
-    distances.push_back(13.4);
-    distances.push_back(16.5);
-    distances.push_back(3.3);
-    distances.push_back(12.2);
-    distances.push_back(7.8);
-    distances.push_back(6.9);
-    distances.push_back(8.2);
-    distances.push_back(6.11);
-    if(db.addRest("Sonic", 11.1, distances))
+    if(numRests == 10)
     {
-        //add its menuItems
-        db.addItem("Sonic", "Sonic hamburger", 3.99);
-        db.addItem("Sonic", "Sonic cheeseburger", 4.29);
-        db.addItem("Sonic", "New York dog", 2.89);
-        db.addItem("Sonic", "French fries", 1.79);
-        db.addItem("Sonic", "Medium Pepsi", 2.55);
-        updateRestTable();
-        QVector<QString>restNameCB = db.getRestNames();
-        for(int i = 0; i < restNameCB.length(); i++ )
+        //add sonic to the db
+        QVector<double> distances;
+        distances.push_back(11.5);
+        distances.push_back(14.2);
+        distances.push_back(13.4);
+        distances.push_back(16.5);
+        distances.push_back(3.3);
+        distances.push_back(12.2);
+        distances.push_back(7.8);
+        distances.push_back(6.9);
+        distances.push_back(8.2);
+        distances.push_back(6.11);
+        if(db.addRest("Sonic", 11.1, distances))
         {
-            ui->adminRC->addItem(restNameCB.at(i));
-        }
+            //add its menuItems
+            db.addItem("Sonic", "Sonic hamburger", 3.99);
+            db.addItem("Sonic", "Sonic cheeseburger", 4.29);
+            db.addItem("Sonic", "New York dog", 2.89);
+            db.addItem("Sonic", "French fries", 1.79);
+            db.addItem("Sonic", "Medium Pepsi", 2.55);
+           // updateRestTable();
 
-        QVector<double> distances2;
-        distances2.push_back(13.8);
-        distances2.push_back(4.4);
-        distances2.push_back(18.1);
-        distances2.push_back(18.8);
-        distances2.push_back(0.8);
-        distances2.push_back(8.2);
-        distances2.push_back(10.8);
-        distances2.push_back(9.4);
-        distances2.push_back(5.5);
-        distances2.push_back(11.8);
-        distances2.push_back(3.7);
-
-        if(db.addRest("Pizza Hut", 4.6, distances2))
-        {
-            db.addItem("Pizza Hut", "Veggie Pizza", 4.99);
-            db.addItem("Pizza Hut", "Pepperoni pizza", 8.99);
-            db.addItem("Pizza Hut", "All meat pizza", 12.99);
-            db.addItem("Pizza Hut", "Cheese pizza", 5.99);
-            db.addItem("Pizza Hut", "Mushroom and pepperoni pizza", 6.99);
-            db.addItem("Pizza Hut", "Mushroom and green pepper pizza", 7.29);
-            updateRestTable();
-            ui->adminRC->clear();
             QVector<QString>restNameCB = db.getRestNames();
             for(int i = 0; i < restNameCB.length(); i++ )
             {
                 ui->adminRC->addItem(restNameCB.at(i));
             }
-            return true;
+
+            QVector<double> distances2;
+            distances2.push_back(13.8);
+            distances2.push_back(4.4);
+            distances2.push_back(18.1);
+            distances2.push_back(18.8);
+            distances2.push_back(0.8);
+            distances2.push_back(8.2);
+            distances2.push_back(10.8);
+            distances2.push_back(9.4);
+            distances2.push_back(5.5);
+            distances2.push_back(11.8);
+            distances2.push_back(3.7);
+
+            if(db.addRest("Pizza Hut", 4.6, distances2))
+            {
+                db.addItem("Pizza Hut", "Veggie Pizza", 4.99);
+                db.addItem("Pizza Hut", "Pepperoni pizza", 8.99);
+                db.addItem("Pizza Hut", "All meat pizza", 12.99);
+                db.addItem("Pizza Hut", "Cheese pizza", 5.99);
+                db.addItem("Pizza Hut", "Mushroom and pepperoni pizza", 6.99);
+                db.addItem("Pizza Hut", "Mushroom and green pepper pizza", 7.29);
+              //  updateRestTable();
+
+                ui->adminRC->clear();
+                QVector<QString>restNameCB = db.getRestNames();
+                for(int i = 0; i < restNameCB.length(); i++ )
+                {
+                    ui->adminRC->addItem(restNameCB.at(i));
+                }
+                return true;
+            }
         }
     }
+
     return false;
 }
 
@@ -435,6 +446,13 @@ void MainWindow::on_pushButton_4_clicked()
     {
         QMessageBox::information(this, tr("Done"),
                                  "Sonic and Pizza hut have been added");
+        //DO NOT CHANGE THE ORDER OF THESE OR THINGS WILL BREAK
+         numRests +=2;
+         initializeRest();
+           initcRest();
+           updateRestTable();
+
+
     }
     else
     {
@@ -459,8 +477,8 @@ void MainWindow::on_DistAdd_clicked()
             ui->addIndicator->show();
             ui->DistAdd->hide();
         }
-        qDebug() << numRests;
-        qDebug() << index;
+       // qDebug() << numRests;
+       // qDebug() << index;
     }
     else
     {
@@ -492,11 +510,7 @@ QVector<Distance> MainWindow::distancestoStr(QString dist) {
 
     qSort(distDoubles.begin(),distDoubles.end(), DistSort());
 
-    qDebug() << "Distances vector debugging";
-    for(int i = 0; i < distDoubles.size(); i++)
-    {
-        qDebug() << distDoubles[i].getIndex() << ", " << distDoubles[i].getDistance();
-    }
+
     return distDoubles;
 }
 //login functionality
@@ -558,7 +572,7 @@ void MainWindow::displayMenu(){
     ui->defMenu->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
 
     QVector<QString> currentRestIn = db.getMenuItems(ui->dCurrentRest->text());
-    qDebug() << "Current restuarant" << currentRestIn;
+    //qDebug() << "Current restuarant" << currentRestIn;
     for(int i = 0; i < currentRestIn.length();i++)
     {
         ui->defMenu->insertRow(row);
@@ -578,19 +592,20 @@ void MainWindow::displayMenu(){
 void MainWindow::on_quantityPurchase_valueChanged(int arg1)
 {
     double itemPrice = db.getItemPrice(ui->dCurrentRest->text(),ui->menuCB->currentText()).toDouble();
-    qDebug() << itemPrice;
+   // qDebug() << itemPrice;
     double quan = (arg1 * itemPrice);
-    qDebug() << quan;
+   // qDebug() << quan;
     QString purchaseT = QString::number(quan);
-    qDebug() << purchaseT;
+   // qDebug() << purchaseT;
     ui->PT->setText(purchaseT);
 }
 
 void MainWindow::initializeRest(){
-    for(int i = 0; i < numRests;i++){
+    rest.clear();
+    for(int i = 0; i < numRests; i++){
         rest.push_back(Restaurant(db.getRestName(i),db.getSadDist(db.getRestName(i)).toDouble(),distancestoStr(db.getDistances(db.getRestName(i)))));
         Restaurant dum = rest.at(i);
-        qDebug() << dum.getRestaurantName();
+        //qDebug() << dum.getRestaurantName();
     }
 }
 
@@ -615,7 +630,7 @@ void MainWindow::on_pushButton_2_clicked()
 //        rest[getRestIndex(nSort.at(indexTrip))].updateRev(ui->PT->text().toDouble());
         db.updateTotRev(ui->dCurrentRest->text(), ui->PT->text().toDouble());
         spentInTrip += ui->PT->text().toDouble();
-        qDebug() << spentInTrip;
+        //qDebug() << spentInTrip;
     }
     else
     {
@@ -834,7 +849,7 @@ void MainWindow::clearReview(){
 QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
     //Declare new vector to put the sorted vector into
         QVector<int> efficientOrder;
-    qDebug() << "start of sortR";
+    //qDebug() << "start of sortR";
         int lowest = 0;
         int lowestDist = 200.00;
         if(!trip2)
@@ -846,12 +861,12 @@ QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
                     lowest = i;
                 }
             }
-            qDebug() << "Lowest Index: " << lowest;
+            //qDebug() << "Lowest Index: " << lowest;
         }
 
         
         
- qDebug() << "after lowest";
+// qDebug() << "after lowest";
         int k;
         for(k = 0; k < restVec.size(); k++){
             if(k == lowest){
@@ -863,7 +878,7 @@ QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
                 break;
             }
         }
-         qDebug() << "returning";
+        // qDebug() << "returning";
         return efficientOrder;
 }
 
@@ -920,77 +935,85 @@ void MainWindow::on_testTrip_clicked()
 
 void MainWindow::on_startTrip_clicked()
 {
-
-    ui->mainTab->removeTab(ui->mainTab->indexOf(ui->HomeTab));
-    initializeReceipt();
-    QVector<int> toVisit;
-    QString nameTemp;
-    switch(tripNum)
+    if(!isLoggedIn)
     {
-    case 1: //fill up the master list, need to change to use kevals method instead
-        for(int i = 0; i < rest.size();i++)
+        ui->mainTab->removeTab(ui->mainTab->indexOf(ui->HomeTab));
+        initializeReceipt();
+        QVector<int> toVisit;
+        QString nameTemp;
+        switch(tripNum)
         {
-            temp.push_back(rest.at(i));
-        }
-        toVisit = sortR(temp, false); //pass in the temp list
-        for(int i = 0; i < toVisit.size(); i++)
-        {
-            nameTemp = db.getRestName(toVisit[i]);
-            nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
-        }
-        break;
-    case 2:
-        qDebug() << "start of case 2";
-        //int numVisit = ui->c1SB->value;
-        //numAdd is number to visit
-        temp.push_front(getRest(ui->c1Label->text()));
-       // nSort.push_front(getRest(ui->c1Label->text()));
-       // qDebug() << "Current:" << nSort[0].getRestaurantName();
-       // int i = 0;
-        toVisit = sortR(temp, true);
+        case 1: //fill up the master list, need to change to use kevals method instead
+            for(int i = 0; i < rest.size();i++)
+            {
+                temp.push_back(rest.at(i));
+            }
+            toVisit = sortR(temp, false); //pass in the temp list
+            for(int i = 0; i < toVisit.size(); i++)
+            {
+                nameTemp = db.getRestName(toVisit[i]);
+                nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+            }
+            break;
+        case 2:
+           // qDebug() << "start of case 2";
+            //int numVisit = ui->c1SB->value;
+            //numAdd is number to visit
+            temp.push_front(getRest(ui->c1Label->text()));
+           // nSort.push_front(getRest(ui->c1Label->text()));
+           // qDebug() << "Current:" << nSort[0].getRestaurantName();
+           // int i = 0;
+            toVisit = sortR(temp, true);
 
-          for(int i = 0; i < numAdd; i++)
-          {
-              nameTemp = db.getRestName(toVisit[i]);
-              nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
-          }
-//        while(!(numAdd == nSort.size())){
-//            Restaurant dummy = rest.at(i);
-//            if(dummy.getRestaurantName() != ui->c1Label->text()){
-//                nSort.push_back(rest.at(i));
-//            }
-//            i++;
-//        }
+              for(int i = 0; i < numAdd; i++)
+              {
+                  nameTemp = db.getRestName(toVisit[i]);
+                  nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+              }
+    //        while(!(numAdd == nSort.size())){
+    //            Restaurant dummy = rest.at(i);
+    //            if(dummy.getRestaurantName() != ui->c1Label->text()){
+    //                nSort.push_back(rest.at(i));
+    //            }
+    //            i++;
+    //        }
 
-        break;
+            break;
 
-    case 3:
-       toVisit = sortR(temp, false);
-       for(int i = 0; i < toVisit.size(); i++)
-       {
-
-           nameTemp = db.getRestName(toVisit[i]);
-           if(nameCheck(nameTemp))
+        case 3:
+           toVisit = sortR(temp, false);
+           for(int i = 0; i < toVisit.size(); i++)
            {
-               qDebug() << "adding something";
-               nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
-           }
 
-       }
-        break;
-    default:
-        qDebug() << "hi";
-        break;
+               nameTemp = db.getRestName(toVisit[i]);
+               if(nameCheck(nameTemp))
+               {
+                  // qDebug() << "adding something";
+                   nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+               }
+
+           }
+            break;
+        default:
+            //qDebug() << "hi";
+            break;
+        }
+
+        ui->dCurrentRest->setText(nSort[0].getRestaurantName());
+        indexTrip = 0;
+        displayMenu();
+        //add the trips tab in main tab
+        ui->mainTab->addTab(ui->TripsTab, "Trips");
+        ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
+        ui->mainTab->setCurrentIndex(1);
+        indexTrip = 0;
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Invalid!"),
+                                 "Please log out first");
     }
 
-    ui->dCurrentRest->setText(nSort[0].getRestaurantName());
-    indexTrip = 0;
-    displayMenu();
-    //add the trips tab in main tab
-    ui->mainTab->addTab(ui->TripsTab, "Trips");
-    ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
-    ui->mainTab->setCurrentIndex(1);
-    indexTrip = 0;
 }
 
 /*Change by Austin comboBoxDisplayMenuPrototype()
