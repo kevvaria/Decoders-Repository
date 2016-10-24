@@ -5,6 +5,7 @@
 #include "dbmanager.h"
 #include "Restaurant.h"
 #include "login.h"
+#include "distance.h"
 #include<QMessageBox>
 #include <QStringList>
 namespace Ui {
@@ -89,7 +90,7 @@ private slots:
 
     void clearReview();
 
-    QVector<Restaurant> sortR(QVector<Restaurant> hi);
+
 
     void on_actionAdmin_Login_triggered();  //Login through the toolbar at the top instead of button.
 
@@ -125,7 +126,7 @@ private:
 
 
 
-    QVector<double> distancestoStr(QString dist);
+    QVector<Distance> distancestoStr(QString dist);
 
     void updateItemTable(); //updates item table
     void updateRestTable(); //update the restaurant table
@@ -133,8 +134,11 @@ private:
     bool add2Rests(); //adds the two additional given restaurants to the db
     Ui::MainWindow *ui;
     dbManager db; //database wrapper class
-    QVector<Restaurant> rest;
-    QVector<Restaurant> nSort;
+    QVector<Restaurant> rest; //master list of restaurants
+    QVector<Restaurant> nSort; //the list we iterate thru
+    QVector<Restaurant> temp; //temporary holder list
+
+
 
     int indexTrip;
     int col;
@@ -145,6 +149,9 @@ private:
     bool isLoggedIn;
     int numAdd;
     int tripNum;
+    QVector<int> sortR(QVector<Restaurant> restVec, bool trip2);
+    bool nameCheck(QString name);
+    QStack<QString> namesTemp;
 
 };
 

@@ -471,34 +471,34 @@ void MainWindow::on_DistAdd_clicked()
 
 }
 
-QVector<double> MainWindow::distancestoStr(QString dist)
-{
+QVector<Distance> MainWindow::distancestoStr(QString dist) {
+    /* * QVector<double> distDoubles;
+     * QString dist = db.getDistances("Chipotle");
+     * //get the distances for specified rest
+     * //qDebug() << dist;
+     * distDoubles= distancestoStr(dist);
+     * //parse the distances string out, then assign it to
+     * the object, qvector has the = operator overloaded
+     * qDebug() << distDoubles; */
 
-    /*
-     *     QVector<double> distDoubles;
-    QString dist = db.getDistances("Chipotle"); //get the distances for specified rest
-    //qDebug() << dist;
-    distDoubles= distancestoStr(dist);  //parse the distances string out, then assign it to the object, qvector has the = operator overloaded
-    qDebug() << distDoubles;
-
-     */
-
-    QVector<double> distDoubles;
+    QVector<Distance> distDoubles;
     QStringList list = dist.split(' ');
 
     //qDebug() << list;
-
-    for(int i = 0; i < list.size(); i++)
-    {
+    for(int i = 0; i < list.size(); i++){
         QString temp= list.at(i);
-        distDoubles.push_back(temp.toDouble());
+        distDoubles.push_back(Distance(i, temp.toDouble()));
     }
 
+    qSort(distDoubles.begin(),distDoubles.end(), DistSort());
 
+    qDebug() << "Distances vector debugging";
+    for(int i = 0; i < distDoubles.size(); i++)
+    {
+        qDebug() << distDoubles[i].getIndex() << ", " << distDoubles[i].getDistance();
+    }
     return distDoubles;
-
 }
-
 //login functionality
 void MainWindow::on_loginButton_clicked()
 {
@@ -776,6 +776,7 @@ void MainWindow::on_ReturnHome_clicked()
     ui->mainTab->removeTab(ui->mainTab->indexOf(ui->TripsTab));
     ui->mainTab->addTab(ui->HomeTab,"Home");
     nSort.clear();
+    temp.clear();
     ui->startTrip->hide();
     ui->c1SB->hide();
     ui->restList->hide();
@@ -786,6 +787,7 @@ void MainWindow::on_ReturnHome_clicked()
     ui->label_9->hide();
     ui->addR->hide();
     //add code to remove previous rows and columns
+    namesTemp.clear();
 
 }
 
@@ -811,6 +813,7 @@ void MainWindow::finishTrip()
     }
     ui->TripReviewTable->resizeColumnsToContents();
     ui->TripReviewTable->horizontalHeader()->setStretchLastSection(true);
+
 }
 
 void MainWindow::clearReview(){
@@ -828,8 +831,40 @@ void MainWindow::clearReview(){
     }
 }
 
-QVector<Restaurant> MainWindow::sortR(QVector<Restaurant> hi){
-    return hi;
+QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
+    //Declare new vector to put the sorted vector into
+        QVector<int> efficientOrder;
+    qDebug() << "start of sortR";
+        int lowest = 0;
+        int lowestDist = 200.00;
+        if(!trip2)
+        {
+
+            for(int i = 0; i<restVec.size(); i++){
+                if(lowestDist > restVec[i].getRestaurantDistanceFS()){
+                    lowestDist = restVec[i].getRestaurantDistanceFS();
+                    lowest = i;
+                }
+            }
+            qDebug() << "Lowest Index: " << lowest;
+        }
+
+        
+        
+ qDebug() << "after lowest";
+        int k;
+        for(k = 0; k < restVec.size(); k++){
+            if(k == lowest){
+                for(int j = 0; j < numRests; j++){
+                    Restaurant dummy = restVec.at(k);
+                    Distance dummy2 = dummy.getDistances().at(j);
+                    efficientOrder.push_back( dummy2.getIndex() );
+                }
+                break;
+            }
+        }
+         qDebug() << "returning";
+        return efficientOrder;
 }
 
 void MainWindow::on_actionAdmin_Login_triggered()   //Login through the toolbar at the top instead of button.
@@ -885,37 +920,67 @@ void MainWindow::on_testTrip_clicked()
 
 void MainWindow::on_startTrip_clicked()
 {
+
     ui->mainTab->removeTab(ui->mainTab->indexOf(ui->HomeTab));
     initializeReceipt();
+    QVector<int> toVisit;
+    QString nameTemp;
     switch(tripNum)
     {
     case 1: //fill up the master list, need to change to use kevals method instead
-        for(int i = 0; i < rest.size();i++){
-            nSort.push_back(rest.at(i));
+        for(int i = 0; i < rest.size();i++)
+        {
+            temp.push_back(rest.at(i));
         }
-
+        toVisit = sortR(temp, false); //pass in the temp list
+        for(int i = 0; i < toVisit.size(); i++)
+        {
+            nameTemp = db.getRestName(toVisit[i]);
+            nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+        }
         break;
     case 2:
-        nSort.push_front(getRest(ui->c1Label->text()));
-        qDebug() << "Current:" << nSort[0].getRestaurantName();
-        int i = 0;
-        while(!(numAdd == nSort.size())){
-            Restaurant dummy = rest.at(i);
-            if(dummy.getRestaurantName() != ui->c1Label->text()){
-                nSort.push_back(rest.at(i));
-            }
-            i++;
-        }
+        qDebug() << "start of case 2";
+        //int numVisit = ui->c1SB->value;
+        //numAdd is number to visit
+        temp.push_front(getRest(ui->c1Label->text()));
+       // nSort.push_front(getRest(ui->c1Label->text()));
+       // qDebug() << "Current:" << nSort[0].getRestaurantName();
+       // int i = 0;
+        toVisit = sortR(temp, true);
+
+          for(int i = 0; i < numAdd; i++)
+          {
+              nameTemp = db.getRestName(toVisit[i]);
+              nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+          }
+//        while(!(numAdd == nSort.size())){
+//            Restaurant dummy = rest.at(i);
+//            if(dummy.getRestaurantName() != ui->c1Label->text()){
+//                nSort.push_back(rest.at(i));
+//            }
+//            i++;
+//        }
 
         break;
-        //filled out within
-       // on_restTable_cellDoubleClicked
-//    case 3:
-//        qDebug() << "hi";
-//        break;
-//    default:
-//        qDebug() << "hi";
-//        break;
+
+    case 3:
+       toVisit = sortR(temp, false);
+       for(int i = 0; i < toVisit.size(); i++)
+       {
+
+           nameTemp = db.getRestName(toVisit[i]);
+           if(nameCheck(nameTemp))
+           {
+               qDebug() << "adding something";
+               nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
+           }
+
+       }
+        break;
+    default:
+        qDebug() << "hi";
+        break;
     }
 
     ui->dCurrentRest->setText(nSort[0].getRestaurantName());
@@ -987,8 +1052,8 @@ void MainWindow::on_restTable_cellDoubleClicked(int row1, int column1)
    else{
        ui->startTrip->show();
        bool dup = false;
-       for(int i = 0; i < nSort.size();i++){
-        Restaurant compare = nSort.at(i);
+       for(int i = 0; i < temp.size();i++){
+        Restaurant compare = temp.at(i);
         if(compare.getRestaurantName() == dummy.getRestaurantName()){
             dup = true;
         }
@@ -1000,7 +1065,8 @@ void MainWindow::on_restTable_cellDoubleClicked(int row1, int column1)
        }
        else{
            ui->c1Label->setText(dummy.getRestaurantName());
-           nSort.push_front(dummy);
+           temp.push_front(dummy);
+           namesTemp.push(dummy.getRestaurantName());
            ui->restList->addItem(dummy.getRestaurantName());
        }
    }
@@ -1069,3 +1135,16 @@ void MainWindow::initcRest(){
     ui->restTable->resizeColumnsToContents();
     ui->restTable->horizontalHeader()->setStretchLastSection(true);
 }
+bool MainWindow::nameCheck(QString name)
+{
+    for(int i = 0; i < namesTemp.size(); i++)
+    {
+        if(namesTemp[i] == name)
+        {
+            return true;
+        }
+
+    }
+    return false;
+}
+

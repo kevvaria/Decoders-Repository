@@ -1010,7 +1010,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTab->setCurrentIndex(0);
+        mainTab->setCurrentIndex(1);
         TripsTab1->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(0);
 
