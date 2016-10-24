@@ -150,6 +150,8 @@ private:
     int numAdd;
     int tripNum;
     QVector<int> sortR(QVector<Restaurant> restVec, bool trip2);
+    bool nameCheck(QString name);
+    QStack<QString> namesTemp;
 
 };
 
