@@ -1052,8 +1052,8 @@ void MainWindow::on_restTable_cellDoubleClicked(int row1, int column1)
    else{
        ui->startTrip->show();
        bool dup = false;
-       for(int i = 0; i < nSort.size();i++){
-        Restaurant compare = nSort.at(i);
+       for(int i = 0; i < temp.size();i++){
+        Restaurant compare = temp.at(i);
         if(compare.getRestaurantName() == dummy.getRestaurantName()){
             dup = true;
         }
