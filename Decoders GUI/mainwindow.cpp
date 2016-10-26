@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    menItems = 0;
     numAdd = 0;
     tripNum = 0;
     indexTrip = 0;
@@ -611,6 +612,7 @@ void MainWindow::on_pushButton_2_clicked()
         nSort[indexTrip].updateRev(ui->PT->text().toDouble());
         db.updateTotRev(ui->dCurrentRest->text(), ui->PT->text().toDouble());
         spentInTrip += ui->PT->text().toDouble();
+        nSort[indexTrip].quanItems(ui->quantityPurchase->value());
     }
     else
     {
@@ -714,6 +716,7 @@ void MainWindow::on_ReturnHome_clicked()
     namesTemp.clear();
     distances.clear();
     totDistTraveled = 0;
+    ui->totali->setText("");
 
 
 }
@@ -732,20 +735,29 @@ void MainWindow::finishTrip()
 
     ui->TripReviewTable->insertColumn(1);
     ui->TripReviewTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Money Spent"));
-    double rev = 0;
 
+    ui->TripReviewTable->insertColumn(2);
+    ui->TripReviewTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Quantity Purchased"));
+    double rev = 0;
+    int totalItems = 0;
+
+    for(int i = 0; i < nSort.size(); i++)
+    {
+        totalItems += nSort[i].getItems();
+    }
     //accumulate total for all rests
     for(int i = 0; i < nSort.size(); i++)
     {
         rev += nSort[i].getTotRev();
     }
     ui->TotSpent->setText(QString::number(rev, 'f', 2));
-
+    ui->totali->setText(QString::number(totalItems));
     for(int i = 0; i < nSort.size(); i++)
     {
         ui->TripReviewTable->insertRow(i);
         ui->TripReviewTable->setItem(i, 0, new QTableWidgetItem(nSort[i].getRestaurantName()));
         ui->TripReviewTable->setItem(i, 1, new QTableWidgetItem(QString::number(nSort[i].getTotRev(), 'f', 2)));
+        ui->TripReviewTable->setItem(i, 2, new QTableWidgetItem(QString::number(nSort[i].getItems())));
     }
     ui->TripReviewTable->resizeColumnsToContents();
     ui->TripReviewTable->horizontalHeader()->setStretchLastSection(true);

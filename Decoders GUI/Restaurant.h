@@ -23,7 +23,7 @@ using namespace std;
  */
 class Restaurant {
 private:
-	//Varibles
+    //Varibles
 
     QString name;                       //Restaurant Name
 
@@ -35,15 +35,17 @@ private:
 
     double totRev;                      //Total distance travelled
 
+    int menItems;
+
 public:
-	//Constructor and Deconstructor
+    //Constructor and Deconstructor
 
     /*!
      * \brief Restaurant
      *
      * Constructor
      */
-	Restaurant();
+    Restaurant();
 
     /*!
      * \brief Restaurant
@@ -112,7 +114,9 @@ public:
      * \return distance to another restaurant
      */
     double getDist(int i);
+    int quanItems(int i);
 
+   int getItems();
 };
 
 

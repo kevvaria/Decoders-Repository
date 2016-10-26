@@ -14,12 +14,14 @@ Restaurant :: Restaurant(){
     distancefromSad = 0.0;
     restaurantCount = 0;
     totRev = 0;
+    menItems = 0;
 }
 
 //Constructor
 Restaurant :: Restaurant(QString rName, double dist,QVector<Distance> dis){
 	//Update values to given names and distances
 	name = rName;
+     menItems = 0;
     distancefromSad = dist;
 	restaurantCount = 1;
     totRev = 0;
@@ -64,4 +66,13 @@ double Restaurant::getDist(int i)
      qSort(distances.begin(), distances.end(), DistSort());
 
      return toReturn;
+}
+
+int Restaurant::quanItems(int i){
+    menItems += i;
+}
+
+int Restaurant::getItems(){
+    return menItems;
+
 }

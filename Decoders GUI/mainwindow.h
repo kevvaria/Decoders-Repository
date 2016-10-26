@@ -141,7 +141,7 @@ private:
     QVector<Restaurant> temp; //temporary holder list
 
 
-
+    int menItems;
     int indexTrip;
     int col;
     int row;
