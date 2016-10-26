@@ -5,6 +5,7 @@ https://waffle.io/Itosken/Decoders-Repository-
 https://drive.google.com/drive/folders/0B9b1ecsyWOwzbGxuNjNrYXREOE0?usp=sharing
 
 Members
+
 -Nick Sidaris
 
 -Dustin Vuong
@@ -12,3 +13,5 @@ Members
 -Keval Varia
 
 -Adam Weesner
+
+-Austin Madrano
