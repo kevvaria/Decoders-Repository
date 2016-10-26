@@ -45,3 +45,16 @@ void Restaurant::updateRev(double value){
 double Restaurant::getTotRev(){
     return totRev;
 }
+
+double Restaurant::getDist(int i)
+{
+    //unsort the vector of distances
+    qSort(distances.begin(), distances.end(), DistSort2());
+
+    double toReturn = distances[i].getDistance();
+    //resort
+
+     qSort(distances.begin(), distances.end(), DistSort());
+
+     return toReturn;
+}

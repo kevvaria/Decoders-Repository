@@ -63,7 +63,6 @@ public:
     QGridLayout *gridLayout_4;
     QTabWidget *TripsTab1;
     QWidget *TripTab;
-    QGridLayout *gridLayout_3;
     QProgressBar *diabetes;
     QTableWidget *defMenu;
     QComboBox *menuCB;
@@ -87,13 +86,15 @@ public:
     QLabel *PT;
     QLabel *GT;
     QLabel *label_4;
+    QLabel *distIndicator;
     QWidget *TripReview;
-    QGridLayout *gridLayout_5;
     QTableWidget *TripReviewTable;
     QLabel *label_2;
     QLabel *label_7;
     QLabel *TotSpent;
     QPushButton *ReturnHome;
+    QLabel *label_8;
+    QLabel *finalDistIndicator;
     QWidget *AdminTab;
     QPushButton *pushButton_5;
     QLabel *label_103;
@@ -612,7 +613,7 @@ public:
         loginButton->setIconSize(QSize(10, 16));
         mainTab = new QTabWidget(centralWidget);
         mainTab->setObjectName(QStringLiteral("mainTab"));
-        mainTab->setGeometry(QRect(9, 44, 708, 389));
+        mainTab->setGeometry(QRect(13, 44, 751, 441));
         HomeTab = new QWidget();
         HomeTab->setObjectName(QStringLiteral("HomeTab"));
         label_102 = new QLabel(HomeTab);
@@ -670,141 +671,94 @@ public:
         TripsTab1->setObjectName(QStringLiteral("TripsTab1"));
         TripTab = new QWidget();
         TripTab->setObjectName(QStringLiteral("TripTab"));
-        gridLayout_3 = new QGridLayout(TripTab);
-        gridLayout_3->setSpacing(6);
-        gridLayout_3->setContentsMargins(11, 11, 11, 11);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         diabetes = new QProgressBar(TripTab);
         diabetes->setObjectName(QStringLiteral("diabetes"));
+        diabetes->setGeometry(QRect(396, 29, 241, 25));
         diabetes->setValue(24);
-
-        gridLayout_3->addWidget(diabetes, 1, 5, 1, 5);
-
         defMenu = new QTableWidget(TripTab);
         defMenu->setObjectName(QStringLiteral("defMenu"));
+        defMenu->setGeometry(QRect(9, 79, 253, 211));
         defMenu->setEditTriggers(QAbstractItemView::NoEditTriggers);
         defMenu->setAlternatingRowColors(false);
         defMenu->setSortingEnabled(true);
-
-        gridLayout_3->addWidget(defMenu, 3, 0, 10, 3);
-
         menuCB = new QComboBox(TripTab);
         menuCB->setObjectName(QStringLiteral("menuCB"));
+        menuCB->setGeometry(QRect(525, 99, 111, 18));
         menuCB->setStyleSheet(QStringLiteral(""));
-
-        gridLayout_3->addWidget(menuCB, 4, 7, 1, 2);
-
         quantityPurchase = new QSpinBox(TripTab);
         quantityPurchase->setObjectName(QStringLiteral("quantityPurchase"));
-
-        gridLayout_3->addWidget(quantityPurchase, 4, 9, 1, 1);
-
+        quantityPurchase->setGeometry(QRect(650, 100, 35, 18));
         label = new QLabel(TripTab);
         label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(9, 9, 101, 45));
         label->setStyleSheet(QStringLiteral("font: 75 italic 36pt \"Comic Sans MS\";"));
         label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         label->setWordWrap(true);
-
-        gridLayout_3->addWidget(label, 0, 0, 2, 1);
-
         label_19 = new QLabel(TripTab);
         label_19->setObjectName(QStringLiteral("label_19"));
+        label_19->setGeometry(QRect(525, 123, 71, 16));
         label_19->setAlignment(Qt::AlignCenter);
-
-        gridLayout_3->addWidget(label_19, 5, 7, 1, 1);
-
         pushButton_2 = new QPushButton(TripTab);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        gridLayout_3->addWidget(pushButton_2, 7, 7, 1, 3);
-
+        pushButton_2->setGeometry(QRect(525, 162, 91, 22));
         label_5 = new QLabel(TripTab);
         label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(525, 190, 76, 16));
         label_5->setAlignment(Qt::AlignCenter);
-
-        gridLayout_3->addWidget(label_5, 8, 7, 1, 1);
-
         dProgress = new QLabel(TripTab);
         dProgress->setObjectName(QStringLiteral("dProgress"));
-
-        gridLayout_3->addWidget(dProgress, 0, 6, 1, 2);
-
+        dProgress->setGeometry(QRect(461, 9, 140, 16));
         label_98 = new QLabel(TripTab);
         label_98->setObjectName(QStringLiteral("label_98"));
-
-        gridLayout_3->addWidget(label_98, 2, 4, 1, 2);
-
+        label_98->setGeometry(QRect(332, 60, 63, 16));
         defPurchase = new QTableWidget(TripTab);
         defPurchase->setObjectName(QStringLiteral("defPurchase"));
+        defPurchase->setGeometry(QRect(268, 79, 251, 211));
         defPurchase->setEditTriggers(QAbstractItemView::NoEditTriggers);
         defPurchase->setAlternatingRowColors(false);
         defPurchase->setSortingEnabled(true);
-
-        gridLayout_3->addWidget(defPurchase, 3, 3, 10, 4);
-
         label_16 = new QLabel(TripTab);
         label_16->setObjectName(QStringLiteral("label_16"));
-
-        gridLayout_3->addWidget(label_16, 3, 7, 1, 1);
-
+        label_16->setGeometry(QRect(525, 79, 22, 16));
         checkBox = new QCheckBox(TripTab);
         checkBox->setObjectName(QStringLiteral("checkBox"));
-
-        gridLayout_3->addWidget(checkBox, 1, 3, 1, 2);
-
+        checkBox->setGeometry(QRect(150, 50, 79, 16));
         dlvl = new QLabel(TripTab);
         dlvl->setObjectName(QStringLiteral("dlvl"));
-
-        gridLayout_3->addWidget(dlvl, 0, 8, 1, 1);
-
+        dlvl->setGeometry(QRect(607, 9, 16, 16));
         nextRest = new QPushButton(TripTab);
         nextRest->setObjectName(QStringLiteral("nextRest"));
-
-        gridLayout_3->addWidget(nextRest, 10, 7, 1, 3);
-
+        nextRest->setGeometry(QRect(525, 229, 101, 22));
         label_6 = new QLabel(TripTab);
         label_6->setObjectName(QStringLiteral("label_6"));
-
-        gridLayout_3->addWidget(label_6, 14, 1, 1, 3);
-
+        label_6->setGeometry(QRect(96, 296, 115, 16));
         label_15 = new QLabel(TripTab);
         label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(525, 257, 56, 16));
         label_15->setAlignment(Qt::AlignCenter);
-
-        gridLayout_3->addWidget(label_15, 11, 7, 1, 1);
-
         label_3 = new QLabel(TripTab);
         label_3->setObjectName(QStringLiteral("label_3"));
-
-        gridLayout_3->addWidget(label_3, 14, 6, 1, 1);
-
+        label_3->setGeometry(QRect(461, 296, 16, 16));
         dCurrentRest = new QLabel(TripTab);
         dCurrentRest->setObjectName(QStringLiteral("dCurrentRest"));
+        dCurrentRest->setGeometry(QRect(110, 20, 181, 27));
         dCurrentRest->setStyleSheet(QStringLiteral("font: 75 italic 14pt \"Comic Sans MS\";"));
         dCurrentRest->setWordWrap(true);
-
-        gridLayout_3->addWidget(dCurrentRest, 0, 1, 2, 2);
-
         CR = new QLabel(TripTab);
         CR->setObjectName(QStringLiteral("CR"));
-
-        gridLayout_3->addWidget(CR, 8, 8, 1, 1);
-
+        CR->setGeometry(QRect(607, 190, 41, 16));
         PT = new QLabel(TripTab);
         PT->setObjectName(QStringLiteral("PT"));
-
-        gridLayout_3->addWidget(PT, 5, 8, 1, 1);
-
+        PT->setGeometry(QRect(607, 123, 22, 16));
         GT = new QLabel(TripTab);
         GT->setObjectName(QStringLiteral("GT"));
-
-        gridLayout_3->addWidget(GT, 11, 8, 1, 1);
-
+        GT->setGeometry(QRect(607, 257, 41, 16));
         label_4 = new QLabel(TripTab);
         label_4->setObjectName(QStringLiteral("label_4"));
-
-        gridLayout_3->addWidget(label_4, 3, 9, 1, 1);
-
+        label_4->setGeometry(QRect(650, 80, 42, 16));
+        distIndicator = new QLabel(TripTab);
+        distIndicator->setObjectName(QStringLiteral("distIndicator"));
+        distIndicator->setGeometry(QRect(230, 300, 91, 16));
         TripsTab1->addTab(TripTab, QString());
         dProgress->raise();
         dlvl->raise();
@@ -829,42 +783,35 @@ public:
         PT->raise();
         GT->raise();
         label_4->raise();
+        distIndicator->raise();
         TripReview = new QWidget();
         TripReview->setObjectName(QStringLiteral("TripReview"));
-        gridLayout_5 = new QGridLayout(TripReview);
-        gridLayout_5->setSpacing(6);
-        gridLayout_5->setContentsMargins(11, 11, 11, 11);
-        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         TripReviewTable = new QTableWidget(TripReview);
         TripReviewTable->setObjectName(QStringLiteral("TripReviewTable"));
+        TripReviewTable->setGeometry(QRect(9, 9, 401, 351));
         TripReviewTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
         TripReviewTable->setSortingEnabled(true);
-
-        gridLayout_5->addWidget(TripReviewTable, 0, 0, 3, 1);
-
         label_2 = new QLabel(TripReview);
         label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout_5->addWidget(label_2, 0, 2, 1, 2);
-
+        label_2->setGeometry(QRect(470, 20, 221, 31));
         label_7 = new QLabel(TripReview);
         label_7->setObjectName(QStringLiteral("label_7"));
-
-        gridLayout_5->addWidget(label_7, 1, 1, 1, 1);
-
+        label_7->setGeometry(QRect(450, 201, 71, 20));
         TotSpent = new QLabel(TripReview);
         TotSpent->setObjectName(QStringLiteral("TotSpent"));
-
-        gridLayout_5->addWidget(TotSpent, 1, 2, 1, 1);
-
+        TotSpent->setGeometry(QRect(520, 201, 51, 20));
         ReturnHome = new QPushButton(TripReview);
         ReturnHome->setObjectName(QStringLiteral("ReturnHome"));
-
-        gridLayout_5->addWidget(ReturnHome, 2, 3, 1, 1);
-
+        ReturnHome->setGeometry(QRect(570, 330, 101, 22));
+        label_8 = new QLabel(TripReview);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(430, 270, 91, 21));
+        finalDistIndicator = new QLabel(TripReview);
+        finalDistIndicator->setObjectName(QStringLiteral("finalDistIndicator"));
+        finalDistIndicator->setGeometry(QRect(540, 270, 47, 20));
         TripsTab1->addTab(TripReview, QString());
 
-        gridLayout_4->addWidget(TripsTab1, 0, 0, 1, 1);
+        gridLayout_4->addWidget(TripsTab1, 0, 1, 1, 1);
 
         mainTab->addTab(TripsTab, QString());
         AdminTab = new QWidget();
@@ -1012,7 +959,7 @@ public:
 
         mainTab->setCurrentIndex(0);
         TripsTab1->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(1);
+        tabWidget_3->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1036,7 +983,7 @@ public:
         c1Label->setText(QString());
         addR->setText(QApplication::translate("MainWindow", "You Have added:", 0));
         mainTab->setTabText(mainTab->indexOf(HomeTab), QApplication::translate("MainWindow", "Home", 0));
-        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">	Currently At:</span></p></body></html>", 0));
+        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Currently At:</span></p></body></html>", 0));
         label_19->setText(QApplication::translate("MainWindow", "Purchase Total", 0));
         pushButton_2->setText(QApplication::translate("MainWindow", "Purchase Item", 0));
         label_5->setText(QApplication::translate("MainWindow", "Current Receipt", 0));
@@ -1054,11 +1001,14 @@ public:
         PT->setText(QApplication::translate("MainWindow", "0.00", 0));
         GT->setText(QApplication::translate("MainWindow", "0.00", 0));
         label_4->setText(QApplication::translate("MainWindow", "Quantity", 0));
+        distIndicator->setText(QApplication::translate("MainWindow", "0.00", 0));
         TripsTab1->setTabText(TripsTab1->indexOf(TripTab), QApplication::translate("MainWindow", "Trip", 0));
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Your Trip is complete!</span></p><p><span style=\" font-size:12pt;\">This Page is WIP</span></p></body></html>", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Your Trip is complete!</span></p><p><br/></p></body></html>", 0));
         label_7->setText(QApplication::translate("MainWindow", "Total Spent:", 0));
         TotSpent->setText(QApplication::translate("MainWindow", "0", 0));
         ReturnHome->setText(QApplication::translate("MainWindow", "Return to Home", 0));
+        label_8->setText(QApplication::translate("MainWindow", "Distance Traveled: ", 0));
+        finalDistIndicator->setText(QApplication::translate("MainWindow", "0.0", 0));
         TripsTab1->setTabText(TripsTab1->indexOf(TripReview), QApplication::translate("MainWindow", "Trip Complete", 0));
         mainTab->setTabText(mainTab->indexOf(TripsTab), QApplication::translate("MainWindow", "Trips", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "Delete Item", 0));

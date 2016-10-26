@@ -46,6 +46,7 @@ public:
     QVector<Distance> getDistances();
 
     double getTotRev();
+    double getDist(int i);
 
 };
 

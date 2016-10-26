@@ -506,10 +506,10 @@ color: rgb(255, 85, 0)</string>
    <widget class="QTabWidget" name="mainTab">
     <property name="geometry">
      <rect>
-      <x>9</x>
+      <x>13</x>
       <y>44</y>
-      <width>708</width>
-      <height>389</height>
+      <width>751</width>
+      <height>441</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -700,7 +700,7 @@ color: rgb(255, 85, 0)</string>
       <string>Trips</string>
      </attribute>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
+      <item row="0" column="1">
        <widget class="QTabWidget" name="TripsTab">
         <property name="currentIndex">
          <number>0</number>
@@ -709,201 +709,351 @@ color: rgb(255, 85, 0)</string>
          <attribute name="title">
           <string>Trip</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="1" column="5" colspan="5">
-           <widget class="QProgressBar" name="diabetes">
-            <property name="value">
-             <number>24</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" rowspan="10" colspan="3">
-           <widget class="QTableWidget" name="defMenu">
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>false</bool>
-            </property>
-            <property name="sortingEnabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="7" colspan="2">
-           <widget class="QComboBox" name="menuCB">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="9">
-           <widget class="QSpinBox" name="quantityPurchase"/>
-          </item>
-          <item row="0" column="0" rowspan="2">
-           <widget class="QLabel" name="label">
-            <property name="styleSheet">
-             <string notr="true">font: 75 italic 36pt &quot;Comic Sans MS&quot;;</string>
-            </property>
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;	Currently At:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="7">
-           <widget class="QLabel" name="label_19">
-            <property name="text">
-             <string>Purchase Total</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="7" colspan="3">
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>Purchase Item</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="7">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Current Receipt</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="6" colspan="2">
-           <widget class="QLabel" name="dProgress">
-            <property name="text">
-             <string>Diabetes Progression Bar Lvl.</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="4" colspan="2">
-           <widget class="QLabel" name="label_98">
-            <property name="text">
-             <string>Purchase List</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="3" rowspan="10" colspan="4">
-           <widget class="QTableWidget" name="defPurchase">
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>false</bool>
-            </property>
-            <property name="sortingEnabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="7">
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>Item</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBox">
-            <property name="text">
-             <string>Shortest Trip</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="8">
-           <widget class="QLabel" name="dlvl">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="7" colspan="3">
-           <widget class="QPushButton" name="nextRest">
-            <property name="text">
-             <string>Next Restaurant</string>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="1" colspan="3">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Total Distance Travelled</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="7">
-           <widget class="QLabel" name="label_15">
-            <property name="text">
-             <string>Grand Total</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="6">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" rowspan="2" colspan="2">
-           <widget class="QLabel" name="dCurrentRest">
-            <property name="styleSheet">
-             <string notr="true">font: 75 italic 14pt &quot;Comic Sans MS&quot;;</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="8">
-           <widget class="QLabel" name="CR">
-            <property name="text">
-             <string>0.00</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="8">
-           <widget class="QLabel" name="PT">
-            <property name="text">
-             <string>0.00</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="8">
-           <widget class="QLabel" name="GT">
-            <property name="text">
-             <string>0.00</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="9">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Quantity</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QProgressBar" name="diabetes">
+          <property name="geometry">
+           <rect>
+            <x>396</x>
+            <y>29</y>
+            <width>241</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="value">
+           <number>24</number>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="defMenu">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>79</y>
+            <width>253</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="menuCB">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>99</y>
+            <width>111</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+         </widget>
+         <widget class="QSpinBox" name="quantityPurchase">
+          <property name="geometry">
+           <rect>
+            <x>650</x>
+            <y>100</y>
+            <width>35</width>
+            <height>18</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>9</y>
+            <width>101</width>
+            <height>45</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 36pt &quot;Comic Sans MS&quot;;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Currently At:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_19">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>123</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Purchase Total</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>162</y>
+            <width>91</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Purchase Item</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>190</y>
+            <width>76</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Current Receipt</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="dProgress">
+          <property name="geometry">
+           <rect>
+            <x>461</x>
+            <y>9</y>
+            <width>140</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Diabetes Progression Bar Lvl.</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_98">
+          <property name="geometry">
+           <rect>
+            <x>332</x>
+            <y>60</y>
+            <width>63</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Purchase List</string>
+          </property>
+         </widget>
+         <widget class="QTableWidget" name="defPurchase">
+          <property name="geometry">
+           <rect>
+            <x>268</x>
+            <y>79</y>
+            <width>251</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_16">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>79</y>
+            <width>22</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Item</string>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="checkBox">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>50</y>
+            <width>79</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Shortest Trip</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="dlvl">
+          <property name="geometry">
+           <rect>
+            <x>607</x>
+            <y>9</y>
+            <width>16</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="nextRest">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>229</y>
+            <width>101</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Next Restaurant</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_6">
+          <property name="geometry">
+           <rect>
+            <x>96</x>
+            <y>296</y>
+            <width>115</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Total Distance Travelled</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_15">
+          <property name="geometry">
+           <rect>
+            <x>525</x>
+            <y>257</y>
+            <width>56</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Grand Total</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>461</x>
+            <y>296</y>
+            <width>16</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="dCurrentRest">
+          <property name="geometry">
+           <rect>
+            <x>110</x>
+            <y>20</y>
+            <width>181</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 14pt &quot;Comic Sans MS&quot;;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="CR">
+          <property name="geometry">
+           <rect>
+            <x>607</x>
+            <y>190</y>
+            <width>41</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0.00</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="PT">
+          <property name="geometry">
+           <rect>
+            <x>607</x>
+            <y>123</y>
+            <width>22</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0.00</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="GT">
+          <property name="geometry">
+           <rect>
+            <x>607</x>
+            <y>257</y>
+            <width>41</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0.00</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_4">
+          <property name="geometry">
+           <rect>
+            <x>650</x>
+            <y>80</y>
+            <width>42</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Quantity</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="distIndicator">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>300</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0.00</string>
+          </property>
+         </widget>
          <zorder>dProgress</zorder>
          <zorder>dlvl</zorder>
          <zorder>checkBox</zorder>
@@ -927,51 +1077,106 @@ color: rgb(255, 85, 0)</string>
          <zorder>PT</zorder>
          <zorder>GT</zorder>
          <zorder>label_4</zorder>
+         <zorder>distIndicator</zorder>
         </widget>
         <widget class="QWidget" name="TripReview">
          <attribute name="title">
           <string>Trip Complete</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0" rowspan="3">
-           <widget class="QTableWidget" name="TripReviewTable">
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="sortingEnabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2" colspan="2">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Your Trip is complete!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;This Page is WIP&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Total Spent:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QLabel" name="TotSpent">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QPushButton" name="ReturnHome">
-            <property name="text">
-             <string>Return to Home</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QTableWidget" name="TripReviewTable">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>9</y>
+            <width>401</width>
+            <height>351</height>
+           </rect>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>470</x>
+            <y>20</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Your Trip is complete!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_7">
+          <property name="geometry">
+           <rect>
+            <x>450</x>
+            <y>201</y>
+            <width>71</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Total Spent:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="TotSpent">
+          <property name="geometry">
+           <rect>
+            <x>520</x>
+            <y>201</y>
+            <width>51</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="ReturnHome">
+          <property name="geometry">
+           <rect>
+            <x>570</x>
+            <y>330</y>
+            <width>101</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Return to Home</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_8">
+          <property name="geometry">
+           <rect>
+            <x>430</x>
+            <y>270</y>
+            <width>91</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Distance Traveled: </string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="finalDistIndicator">
+          <property name="geometry">
+           <rect>
+            <x>540</x>
+            <y>270</y>
+            <width>47</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -985,7 +1190,7 @@ color: rgb(255, 85, 0)</string>
       <item row="0" column="0">
        <widget class="QTabWidget" name="tabWidget_3">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">

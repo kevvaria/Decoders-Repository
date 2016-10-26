@@ -35,6 +35,14 @@ struct DistSort{
 
 };
 
+
+struct DistSort2
+{
+    bool operator()(Distance d1, Distance d2) const {
+        return (d1.getIndex() < d2.getIndex() );
+   }
+};
+
 //Function to sort the vector of Distance objects based on distances.
 //update parsing algorithm
 
