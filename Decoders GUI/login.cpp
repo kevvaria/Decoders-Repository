@@ -1,6 +1,11 @@
 #include "login.h"
 #include "ui_login.h"
-
+/*!
+   * \file login.cpp
+   * \brief  Header for login class
+   *
+   * This file contains all of the definitions of the login class
+   */
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)

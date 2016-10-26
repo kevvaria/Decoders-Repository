@@ -2,19 +2,46 @@
 #define LOGIN_H
 
 #include <QDialog>
-
+/*!
+   * \file login.h
+   * \brief  Header for login class
+   *
+   * This file contains all of the declarations of the login class
+   */
 namespace Ui {
+
+
 class Login;
 }
 
+/*!
+ * \brief The Login class
+ *
+ * A separate window to get the admin login password
+ */
 class Login : public QDialog
 {
     Q_OBJECT
 
 public:
+    /*!
+     * \brief Login
+     *
+     * Constructor
+     * \param parent
+     */
     explicit Login(QWidget *parent = 0);
+    /*!
+      \brief Destructor
+      */
     ~Login();
 
+    /*!
+     * \brief getValid
+     *
+     * Returns whether or not the password was correct
+     * \return t/f password is correct
+     */
     bool getValid();
 
 private slots:

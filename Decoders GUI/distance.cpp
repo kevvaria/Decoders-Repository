@@ -1,4 +1,10 @@
 #include "distance.h"
+/*!
+   * \file distance.cpp
+   * \brief  Source file for distance class
+   *
+   * This file contains all of the definition of the distance class
+   */
 
 /*******************************
  * CONSTRUCTOR & DECONSTRUCTOR *

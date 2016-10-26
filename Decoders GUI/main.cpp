@@ -15,10 +15,12 @@ int main(int argc, char *argv[])
 
 
 The Decoders:
-- Keval Varia
+- Nick Sidaris (Scrum Master)
 - Dustin Vuong
+- Keval Varia (Product Owner)
+- Austin Madrano
 - Adam Weesner
-- Nick Sidaris
+
 
 
 © 2016 The Decoders. All Rights Reserved.

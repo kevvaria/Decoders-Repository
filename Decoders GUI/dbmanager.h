@@ -21,85 +21,107 @@
 /*!
  * \brief The dbManager class
  *
- * Manages the sqlite data base
+ * Manages the sqlite data base that contians restaurants and their menu items
  */
 class dbManager
 {
 public:
     /*!
      * \brief dbManager
+     *
+     * Constructor
      */
     dbManager();
 
     //get all names for rest
     /*!
-     * \brief gets all restaurant names
-     * \return QVector of all rest names
+     * \brief getRestNames
+     *
+     * Gets all restaurant names and puts them in a QVector
+     * \return QVector of restaurant names
      */
     QVector<QString> getRestNames();
     //utility methods to retrieve other attributes
     /*!
-     * \brief gets distance b/t the restaurant and saddleback
+     * \brief getSadDist
+     *
+     * Gets the specified restaurants distance to saddleback
      * \param restName
-     * \return
+     * \return the restaurants distance to saddleback
      */
     QString getSadDist(QString restName);
     /*!
      * \brief getRev
+     *
+     * Gets the total revenue for the specified restaurant
      * \param restName
-     * \return
+     * \return total lifetime revenue of a restaurant
      */
     QString getRev(QString restName);
     /*!
      * \brief getNumItems
+     *
+     * Returns the number of menu items a restaurant has
      * \param restName
-     * \return
+     * \return number of items on the menu
      */
     QString getNumItems(QString restName);
 
 
     /*!
      * \brief getItemPrice
+     *
+     * Returns the price of a certain item
      * \param restName
      * \param itemName
-     * \return
+     * \return item price
      */
     QString getItemPrice(QString restName, QString itemName);
 
     /*!
      * \brief getMenuItems
+     *
+     * Returns the names of all menu items for a restaurant
      * \param restName
-     * \return
+     * \return menu item names
      */
     QVector<QString> getMenuItems(QString restName);
     /*!
      * \brief Exists
+     *
+     * checks if a menu item exists
      * \param restName
      * \param itemName
-     * \return
+     * \return t/f if the item exists
      */
     bool Exists(QString restName, QString itemName);
     /*!
      * \brief removeItem
+     *
+     * Removes a menu item
      * \param restName
      * \param itemName
-     * \return
+     * \return t/f result of the operation
      */
     bool removeItem(QString restName, QString itemName);
     /*!
      * \brief updateItem
+     *
+     * Updates a menu item's price
      * \param restName
      * \param itemName
      * \param price
-     * \return
+     * \return t/f result of the operation
      */
     bool updateItem(QString restName, QString itemName, double price);
 
     /*!
      * \brief addItem
+     *
+     * Adds a new menu item
      * \param restName
      * \param itemName
-     * \return
+     * \return t/f result of the operation
      */
     bool addItem(QString restName, QString itemName, double price);
 
@@ -107,42 +129,62 @@ public:
 
     /*!
      * \brief addRest
+     *
+     * Adds a new restaurant
      * \param restName
      * \param sadDist
      * \param distances
-     * \return
+     * \return t/f result of the operation
      */
     bool addRest(QString restName, double sadDist, QVector<double> distances);
 
-    /*!
-     * \brief getRestCount
-     * \return Number of restuarants the db
-     */
-   // int getRestCount();
+
 
     /*!
      * \brief getRestName
+     *
+     * Gets a restaurant name based on id
      * \param id
-     * \return
+     * \return restaurant name
      */
     QString getRestName(int id);
 
 
     /*!
      * \brief updateDistances
+     *
+     * Updates distances of previous restaurants when adding a new restaurant
      * \param distances
-     * \return
+     * \return t/f result of the operation
      */
     bool updateDistances(QVector<double> distances); //updates the previous restaurnts
     /*!
      * \brief distancesToString
+     *
+     * Parses a QVector of doubles into a single string for storage in the database
      * \param distances
-     * \return
+     * \return QString of distances
      */
     QString distancesToString(QVector<double> distances); //converts the distances to a string to store in the db
 
 
+
+    /*!
+     * \brief getDistances
+     *
+     * Gets the distances to other restaurants for a restaurant
+     * \param restName
+     * \return distances in string form
+     */
     QString getDistances(QString restName);
+    /*!
+     * \brief updateTotRev
+     *
+     * Accumulates the total revenue for a restaurant
+     * \param restName
+     * \param value
+     * \return t/f result of the operation
+     */
     bool updateTotRev(QString restName, double value);
 
 

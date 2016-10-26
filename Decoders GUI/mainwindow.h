@@ -1,6 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+/*!
+   * \file mainwindow.h
+   * \brief  Header for mainwindow class
+   *
+   * This file contains all of the declarations and slots of the mainwindow class
+   */
 #include <QMainWindow>
 #include "dbmanager.h"
 #include "Restaurant.h"
@@ -58,7 +63,7 @@ private slots:
 
     void on_DistAdd_clicked();
 
-    //void on_pushButton_3_clicked();
+
 
     void on_loginButton_clicked();
 
@@ -78,7 +83,7 @@ private slots:
 
     double updateReceipt(int row, int column);
 
-  //  void on_defMenu_cellClicked(int row, int column);
+
 
     void initializeReceipt();
 

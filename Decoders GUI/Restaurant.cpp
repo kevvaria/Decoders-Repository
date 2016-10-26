@@ -1,5 +1,12 @@
 #include "Restaurant.h"
 
+/*!
+   * \file Restaurant.cpp
+   * \brief  Source for Restaurant class
+   *
+   * This file contains all of the definitions of the Restaurant class
+   */
+
 //Constructor
 Restaurant :: Restaurant(){
 	//Initialize values to nill

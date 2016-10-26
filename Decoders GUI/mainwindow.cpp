@@ -2,7 +2,12 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 using namespace std;
-
+/*!
+   * \file mainwindow.cpp
+   * \brief  Header for mainwindow class
+   *
+   * This file contains all of the definitions of the mainwindow class
+   */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -1068,43 +1073,6 @@ void MainWindow::on_startTrip_clicked()
 
 
             distances.enqueue(nSort[toVisit2.size()-1].getRestaurantDistanceFS());
-
-
-
-
-
-
-
-            //           for(int i = 0; i < toVisit.size(); i++)
-            //           {
-            //                qDebug() << "Inner for loop";
-            //               nameTemp = db.getRestName(toVisit[i]);
-
-
-
-
-
-            //               if(i == 0)
-            //               {
-            //                   distances.enqueue(db.getSadDist(nameTemp).toDouble());
-            //               }
-
-            //               if(nameCheck(nameTemp))
-            //               {
-            //                  // qDebug() << "adding something";
-            //                   nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
-            //                   if(namesTemp.size() > 1)
-            //                   {
-            //                        distances.enqueue(nSort[i].getDist(toVisit[i+1]));
-            //                   }
-            //                   if(i == toVisit.size()-1)
-            //                   {
-            //                       distances.enqueue(nSort[i].getRestaurantDistanceFS());
-            //                   }
-            //               }
-
-
-            //           }
 
             break;
         default:

@@ -524,7 +524,7 @@ color: rgb(255, 85, 0)</string>
        <rect>
         <x>9</x>
         <y>9</y>
-        <width>161</width>
+        <width>301</width>
         <height>38</height>
        </rect>
       </property>
@@ -532,7 +532,7 @@ color: rgb(255, 85, 0)</string>
        <string notr="true">font: 75 20pt &quot;Comic Sans MS&quot;;</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Select Trip:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Select Trip: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="StartDefaultTrip">
@@ -606,8 +606,8 @@ color: rgb(255, 85, 0)</string>
      <widget class="QLabel" name="loR">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>40</y>
+        <x>280</x>
+        <y>50</y>
         <width>121</width>
         <height>16</height>
        </rect>
@@ -668,7 +668,7 @@ color: rgb(255, 85, 0)</string>
      <widget class="QTableWidget" name="restTable">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>200</x>
         <y>70</y>
         <width>256</width>
         <height>192</height>
@@ -694,16 +694,32 @@ color: rgb(255, 85, 0)</string>
        <string>You Have added:</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>180</y>
+        <width>171</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;You are at Saddleback College, feeling extremely hungry.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Select a trip to go on&lt;/p&gt;&lt;p&gt;Default: Visit all restaurants in the most efficient order&lt;/p&gt;&lt;p&gt;Custom 1: Pick the first restaurant and total to visit and visit in most efficient order&lt;/p&gt;&lt;p&gt;Custom 2: Pick all restaurants to visit and visit in most efficient order&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="TripsTab">
      <attribute name="title">
       <string>Trips</string>
      </attribute>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="1">
+      <item row="0" column="0" colspan="2">
        <widget class="QTabWidget" name="TripsTab">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="TripTab">
          <attribute name="title">
@@ -714,7 +730,7 @@ color: rgb(255, 85, 0)</string>
            <rect>
             <x>396</x>
             <y>29</y>
-            <width>241</width>
+            <width>281</width>
             <height>25</height>
            </rect>
           </property>
@@ -727,7 +743,7 @@ color: rgb(255, 85, 0)</string>
            <rect>
             <x>9</x>
             <y>79</y>
-            <width>253</width>
+            <width>241</width>
             <height>211</height>
            </rect>
           </property>
@@ -744,10 +760,10 @@ color: rgb(255, 85, 0)</string>
          <widget class="QComboBox" name="menuCB">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>99</y>
-            <width>111</width>
-            <height>18</height>
+            <x>550</x>
+            <y>90</y>
+            <width>121</width>
+            <height>20</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -757,8 +773,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QSpinBox" name="quantityPurchase">
           <property name="geometry">
            <rect>
-            <x>650</x>
-            <y>100</y>
+            <x>680</x>
+            <y>90</y>
             <width>35</width>
             <height>18</height>
            </rect>
@@ -789,8 +805,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="label_19">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>123</y>
+            <x>568</x>
+            <y>116</y>
             <width>71</width>
             <height>16</height>
            </rect>
@@ -805,8 +821,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QPushButton" name="pushButton_2">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>162</y>
+            <x>568</x>
+            <y>155</y>
             <width>91</width>
             <height>22</height>
            </rect>
@@ -818,8 +834,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="label_5">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>190</y>
+            <x>568</x>
+            <y>183</y>
             <width>76</width>
             <height>16</height>
            </rect>
@@ -862,7 +878,7 @@ color: rgb(255, 85, 0)</string>
            <rect>
             <x>268</x>
             <y>79</y>
-            <width>251</width>
+            <width>281</width>
             <height>211</height>
            </rect>
           </property>
@@ -879,27 +895,14 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="label_16">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>79</y>
+            <x>580</x>
+            <y>70</y>
             <width>22</width>
             <height>16</height>
            </rect>
           </property>
           <property name="text">
            <string>Item</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkBox">
-          <property name="geometry">
-           <rect>
-            <x>150</x>
-            <y>50</y>
-            <width>79</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Shortest Trip</string>
           </property>
          </widget>
          <widget class="QLabel" name="dlvl">
@@ -918,8 +921,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QPushButton" name="nextRest">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>229</y>
+            <x>568</x>
+            <y>222</y>
             <width>101</width>
             <height>22</height>
            </rect>
@@ -944,8 +947,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="label_15">
           <property name="geometry">
            <rect>
-            <x>525</x>
-            <y>257</y>
+            <x>568</x>
+            <y>250</y>
             <width>56</width>
             <height>16</height>
            </rect>
@@ -975,7 +978,7 @@ color: rgb(255, 85, 0)</string>
            <rect>
             <x>110</x>
             <y>20</y>
-            <width>181</width>
+            <width>211</width>
             <height>27</height>
            </rect>
           </property>
@@ -992,8 +995,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="CR">
           <property name="geometry">
            <rect>
-            <x>607</x>
-            <y>190</y>
+            <x>650</x>
+            <y>183</y>
             <width>41</width>
             <height>16</height>
            </rect>
@@ -1005,8 +1008,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="PT">
           <property name="geometry">
            <rect>
-            <x>607</x>
-            <y>123</y>
+            <x>650</x>
+            <y>116</y>
             <width>22</width>
             <height>16</height>
            </rect>
@@ -1018,8 +1021,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="GT">
           <property name="geometry">
            <rect>
-            <x>607</x>
-            <y>257</y>
+            <x>650</x>
+            <y>250</y>
             <width>41</width>
             <height>16</height>
            </rect>
@@ -1031,8 +1034,8 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="label_4">
           <property name="geometry">
            <rect>
-            <x>650</x>
-            <y>80</y>
+            <x>680</x>
+            <y>70</y>
             <width>42</width>
             <height>16</height>
            </rect>
@@ -1056,7 +1059,6 @@ color: rgb(255, 85, 0)</string>
          </widget>
          <zorder>dProgress</zorder>
          <zorder>dlvl</zorder>
-         <zorder>checkBox</zorder>
          <zorder>diabetes</zorder>
          <zorder>label_98</zorder>
          <zorder>defMenu</zorder>
@@ -1102,14 +1104,14 @@ color: rgb(255, 85, 0)</string>
          <widget class="QLabel" name="label_2">
           <property name="geometry">
            <rect>
-            <x>470</x>
+            <x>440</x>
             <y>20</y>
-            <width>221</width>
-            <height>31</height>
+            <width>241</width>
+            <height>111</height>
            </rect>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Your Trip is complete!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Your Trip is complete!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You are back at Saddleback &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;with a full stomach!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_7">
