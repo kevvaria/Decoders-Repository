@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['the_20decoders_20fast_20food_20trip_20planner',['The Decoders Fast Food Trip Planner',['../index.html',1,'']]]
+  ['setdistance',['setDistance',['../class_distance.html#a2c736683fdf09fe066c9890695e12e75',1,'Distance']]],
+  ['setindex',['setIndex',['../class_distance.html#a0210653b9ad8efd46f5c61ace50c8cd2',1,'Distance']]]
 ];

@@ -73,7 +73,7 @@ private slots:
 
     void initializeRest();
 
-    void dMenu();
+    //void dMenu();
 
     void on_menuCB_currentIndexChanged(const QString &arg1);
 

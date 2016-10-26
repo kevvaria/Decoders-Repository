@@ -114,8 +114,21 @@ public:
      * \return distance to another restaurant
      */
     double getDist(int i);
+    /*!
+     * \brief quanItems
+     *
+     * updates the number of items bought
+     * \param i
+     * \return updated value
+     */
     int quanItems(int i);
 
+    /*!
+    * \brief getItems
+    *
+    * returns the number of items bought
+    * \return number of items bought
+    */
    int getItems();
 };
 

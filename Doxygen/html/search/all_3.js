@@ -5,6 +5,7 @@ var searchData=
   ['getdistances',['getDistances',['../classdb_manager.html#a166eca9ad954a95255d03664c9ddac1c',1,'dbManager::getDistances()'],['../class_restaurant.html#a85242dbfab571cfc8b910bed3ca7690c',1,'Restaurant::getDistances()']]],
   ['getindex',['getIndex',['../class_distance.html#a0d77976c74be94f10f4958c6e95d1c25',1,'Distance']]],
   ['getitemprice',['getItemPrice',['../classdb_manager.html#ad2a1f2f473e4d4da5d0a9e9b97560985',1,'dbManager']]],
+  ['getitems',['getItems',['../class_restaurant.html#ad9cfb03c94e9bf1a7f334edf597966bd',1,'Restaurant']]],
   ['getmenuitems',['getMenuItems',['../classdb_manager.html#a317ef04b8d0b5b52eec8a1567e228d25',1,'dbManager']]],
   ['getnumitems',['getNumItems',['../classdb_manager.html#ababeb76a32e35e35506c2fe6988a002e',1,'dbManager']]],
   ['getrestaurantdistancefs',['getRestaurantDistanceFS',['../class_restaurant.html#a723f7b1227bc11e940f5b359099edf2d',1,'Restaurant']]],
