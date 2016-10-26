@@ -10,11 +10,5 @@ var hierarchy =
     [ "QMainWindow", null, [
       [ "MainWindow", "class_main_window.html", null ]
     ] ],
-    [ "Restaurant", "class_restaurant.html", null ],
-    [ "Ui_Login", "class_ui___login.html", [
-      [ "Ui::Login", "class_ui_1_1_login.html", null ]
-    ] ],
-    [ "Ui_MainWindow", "class_ui___main_window.html", [
-      [ "Ui::MainWindow", "class_ui_1_1_main_window.html", null ]
-    ] ]
+    [ "Restaurant", "class_restaurant.html", null ]
 ];

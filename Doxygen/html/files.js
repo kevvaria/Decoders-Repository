@@ -21,7 +21,5 @@ var files =
     [ "Restaurant.cpp", "_restaurant_8cpp.html", null ],
     [ "Restaurant.h", "_restaurant_8h.html", [
       [ "Restaurant", "class_restaurant.html", "class_restaurant" ]
-    ] ],
-    [ "ui_login.h", "ui__login_8h_source.html", null ],
-    [ "ui_mainwindow.h", "ui__mainwindow_8h_source.html", null ]
+    ] ]
 ];
