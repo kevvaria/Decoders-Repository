@@ -16,10 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     tripNum = 0;
     indexTrip = 0;
     ui->setupUi(this);
-    ui->diabetes->setValue(0);
     ui->c1SB->setMinimum(1);
     ui->quantityPurchase->setMinimum(1);
-    ui->dlvl->setText("1");
     updateRestTable();
     initcRest();
     ui->startTrip->hide();
@@ -47,13 +45,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->DistAdd->show();
     ui->restIndicator->setText( "Distance to: "+ db.getRestName(index));
     isLoggedIn = false;
-    //  initializeReceipt();
     //displayMenu();
     indexTrip = 0;
     row =0;
     col = 0;
-    // displayMenu();
-    // initializeReceipt();
     //start on the home page
     ui->mainTab->setCurrentIndex(0);
     //remove the trips tab upon start
@@ -157,8 +152,6 @@ void MainWindow::on_pushButton_8_clicked()
 void MainWindow::on_pushButton_11_clicked()
 {
     QVector<double> distances;
-    // QString Test = db.getItemPrice("MacDonald’s", "Big Mac");
-    //(qDebug)() << db.updateDistances(distances );
 
 }
 
@@ -184,7 +177,6 @@ void MainWindow::updateItemTable()
     ui->adminMenuItem->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
 
     QVector<QString> currentRestIn = db.getMenuItems(ui->adminRC->currentText());
-    //qDebug() << ui->adminRC->currentText();
 
 
     for(int i = 0; i < currentRestIn.length();i++)
@@ -256,7 +248,6 @@ void MainWindow::on_adminCP_clicked()
     QString itemName = ui->adminItemSelection->currentText();
     QString restName = ui->adminRC->currentText();
     double changedPrice = ui->adminModSpin->value();
-    //qDebug() << changedPrice;
     if(db.updateItem(restName,itemName,changedPrice))
     {
         QMessageBox::information(this, tr("Updated!"),
@@ -318,8 +309,6 @@ void MainWindow::on_addToMenu_clicked()
 
 void MainWindow::on_AddRestaurant_clicked()
 {
-    //qDebug() << "here";
-    //QVector<double> distances;
 
     QString restName = ui->newRestname->text().trimmed();
     double dis2Sad = ui->dis2Saddle->value();
@@ -483,8 +472,6 @@ void MainWindow::on_DistAdd_clicked()
             ui->addIndicator->show();
             ui->DistAdd->hide();
         }
-        // qDebug() << numRests;
-        // qDebug() << index;
     }
     else
     {
@@ -549,17 +536,10 @@ void MainWindow::on_loginButton_clicked()
         ui->mainTab->removeTab(1);
         isLoggedIn = false;
         ui->loginButton->hide();
-        //    ui->loginButton->setText("Administrative Login");
 
     }
 }
 
-
-void MainWindow:: dMenu(){
-    //    QString currentRestIn = ui->dCurrentRest->text();
-    //    ui->menuCB->clear();
-    //    displayMenu(currentRestIn);
-}
 
 void MainWindow::displayMenu(){
 
@@ -598,11 +578,8 @@ void MainWindow::displayMenu(){
 void MainWindow::on_quantityPurchase_valueChanged(int arg1)
 {
     double itemPrice = db.getItemPrice(ui->dCurrentRest->text(),ui->menuCB->currentText()).toDouble();
-    // qDebug() << itemPrice;
     double quan = (arg1 * itemPrice);
-    // qDebug() << quan;
     QString purchaseT = QString::number(quan);
-    // qDebug() << purchaseT;
     ui->PT->setText(purchaseT);
 }
 
@@ -611,7 +588,6 @@ void MainWindow::initializeRest(){
     for(int i = 0; i < numRests; i++){
         rest.push_back(Restaurant(db.getRestName(i),db.getSadDist(db.getRestName(i)).toDouble(),distancestoStr(db.getDistances(db.getRestName(i)))));
         Restaurant dum = rest.at(i);
-        //qDebug() << dum.getRestaurantName();
     }
 }
 
@@ -633,10 +609,8 @@ void MainWindow::on_pushButton_2_clicked()
         //need to add total rev for this rest
         //same for the db
         nSort[indexTrip].updateRev(ui->PT->text().toDouble());
-        //        rest[getRestIndex(nSort.at(indexTrip))].updateRev(ui->PT->text().toDouble());
         db.updateTotRev(ui->dCurrentRest->text(), ui->PT->text().toDouble());
         spentInTrip += ui->PT->text().toDouble();
-        //qDebug() << spentInTrip;
     }
     else
     {
@@ -664,17 +638,6 @@ double MainWindow::updateReceipt(int row, int column){
     return ui->PT->text().toDouble();
 }
 
-
-
-//bool MainWindow::on_nextRest_toggled(bool checked)
-//{
-//    double cur = ui->GT->text().toDouble() + ui->CR->text().toDouble();
-//    ui->GT->setText(QString::number(cur));
-//    indexr++;
-//    qDebug() << ui->nextRest->isChecked();
-//    return ui->nextRest->isChecked();
-//}
-
 void MainWindow::on_nextRest_clicked()
 {
 
@@ -683,30 +646,6 @@ void MainWindow::on_nextRest_clicked()
     ui->GT->setText(QString::number(cur, 'f', 2));
     indexTrip++;
     if(indexTrip < nSort.size()){
-        //        if(ui->diabetes->value() < 100){
-        //            double every5 = ui->CR->text().toDouble()/5;
-        //            qDebug() << "every5: " << every5;
-        //            if(every5 > 100){
-        //                ui->dlvl->setText(QString::number((int)(every5/100) + ui->dlvl->text().toInt()));
-        //                if(((int)every5 % 100) + (double)ui->diabetes->value() > 100){
-        //                        ui->diabetes->setValue((((int)every5%100) + ui->diabetes->value()) - 100);
-        //                }
-        //                else{
-        //                    ui->diabetes->setValue(((int)every5%100) + ui->diabetes->value());
-        //                }
-        //            }
-        //            else{
-        //                if((((int)every5%100) + ui->diabetes->value()) > 100){
-        //                   ui->dlvl->setText(QString::number(((int)every5%100+ ui->diabetes->value() - 100) + ui->dlvl->text().toInt()));
-        //                   ui->diabetes->setValue(((int)every5%100) + ui->diabetes->value() - 100);
-        //                }
-        //                else{
-        //                    ui->diabetes->setValue(((int)every5%100) + ui->diabetes->value());
-        //                }
-        //            }
-        //            every5 = 0;
-        //        }
-        checkDiabetes(ui->dlvl->text().toInt());
         ui->PT->setText("0.00");
         ui->CR->setText("0.00");
         ui->menuCB->clear();
@@ -746,47 +685,6 @@ void MainWindow::initializeReceipt(){
     ui->defPurchase->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
 }
 
-void MainWindow::checkDiabetes(int i){
-    //this needs to be refined
-    //    switch(i){
-    //    case 1:
-    //        break;
-    //    case 2:
-    //        ui->dWarning->setText("You have just accumulated Type 2 Diabetes.\nCONGRATULATIONS!");
-    //        ui->dWarning->show();
-    //        ui->warningBox->show();
-    //        break;
-    //    case 3:
-    //        ui->dWarning->setText("You're getting fatter, so you need to stop.");
-    //        ui->dWarning->show();
-    //        ui->warningBox->show();
-    //        break;
-    //    case 4:
-    //        ui->dWarning->setText("Bruh. How are you not dead yet?");
-    //        ui->dWarning->show();
-    //        ui->warningBox->show();
-    //        break;
-    //    case 5:
-    //        ui->dWarning->setText("HEY FAT BOY! STOP EATING OR YOU'LL START \nRADNOMLY DEFECATING YOURSELF!");
-    //        ui->dWarning->show();
-    //        ui->warningBox->show();
-    //        break;
-    //    case 6:
-    //        ui->dWarning->setText("You are the chosen one. Trump 4 Pres 2k16");
-    //        ui->dWarning->show();
-    //        ui->warningBox->show();
-    //        break;
-    //    default:
-    //        ui->dWarning->setText("I'm done with warning your fat arse. \nHope you enjoy your chicken legs. Fatty.");
-    //        ui->dWarning->show();
-    //        ui->warningBox->show();
-    //        break;
-    //    }
-}
-
-
-
-
 void MainWindow::on_ReturnHome_clicked()
 {
     ui->c1SB->setValue(1);
@@ -822,7 +720,6 @@ void MainWindow::on_ReturnHome_clicked()
 
 void MainWindow::finishTrip()
 {
-    //qDebug() << distances[indexTrip];
     totDistTraveled += distances.dequeue();
     ui->finalDistIndicator->setText(QString::number(totDistTraveled, 'f', 2));
     ui->TripsTab1->removeTab(0);
@@ -843,8 +740,6 @@ void MainWindow::finishTrip()
         rev += nSort[i].getTotRev();
     }
     ui->TotSpent->setText(QString::number(rev, 'f', 2));
-
-    //ui->TotSpent->setText(QString::number(ui->GT->text().toDouble(), 'f', 2));
 
     for(int i = 0; i < nSort.size(); i++)
     {
@@ -875,7 +770,6 @@ void MainWindow::clearReview(){
 QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
     //Declare new vector to put the sorted vector into
     QVector<int> efficientOrder;
-    //qDebug() << "start of sortR";
     int lowest = 0;
     int lowestDist = 200.00;
     if(!trip2)
@@ -904,7 +798,6 @@ QVector<int> MainWindow::sortR(QVector<Restaurant> restVec, bool trip2){
             break;
         }
     }
-    // qDebug() << "returning";
     return efficientOrder;
 }
 
@@ -997,13 +890,8 @@ void MainWindow::on_startTrip_clicked()
             //add it at the end
             break;
         case 2:
-            // qDebug() << "start of case 2";
-            //int numVisit = ui->c1SB->value;
             //numAdd is number to visit
             temp.push_front(getRest(ui->c1Label->text()));
-            // nSort.push_front(getRest(ui->c1Label->text()));
-            // qDebug() << "Current:" << nSort[0].getRestaurantName();
-            // int i = 0;
             toVisit = sortR(temp, true);
             nameTemp = db.getRestName(toVisit[0]);
             nSort.push_back(Restaurant(nameTemp,db.getSadDist(nameTemp).toDouble(),distancestoStr(db.getDistances(nameTemp))));
@@ -1076,7 +964,6 @@ void MainWindow::on_startTrip_clicked()
 
             break;
         default:
-            //qDebug() << "hi";
             break;
         }
 
@@ -1088,7 +975,6 @@ void MainWindow::on_startTrip_clicked()
         ui->TripsTab1->addTab(ui->TripTab, "Current Trip");
         ui->mainTab->setCurrentIndex(1);
         indexTrip = 0;
-        //qDebug() << distances[indexTrip];
         totDistTraveled += distances.dequeue();
         ui->distIndicator->setText(QString::number(totDistTraveled, 'f', 2));
     }
@@ -1098,45 +984,6 @@ void MainWindow::on_startTrip_clicked()
                                  "Please log out first");
     }
 
-}
-
-/*Change by Austin comboBoxDisplayMenuPrototype()
-This changes the restaurant and updates menu based on active item in combo box.
-Very similiar to displayMenu(), only difference is the string that is passed into getMenuItems
-is based on the text in the combo box rather than the vector with an integer from indexTrip.*/
-void MainWindow::comboBoxDisplayMenuPrototype()
-{
-    //    ui->menuCB->clear();
-    //    ui->defMenu->clear();
-    //    ClearItemTable();
-    //    int col = 0;
-    //    int row = 0;
-    //    ui->defMenu->horizontalHeader()->setVisible(true);
-
-    //    ui->defMenu->insertColumn(col);
-    //    ui->defMenu->setHorizontalHeaderItem(col, new QTableWidgetItem("Price"));
-
-
-    //    ui->defMenu->insertColumn(col);
-    //    ui->defMenu->setHorizontalHeaderItem(col, new QTableWidgetItem("Item"));
-
-    //    QVector<QString> currentRestIn = db.getMenuItems(ui->restCombo->currentText());
-    //    qDebug() << "Current restuarant" << currentRestIn;
-    //    for(int i = 0; i < currentRestIn.length();i++)
-    //    {
-    //        ui->defMenu->insertRow(row);
-    //        ui->defMenu->setItem(row, 0, new QTableWidgetItem(currentRestIn.at(i)));
-    //        ui->defMenu->setItem(row, 1, new QTableWidgetItem(db.getItemPrice(ui->restCombo->currentText(),currentRestIn.at(i))));
-    //    }
-    //    ui->defMenu->resizeColumnsToContents();
-    //    ui->defMenu->horizontalHeader()->setStretchLastSection(true);
-
-    //    for(int i = 0; i < currentRestIn.length(); i++ )
-    //    {
-    //        ui->menuCB->addItem(currentRestIn.at(i));
-    //    }
-    //    ui->menuCB->setCurrentIndex(0);
-    //    ui->dCurrentRest->setText(ui->restCombo->currentText());
 }
 
 void MainWindow::on_actionExit_triggered()

@@ -89,8 +89,6 @@ private slots:
 
     void on_nextRest_clicked();
 
-    void checkDiabetes(int i);
-
     void on_ReturnHome_clicked();
 
     void clearReview();
@@ -107,8 +105,6 @@ private slots:
     void on_testTrip_clicked();     //Button on Home page to display summary of trip
 
     void on_startTrip_clicked();    //Opens trip tab and beginds the trip
-
-    void comboBoxDisplayMenuPrototype();    //Combo Box restaurant switch
 
     void on_actionExit_triggered();
 

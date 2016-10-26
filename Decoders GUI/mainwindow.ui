@@ -513,7 +513,7 @@ color: rgb(255, 85, 0)</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="HomeTab">
      <attribute name="title">
@@ -719,25 +719,12 @@ color: rgb(255, 85, 0)</string>
       <item row="0" column="0" colspan="2">
        <widget class="QTabWidget" name="TripsTab">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="TripTab">
          <attribute name="title">
           <string>Trip</string>
          </attribute>
-         <widget class="QProgressBar" name="diabetes">
-          <property name="geometry">
-           <rect>
-            <x>396</x>
-            <y>29</y>
-            <width>281</width>
-            <height>25</height>
-           </rect>
-          </property>
-          <property name="value">
-           <number>24</number>
-          </property>
-         </widget>
          <widget class="QTableWidget" name="defMenu">
           <property name="geometry">
            <rect>
@@ -847,19 +834,6 @@ color: rgb(255, 85, 0)</string>
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="dProgress">
-          <property name="geometry">
-           <rect>
-            <x>461</x>
-            <y>9</y>
-            <width>140</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Diabetes Progression Bar Lvl.</string>
-          </property>
-         </widget>
          <widget class="QLabel" name="label_98">
           <property name="geometry">
            <rect>
@@ -903,19 +877,6 @@ color: rgb(255, 85, 0)</string>
           </property>
           <property name="text">
            <string>Item</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="dlvl">
-          <property name="geometry">
-           <rect>
-            <x>607</x>
-            <y>9</y>
-            <width>16</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
           </property>
          </widget>
          <widget class="QPushButton" name="nextRest">
@@ -978,7 +939,7 @@ color: rgb(255, 85, 0)</string>
            <rect>
             <x>110</x>
             <y>20</y>
-            <width>211</width>
+            <width>261</width>
             <height>27</height>
            </rect>
           </property>
@@ -1057,9 +1018,6 @@ color: rgb(255, 85, 0)</string>
            <string>0.00</string>
           </property>
          </widget>
-         <zorder>dProgress</zorder>
-         <zorder>dlvl</zorder>
-         <zorder>diabetes</zorder>
          <zorder>label_98</zorder>
          <zorder>defMenu</zorder>
          <zorder>defPurchase</zorder>
