@@ -21,7 +21,7 @@ Login::~Login()
 
 void Login::on_buttonBox_accepted()
 {
-   if(ui->pwEdit->text().trimmed() == "YugeO")
+   if(ui->pwEdit->text().trimmed() == "cs1d")
    {
        isValid = true;
    }
